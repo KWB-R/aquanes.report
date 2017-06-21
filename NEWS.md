@@ -1,6 +1,8 @@
 # [aquanes.report 0.4.9999](https://github.com/KWB-R/aquanes.report)
 
-* current development version (only for case study "Haridwar")
+* Site 5, Haridwar completed, 
+* current development version (start to integrate Case study 1, Berlin)
+
 
 # [aquanes.report 0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0)
 
