@@ -4,7 +4,7 @@ server_timeSeries <- function(...) {
 
   ts_agg <- reactive({
 
-    object_name <- sprintf("haridwar_%s_list", input$temporal_aggregation)
+    object_name <- sprintf("siteData_%s_list", input$temporal_aggregation)
 
     if (exists(object_name)) {
       get(object_name)
@@ -243,19 +243,19 @@ ui_timeSeries <- function(...) {
                      end = "2016-10-31"),
       checkboxInput('fix_daterange', "Fix daterange", value = FALSE),
       selectInput("sitename", label = "Select a sampling point",
-                  choices = unique(haridwar_10min_list$SiteName),
+                  choices = unique(siteData_10min_list$SiteName),
                   multiple = TRUE,
-                  selected = unique(haridwar_10min_list$SiteName)),
+                  selected = unique(siteData_10min_list$SiteName)),
       selectInput("parameter1", label = "Select a parameter(s) for plot 1",
-                  choices = list(Online =  unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
-                                 Offline = unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "offline"])),
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
+                                 Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
                   multiple = TRUE,
-                  selected = unique(haridwar_10min_list$ParameterName)[c(23)]),
+                  selected = unique(siteData_10min_list$ParameterName)[c(23)]),
       selectInput("parameter2", label = "Select a parameter(s) for plot 2",
-                  choices = list(Online =  unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
-                                 Offline = unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "offline"])),
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
+                                 Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
                   multiple = TRUE,
-                  selected = unique(haridwar_10min_list$ParameterName)[c(28)]),
+                  selected = unique(siteData_10min_list$ParameterName)[c(28)]),
       checkboxInput('add_thresholds', "Add thresholds to plots 1+2", value = TRUE),
       downloadButton("report", "Download plot"),
       selectInput("dataset", "Choose a dataset to download:",

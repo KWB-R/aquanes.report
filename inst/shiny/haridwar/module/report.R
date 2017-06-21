@@ -30,18 +30,18 @@ ui_report <- function(...) {
                                         start = "2016-09-01",
                                         end = "2016-10-30")),
         selectInput("report_sitenames", label = "Select sampling points",
-                    choices = unique(haridwar_10min_list$SiteName),
+                    choices = unique(siteData_10min_list$SiteName),
                     multiple = TRUE,
-                    selected = unique(haridwar_10min_list$SiteName)),
+                    selected = unique(siteData_10min_list$SiteName)),
         h3("Select parameters"),
         selectInput("report_parameters_online", label = "Online",
-                    choices = unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
+                    choices = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
                     multiple = TRUE,
-                    selected = unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "online"])[23]),
+                    selected = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[23]),
         selectInput("report_parameters_offline", label = "Offline",
-                    choices = unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "offline"]),
+                    choices = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"]),
                     multiple = TRUE,
-                    selected = unique(haridwar_10min_list$ParameterName[haridwar_10min_list$Source == "offline"])[4]),
+                    selected = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])[4]),
         selectInput("report_parameters_calculated", label = "Calculated",
                     choices = report_calc_paras,
                     multiple = TRUE,
@@ -82,7 +82,7 @@ server_report <- function(...) {
     withProgress(message = sprintf("1. Loading %s data", input$report_aggregation),
                  value = 0, {
 
-    object_name <- sprintf("haridwar_%s_list", input$report_aggregation)
+    object_name <- sprintf("siteData_%s_list", input$report_aggregation)
 
     if (!exists(object_name)) {
       dat <- readRDS(sprintf("data/%s.Rds", object_name))
