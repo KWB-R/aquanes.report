@@ -71,7 +71,7 @@ server_timeSeries <- function(...) {
 ts_data1_xts <- reactive({
 
 
-  xts::xts(x = ts_data1()[,c(-1,-2), drop = FALSE],
+  xts::xts(x = ts_data1()[,c(-1), drop = FALSE],
            order.by = ts_data1()$DateTime,
            tzone = base::attr(ts_data1()$DateTime,
                               "tzone"))
@@ -110,7 +110,7 @@ ts_data1_xts <- reactive({
   ts_data2_xts <- reactive({
 
 
-    xts::xts(x = ts_data2()[,c(-1,-2), drop = FALSE],
+    xts::xts(x = ts_data2()[,c(-1), drop = FALSE],
              order.by = ts_data2()$DateTime,
              tzone = base::attr(ts_data2()$DateTime,
                                 "tzone"))
