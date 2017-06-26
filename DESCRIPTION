@@ -12,6 +12,7 @@ Imports:
 	RMySQL (>= 0.10.9),
 	dplyr (>= 0.5),
 	readxl (>= 1.0.0),
+	readr (>= 1.1.0),
 	tidyr (>= 0.6.1),
 	ggplot2 (>= 2.2.1),
 	ggforce (>= 0.1.1),
