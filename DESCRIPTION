@@ -10,7 +10,8 @@ Depends: R (>= 3.3.2)
 Imports:
 	plyr (>= 1.8.4),
 	RMySQL (>= 0.10.9),
-	dplyr (>= 0.5),
+	dplyr (>= 0.7.1),
+	dbplyr (>= 1.0.0),
 	readxl (>= 1.0.0),
 	readr (>= 1.1.0),
 	tidyr (>= 0.6.1),
@@ -30,8 +31,6 @@ Suggests:
     devtools (>= 1.13.0),
     knitr
 License: MIT + file LICENSE
-Remotes: 
-	github::hadley/dplyr@55d826c208caca729156f218825f334b68f986dc
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

@@ -9,8 +9,8 @@
 #' @param password password of MySQL database (default: NULL)
 #' @param ... further arguments passed to dplyr::src_mysql()
 #' @return sets dplyr::src_mysql to work with MySQL config file
-#' @import dplyr
-#' @importFrom plyr rbind.fill
+#' @importFrom dplyr src_mysql
+#' @importFrom dbplyr src_dbi
 #' @keywords internal
 src_mysql_from_cnf <- function(dbname,
                                group = NULL,
@@ -21,7 +21,7 @@ src_mysql_from_cnf <- function(dbname,
                       ...) {
 
   dir <- normalizePath(dir)
-  if(!(file.exists(dir))) {
+  if (!(file.exists(dir))) {
     stop(sprintf("No such file '%s'",dir)) }
   dplyr::src_mysql(
     dbname,
@@ -48,8 +48,10 @@ sumewa <- src_mysql_from_cnf(dbname = "sumewa",
 
 tbl_live <- dplyr::tbl(sumewa, "live") %>%
   dplyr::filter_(~AnlagenID == 4014) %>%
+  dplyr::tbl_df() %>%
   dplyr::rename_("Redox_Out1" = "Red1","Redox_Out2" = "Red2") %>%
   dplyr::tbl_df()
+
 
 tbl_india <- dplyr::tbl(sumewa, "indienmesssystem") %>%
   dplyr::filter_(~AnlagenID == 4013) %>%
@@ -73,6 +75,7 @@ tbl_india <- dplyr::tbl(sumewa, "indienmesssystem") %>%
                  ~CC,
                  ~err_sdcard,
                  ~err_modem) %>%
+  dplyr::tbl_df() %>%
   dplyr::rename_("Redox_In" = "Red2",
                  "Pressure1" = "Flux",
                  "Pressure2" = "Uz",
