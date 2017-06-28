@@ -32,10 +32,11 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
       df <- rbind(df, tmp)
     }
   }
-  df_tidy <- tidyr::gather(data = df,
-                           key = "ParameterCode",
-                           value = "ParameterValue",
-                           -TimeStamp) %>%
+  df_tidy <- tidyr::gather_(data = df,
+                            key_col = "ParameterCode",
+                            value_col = "ParameterValue",
+                            gather_cols = c("ParameterCode",
+                                            "ParameterValue")) %>%
     dplyr::rename_(DateTime = "TimeStamp")
 
 
@@ -44,9 +45,9 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
                         sep = ",",
                         dec = ".",
                         stringsAsFactors = FALSE) %>%
-    dplyr::mutate(Label = sprintf("%s (%s)",
-                                  ParameterName,
-                                  ParameterUnit))
+    dplyr::mutate_(Label = sprintf("%s (%s)",
+                                  ~ParameterName,
+                                  ~ParameterUnit))
 
 
   df_tidy <- df_tidy %>%
