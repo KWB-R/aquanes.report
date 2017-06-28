@@ -35,19 +35,20 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
   df_tidy <- tidyr::gather_(data = df,
                             key_col = "ParameterCode",
                             value_col = "ParameterValue",
-                            gather_cols = c("ParameterCode",
-                                            "ParameterValue")) %>%
-    dplyr::rename_(DateTime = "TimeStamp")
+                            gather_cols = setdiff(names(df), "TimeStamp")) %>%
+             dplyr::rename_(DateTime = "TimeStamp")
 
 
   meta_data <- read.csv(file = meta_file_path,
                         header = TRUE,
                         sep = ",",
                         dec = ".",
-                        stringsAsFactors = FALSE) %>%
-    dplyr::mutate_(Label = sprintf("%s (%s)",
-                                  ~ParameterName,
-                                  ~ParameterUnit))
+                        stringsAsFactors = FALSE)
+
+
+  meta_data$Label <- sprintf("%s (%s)",
+                             meta_data$ParameterName,
+                             meta_data$ParameterUnit)
 
 
   df_tidy <- df_tidy %>%
