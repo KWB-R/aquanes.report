@@ -50,12 +50,15 @@ if (!require("devtools")) {
 #### 2.1) Specific release 
 
 In case you want to install a specific release you need to specify the 
-parameter "ref", which needs to be set to a valid release (check here: [releases](https://github.com/KWB-R/aquanes.report/releases)) by running the following code in R(Studio). This tutorial at least requires release version [v.0.3.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.3.0) or  [v.0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0)):
+parameter "ref", which needs to be set to a valid release (check here: [releases](https://github.com/KWB-R/aquanes.report/releases)) by running the following code in R(Studio). This tutorial at least requires release version [v.0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0)):
 ```r
 devtools::install_github("kwb-r/aquanes.report", 
                          ref = "v.0.4.0",
                          dependencies = TRUE)
 ```
+
+***Please cite [v.0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0) 
+of the R package as follows:*** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.825030.svg)](https://doi.org/10.5281/zenodo.825030)
 
 #### 2.2) Development version
 
