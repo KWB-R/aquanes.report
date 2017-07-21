@@ -1,7 +1,12 @@
 # [aquanes.report 0.4.9999](https://github.com/KWB-R/aquanes.report)
 
 * Site 5, Haridwar completed, 
-* current development version (start to integrate Case study 1, Berlin)
+
+* current development version 
+
+    + start to integrate case study 1 (Berlin-Tiefwerder)
+    
+    + start to integrate case study 12 (Berlin-Schoenerlinde)
 
 
 # [aquanes.report 0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0)

@@ -1,0 +1,31 @@
+ParameterCode,ParameterName,SiteCode,SiteName,ParameterName_SiteName,ParameterUnit,ParameterUnitLabel
+Q_O3_Inlet,Ozonkonzentration im Produktgas,,,A -  800001 - Ozonkonzentration im Produktgas,g.m³,g/m³
+Q_O3_Outlet,Ozonkonzentration im Offgas,,,A -  800002 - Ozonkonzentration im Offgas,g.m³.1,g/m³
+Q_Pilot_Inlet,Durchfluss Rohwasser,S1,Ozonung Zulauf,A -  800003 - Durchfluss Rohwasser,m³.h,m³/h
+c_O3,Ozonkonzentration im Wasser,,,A -  800004 - Ozonkonzentration im Wasser (Option),ppm,ppm
+c_O3_Enviro,Ozonkonzentration Raumluft Container,,,A -  800005 - Ozonkonzentration Raumluft Container,ppm.1,ppm
+c_O2,Sauerstoffkonzentration Raumluft Container,,,A -  800006 - Sauerstoffkonzentration Raumluft Container,X.,%
+4_20mA,Sollwert extern 4..20mA,,,A -  800007 - Sollwert extern 4..20mA,X..1,%
+NA,üllstand Entgasungsbehälter,,,A -  800008 - Füllstand Entgasungsbehälter,X..2,%
+OSB_DOC_Inlet,OSB DOC Zulauf,,,A -  800009 - OSB_DOC_Zulauf,mg_L,mg_L
+SCAN_NTU_Inlet,SCAN Truebung Zulauf,S1,Ozonung Zulauf,A -  800010 - SCAN_Truebung_Zulauf,NTU,NTU
+OSB_DOC_Outlet,OSB DOC Ablauf,,,A -  800011 - OSB_DOC_Ablauf,mg_L.1,mg_L
+Q_WWTP_Outlet, Volumenstrom Ablauf Klärwerk,,,A -  800012 - Volumenstrom Ablauf Klärwerk,m³.h.1,m³/h
+SCAN_SAK_Inlet,SCAN SAK Zulauf,S1,Ozonung Zulauf,A -  800013 - SCAN_SAK_Zulauf,X1.m,1/m
+Q_Pilot_Outlet,Volumenstrom Ablauf Ozonanlage,S2,Ozonung Ablauf,A -  800014 - Volumenstrom Ablauf Ozonanlage,m³.h.2,m³/h
+OSB_COD_Inlet,OSB COD Zulauf,S2,Ozonung Ablauf,A -  800015 - OSB_COD_Zulauf,mg_L.2,mg_L
+OSB_COD_Outlet,OSB COD Ablauf,,,A -  800016 - OSB_COD_Ablauf,mg_L.3,mg_L
+SCAN_SAK_Outlet,SCAN SAK Ablauf,S2,Ozonung Ablauf,A -  800017 - SCAN_SAK_Ablauf,X1.m.1,1/m
+O3_prod,Ozonproduktion,,,A -  800018 - Ozonproduktion,g.h,g/h
+NA,Gasfluss (abgelesen),,,A -  800019 - Gasfluss (abgelesen),m³.h.3,m³/h
+NA,Sollwert Ozonkonzentration (errechnet),,,A -  800020 - Sollwert Ozonkonzentration (errechnet),g.m³.2,g/m³
+NA,Sollwert Ozonmasse (errechnet),,,A -  800021 - Sollwert Ozonmasse (errechnet),g.h.1,g/h
+NA,Sollwert Dosis (errechnet),,,A -  800022 - Sollwert Dosis (errechnet),g.m³.3,g/m³
+NA,Sollwert Dosis (errechnet Fahrw. 2),,,A -  800023 - Sollwert Dosis (errechnet Fahrw. 2),g.m³.4,g/m³
+NA,Sollwert Dosis neu (errechnet Fahrw. 3),,,A -  800024 - Sollwert Dosis neu (errechnet Fahrw. 3),g.m³.5,g/m³
+NA,"Faktor  (Fx,p+Fx,k / Fahrweise 3)",,,"A -  800025 - Faktor  (Fx,p+Fx,k / Fahrweise 3)",X..3,%
+NA,SAK254 gemittelt,,,A -  800026 - SAK254 gemittelt,X..4,%
+OSB_SAK_Inlet,OSB SAK Zulauf,,,A -  800028 - OSB_SAK_Zulauf,X1.m.2,1/m
+OSB_SAK_Outlet,OSB SAK Ablauf,,,A -  800029 - OSB_SAK_Ablauf,X1.m.3,1/m
+OSB_Ventil_1,OBS Ventil 1,,,D -  800065 - OBS_Ventil_1,X,
+OSB_Ventil_2,OBS Ventil 2,,,D -  800066 - OBS_Ventil_2,X.1,
