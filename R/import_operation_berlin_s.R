@@ -2,6 +2,7 @@
 #' @param raw_data_file file path to raw data which should be used for as template
 #' for meta file creation
 #' @return data.frame with meta data file structure
+#' @export
 create_wedeco_metafile <- function(raw_data_file  = file.path("//poseidon/projekte$",
                                                             "WWT_Department/Projects/AquaNES",
                                                             "Exchange/06 Datenauswertung WP3",
@@ -75,9 +76,9 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
 
 
     if (pathfile == files_to_import[1]) {
-      df <- tmp
+      df <- ozone
     } else {
-      df <- rbind(ozone_tidy, tmp)
+      df <- rbind(df, ozone)
     }
   }
 
@@ -110,7 +111,7 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
   return(df_tidy)
 }
 
-#' Import data for Berlin Schönerlinde
+#' Import data for Berlin Schoenerlinde
 #' @param raw_data_dir path of directory containing WEDECO CSV files (default:
 #' (default: system.file("shiny/berlin_s/data/operation",
 #' package = "aquanes.report"))))

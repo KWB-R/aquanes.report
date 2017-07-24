@@ -110,7 +110,7 @@ shinyServer(function(input, output, session) {
       server_timeSeries(input, output, session)
       server_report(input, output, session)
       server_site(input, output)
-      server_kwb(input, output)
+      #server_kwb(input, output)
 
       div(
         class = "",
@@ -143,11 +143,11 @@ shinyServer(function(input, output, session) {
               div(class = " ", ui_site(output)),
               id = "site"
             ),
-            tabPanel(
-              "KWB", br(),
-              div(class = " ", ui_kwb(output)),
-              id = "kwb"
-            ),
+            # tabPanel(
+            #   "KWB", br(),
+            #   div(class = " ", ui_kwb(output)),
+            #   id = "kwb"
+            # ),
             #navbarMenu("More",
             #            reference,
             #            ui_kwb(output)),
