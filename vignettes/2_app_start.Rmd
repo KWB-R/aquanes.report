@@ -1,13 +1,13 @@
 ---
-title: "App Start"
+title: "2 App Start"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{App Start}
+  %\VignetteIndexEntry{2 App Start}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-Once the [installation](installation.html) is completed the (shiny) app can be started locally which is described below.
+Once the [installation](1_installation.html) is completed the (shiny) app can be started locally which is described below.
 
 ## Case 1) First app launch or force data update
 

@@ -51,10 +51,37 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../articles/installation.html">Installation</a>
+  <a href="../articles/1_installation.html">1 Installation</a>
 </li>
 <li>
-  <a href="../articles/app_start.html">App start</a>
+  <a href="../articles/2_app_start.html">2 App start</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    3 GUI
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/3_0_gui_overview.html">3.0 Overview</a>
+    </li>
+    <li>
+      <a href="../articles/3_1_gui_explore.html">3.1 Explore panel</a>
+    </li>
+    <li>
+      <a href="../articles/3_2_gui_report.html">3.2 Report panel</a>
+    </li>
+    <li>
+      <a href="../articles/3_3_gui_background.html">3.3 Background panel</a>
+    </li>
+    <li>
+      <a href="../articles/3_4_gui_site.html">3.4 Site panel</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../articles/modification.html">4 Modify</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -99,16 +126,22 @@
       <tbody>
         <tr>
           <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
+            <h2 id="section-all-aquanes-sites" class="hasAnchor"><a href="#section-all-aquanes-sites" class="anchor"></a>All AQUANES sites</h2>
+            <p class="section-desc"><p>General functions which can be used for all AQUANES sites (with default parameterisation for “Haridwar” site)</p></p>
           </th>
         </tr>
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="calculate_operational_parameters.html">calculate_operational_parameters</a></code> </p>
+            <p><code><a href="run_app.html">run_app</a></code> </p>
           </td>
-          <td><p>Calculate operational parameters</p></td>
+          <td><p>Runs Shiny app for an AQUANES site</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="get_valid_timezones.html">get_valid_timezones</a></code> </p>
+          </td>
+          <td><p>Timezone: get valid time zones from Wikipedia</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -118,9 +151,39 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="set_timezone.html">set_timezone</a></code> </p>
+          </td>
+          <td><p>Timezone set: sets a user defined time zone</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="group_datetime.html">group_datetime</a></code> </p>
+          </td>
+          <td><p>Group DateTime by user defined period (year, month, day, hour, minute)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="calculate_operational_parameters.html">calculate_operational_parameters</a></code> </p>
+          </td>
+          <td><p>Calculate operational parameters</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="get_thresholds.html">get_thresholds</a></code> </p>
+          </td>
+          <td><p>Get thresholds for analytics/operational parameters</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="check_thresholds.html">check_thresholds</a></code> </p>
           </td>
           <td><p>Check thresholds</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="dygraph_add_limits.html">dygraph_add_limits</a></code> </p>
+          </td>
+          <td><p>Dygraph: add (multiple) horizontal lines to plot</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -136,46 +199,30 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="create_wedeco_metafile.html">create_wedeco_metafile</a></code> </p>
+            <p><code><a href="report_config_template.html">report_config_template</a></code> </p>
           </td>
-          <td><p>Create WEDECO metafile data</p></td>
+          <td><p>Report config: generate template</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="dygraph_add_limits.html">dygraph_add_limits</a></code> </p>
+            <p><code><a href="report_config_to_txt.html">report_config_to_txt</a></code> </p>
           </td>
-          <td><p>Dygraph: add (multiple) horizontal lines to plot</p></td>
+          <td><p>Report config: saves config to text file</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="get_thresholds.html">get_thresholds</a></code> </p>
+            <p><code><a href="report_txt_to_config.html">report_txt_to_config</a></code> </p>
           </td>
-          <td><p>Get thresholds for analytics/operational parameters</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_valid_timezones.html">get_valid_timezones</a></code> </p>
-          </td>
-          <td><p>Timezone: get valid time zones from Wikipedia</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="group_datetime.html">group_datetime</a></code> </p>
-          </td>
-          <td><p>Group DateTime by user defined period (year, month, day, hour, minute)</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="import_data_berlin_s.html">import_data_berlin_s</a></code> </p>
-          </td>
-          <td><p>Import data for Berlin Schoenerlinde</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="import_data_berlin_t.html">import_data_berlin_t</a></code> </p>
-          </td>
-          <td><p>Import data for Berlin Tiefwerder</p></td>
-        </tr><tr>
+          <td><p>Report config: imports text file to list</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-haridwar-site-" class="hasAnchor"><a href="#section-haridwar-site-" class="anchor"></a>Haridwar (site 5)</h2>
+            <p class="section-desc"><p>Functions for importing &amp; visualising data of Haridwar site</p></p>
+          </th>
+        </tr>
+        <tr>
           <!--  -->
           <td>
             <p><code><a href="import_data_haridwar.html">import_data_haridwar</a></code> </p>
@@ -205,12 +252,40 @@
             <p><code><a href="plot_calculated_operational_timeseries.html">plot_calculated_operational_timeseries</a></code> </p>
           </td>
           <td><p>Plot calculate operational time series</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-berlin-tiefwerder-site-" class="hasAnchor"><a href="#section-berlin-tiefwerder-site-" class="anchor"></a>Berlin-Tiefwerder (site 1)</h2>
+            <p class="section-desc"><p>Functions for importing data of Berlin-Tiefwerder site</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="import_data_berlin_t.html">import_data_berlin_t</a></code> </p>
+          </td>
+          <td><p>Import data for Berlin Tiefwerder</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="read_pentair_data.html">read_pentair_data</a></code> </p>
           </td>
           <td><p>Read PENTAIR operational data</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-berlin-schoenerlinde-site-" class="hasAnchor"><a href="#section-berlin-schoenerlinde-site-" class="anchor"></a>Berlin-Schoenerlinde (site 12)</h2>
+            <p class="section-desc"><p>Functions for importing data of Berlin-Schoenerlinde site</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="import_data_berlin_s.html">import_data_berlin_s</a></code> </p>
+          </td>
+          <td><p>Import data for Berlin Schoenerlinde</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -220,33 +295,9 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="report_config_template.html">report_config_template</a></code> </p>
+            <p><code><a href="create_wedeco_metafile.html">create_wedeco_metafile</a></code> </p>
           </td>
-          <td><p>Report config: generate template</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="report_config_to_txt.html">report_config_to_txt</a></code> </p>
-          </td>
-          <td><p>Report config: saves config to text file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="report_txt_to_config.html">report_txt_to_config</a></code> </p>
-          </td>
-          <td><p>Report config: imports text file to list</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="run_app.html">run_app</a></code> </p>
-          </td>
-          <td><p>Runs Shiny app for an AQUANES site</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_timezone.html">set_timezone</a></code> </p>
-          </td>
-          <td><p>Timezone set: sets a user defined time zone</p></td>
+          <td><p>Create WEDECO metafile data</p></td>
         </tr>
       </tbody>
       </table>
@@ -256,7 +307,10 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-all-aquanes-sites">All AQUANES sites</a></li>
+      <li><a href="#section-haridwar-site-">Haridwar (site 5)</a></li>
+      <li><a href="#section-berlin-tiefwerder-site-">Berlin-Tiefwerder (site 1)</a></li>
+      <li><a href="#section-berlin-schoenerlinde-site-">Berlin-Schoenerlinde (site 12)</a></li>
     </ul>
   </div>
 </div>

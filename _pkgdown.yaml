@@ -5,11 +5,69 @@ navbar:
   title: ~
   type: default
   left:
-  - text: Installation
-    href: articles/installation.html
-  - text: App start
-    href: articles/app_start.html
+  - text: 1 Installation
+    href: articles/1_installation.html
+  - text: 2 App start
+    href: articles/2_app_start.html
+  - text: 3 GUI
+    menu: 
+    - text: 3.0 Overview
+      href: articles/3_0_gui_overview.html
+    - text: 3.1 Explore panel
+      href: articles/3_1_gui_explore.html
+    - text: 3.2 Report panel
+      href: articles/3_2_gui_report.html
+    - text: 3.3 Background panel
+      href: articles/3_3_gui_background.html
+    - text: 3.4 Site panel
+      href: articles/3_4_gui_site.html
+  - text: 4 Modify
+    href: articles/modification.html
   - text: News
     href: news/index.html
   - text: Reference
     href: reference/index.html
+
+reference:
+  - title: "All AQUANES sites"
+    desc: >
+      General functions which can be used for all AQUANES
+      sites (with default parameterisation for "Haridwar" site)
+    contents: 
+      - run_app
+      - get_valid_timezones
+      - change_timezone
+      - set_timezone
+      - group_datetime
+      - calculate_operational_parameters
+      - get_thresholds
+      - check_thresholds
+      - dygraph_add_limits
+      - create_monthly_selection
+      - create_report_batch 
+      - starts_with("report_")
+
+  - title: Haridwar (site 5)
+    desc: >
+      Functions for importing & visualising data of Haridwar site
+    contents: 
+      - import_data_haridwar
+      - import_operation
+      - import_sheets 
+      - starts_with("plot_")
+
+  - title: Berlin-Tiefwerder (site 1)
+    desc: >
+      Functions for importing data of Berlin-Tiefwerder site
+    contents: 
+      - import_data_berlin_t
+      - read_pentair_data
+
+  - title: Berlin-Schoenerlinde (site 12)
+    desc: >
+      Functions for importing data of Berlin-Schoenerlinde site
+    contents: 
+      - import_data_berlin_s
+      - read_wedeco_data
+      - create_wedeco_metafile
+
