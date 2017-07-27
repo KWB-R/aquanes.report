@@ -1,9 +1,0 @@
----
-title: "3.3 GUI Background panel"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{3.3 GUI background panel}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
