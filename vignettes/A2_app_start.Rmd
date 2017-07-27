@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Once the [installation](1_installation.html) is completed the (shiny) app can be started locally which is described below.
+Once the [installation](A1_installation.html) is completed the (shiny) app can be started locally which is described below.
 
 ## Case 1) First app launch or force data update
 
@@ -17,7 +17,7 @@ If you start the app for the first time you need to set the parameter "use_live_
 1. Latest operational data is downloaded from the mySQL Database and
 
 
-2. Analytics data is imported from the file 'analytics.xlsx' (see [Installation, Step 4.2](installation.html#analytics-spreadsheet-file-analytics-xlsx))
+2. Analytics data is imported from the file 'analytics.xlsx' (see [Installation, Step 4.2](A1_installation.html#analytics-spreadsheet-file-analytics-xlsx))
 
 
 ```r

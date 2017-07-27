@@ -6,21 +6,21 @@ navbar:
   type: default
   left:
   - text: 1 Installation
-    href: articles/1_installation.html
+    href: articles/A1_installation.html
   - text: 2 App start
-    href: articles/2_app_start.html
+    href: articles/A2_app_start.html
   - text: 3 GUI
     menu: 
     - text: 3.0 Overview
-      href: articles/3_0_gui_overview.html
+      href: articles/A3_0_gui_overview.html
     - text: 3.1 Explore panel
-      href: articles/3_1_gui_explore.html
+      href: articles/A3_1_gui_explore.html
     - text: 3.2 Report panel
-      href: articles/3_2_gui_report.html
+      href: articles/A3_2_gui_report.html
     - text: 3.3 Background panel
-      href: articles/3_3_gui_background.html
+      href: articles/A3_3_gui_background.html
     - text: 3.4 Site panel
-      href: articles/3_4_gui_site.html
+      href: articles/A3_4_gui_site.html
   - text: 4 Modify
     href: articles/modification.html
   - text: News
@@ -69,5 +69,6 @@ reference:
     contents: 
       - import_data_berlin_s
       - read_wedeco_data
+      - calculate_operational_parameters_berlin_s
       - create_wedeco_metafile
 

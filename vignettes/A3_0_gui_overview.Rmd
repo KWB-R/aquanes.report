@@ -7,16 +7,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Once the [app is started](2_app_start.html) you see the graphical user interface 
+Once the [app is started](A2_app_start.html) you see the graphical user interface 
 (GUI) in your internet browser (here: Firefox) with the following four tab panels: 
 
--	[Explore](3_1_gui_explore.html)
+-	[Explore](A3_1_gui_explore.html)
 
--	[Report](3_2_gui_report.html)
+-	[Report](A3_2_gui_report.html)
 
--	[Background](3_3_gui_background.html)
+-	[Background](A3_3_gui_background.html)
 
--	[Site](3_4_gui_site.html)
+-	[Site](A3_4_gui_site.html)
 
 The functionality of each tab panel is described in detail in the following 
 sub-chapters.

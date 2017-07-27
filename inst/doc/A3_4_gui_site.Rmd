@@ -1,0 +1,9 @@
+---
+title: "3.4 GUI Site panel"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{3.4 GUI site panel}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+

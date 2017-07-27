@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../articles/1_installation.html">1 Installation</a>
+  <a href="../articles/A1_installation.html">1 Installation</a>
 </li>
 <li>
-  <a href="../articles/2_app_start.html">2 App start</a>
+  <a href="../articles/A2_app_start.html">2 App start</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -64,19 +65,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/3_0_gui_overview.html">3.0 Overview</a>
+      <a href="../articles/A3_0_gui_overview.html">3.0 Overview</a>
     </li>
     <li>
-      <a href="../articles/3_1_gui_explore.html">3.1 Explore panel</a>
+      <a href="../articles/A3_1_gui_explore.html">3.1 Explore panel</a>
     </li>
     <li>
-      <a href="../articles/3_2_gui_report.html">3.2 Report panel</a>
+      <a href="../articles/A3_2_gui_report.html">3.2 Report panel</a>
     </li>
     <li>
-      <a href="../articles/3_3_gui_background.html">3.3 Background panel</a>
+      <a href="../articles/A3_3_gui_background.html">3.3 Background panel</a>
     </li>
     <li>
-      <a href="../articles/3_4_gui_site.html">3.4 Site panel</a>
+      <a href="../articles/A3_4_gui_site.html">3.4 Site panel</a>
     </li>
   </ul>
 </li>
@@ -139,13 +140,13 @@ report_config_template()</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
-  <span class='co'>### Creates a configuration template</span>
-  <span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='report_config_template.html'>report_config_template</a></span>()
-  <span class='co'>### Saves list config in text</span>
-  <span class='fu'>report_config_to_txt</span>(<span class='kw'>config_list</span> <span class='kw'>=</span> <span class='no'>config</span>,
-  <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='st'>"report_config.txt"</span>)
-})</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'>### Creates a configuration template</span>
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='report_config_template.html'>report_config_template</a></span>()
+<span class='co'>### Saves list config in text</span>
+<span class='fu'>report_config_to_txt</span>(<span class='kw'>config_list</span> <span class='kw'>=</span> <span class='no'>config</span>,
+<span class='kw'>output_file</span> <span class='kw'>=</span> <span class='st'>"report_config.txt"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
