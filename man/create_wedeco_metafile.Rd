@@ -4,9 +4,7 @@
 \alias{create_wedeco_metafile}
 \title{Create WEDECO metafile data}
 \usage{
-create_wedeco_metafile(raw_data_file = file.path("//poseidon/projekte$",
-  "WWT_Department/Projects/AquaNES", "Exchange/06 Datenauswertung WP3",
-  "Rohdaten/WEDECO_Rohdaten", "NeueDatenstruktur", "Ozone_2017_KW_27.csv"))
+create_wedeco_metafile(raw_data_file)
 }
 \arguments{
 \item{raw_data_file}{file path to raw data which should be used for as template

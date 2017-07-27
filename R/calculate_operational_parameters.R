@@ -53,7 +53,9 @@ calculate_operational_parameters <- function(df,
                                             "Iz")) {
 
 
-
+print(sprintf("Calculating %d operational parameter(s): %s",
+                length(calc_list_name),
+                paste(calc_list_name, collapse = ", ")))
 
 meta_data <- data.frame(ParameterCode = names(calc_list),
                         ParameterName = calc_list_name,

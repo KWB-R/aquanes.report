@@ -1,11 +1,28 @@
-use_live_data <- TRUE
+use_live_data <- FALSE
 
 if (use_live_data) {
 
 library(aquanes.report)
+library(dplyr)
 
-system.time(
-siteData_raw_list <- aquanes.report::import_data_berlin_s())
+
+metadata <- readr::read_csv(file = "data/parameter_site_metadata.csv") %>%
+    dplyr::filter(ZeroOne == 1) %>%
+    dplyr::select("ParameterName_SiteName", "ZeroOne") %>%
+    as.data.frame()
+
+  system.time(
+    siteData_raw_list <- aquanes.report::import_data_berlin_s() %>%
+      dplyr::filter(ParameterName_SiteName %in% metadata$ParameterName_SiteName))
+
+
+calc_dat <- aquanes.report::calculate_operational_parameters_berlin_s(df = siteData_raw_list)
+
+siteData_raw_list <- plyr::rbind.fill(siteData_raw_list,
+                                      calc_dat)
+
+
+
 
 print("### Step 4: Performing temporal aggregation ##########################")
 system.time(
@@ -42,10 +59,8 @@ threshold_file <- system.file("shiny/berlin_s/data/thresholds.csv",
 thresholds <- aquanes.report::get_thresholds(csv_path = threshold_file)
 
 print("### Step 6: Specify available months for reporting ##########################")
-report_months <- aquanes.report::create_monthly_selection(startDate = "2017-06-01")
+report_months <- aquanes.report::create_monthly_selection(startDate = "2017-04-01")
 
 #print("### Step 7: Add default calculated operational parameters ##########################")
-
-#report_calc_paras <- unique(aquanes.report::calculate_operational_parameters(df = siteData_10min_list)$ParameterName)
 
 report_calc_paras <- "NOT_IMPLEMENTED_YET"

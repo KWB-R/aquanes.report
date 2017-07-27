@@ -46,7 +46,7 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
                         stringsAsFactors = FALSE)
 
 
-  meta_data$Label <- sprintf("%s (%s)",
+  meta_data$ParameterLabel <- sprintf("%s (%s)",
                              meta_data$ParameterName,
                              meta_data$ParameterUnit)
 

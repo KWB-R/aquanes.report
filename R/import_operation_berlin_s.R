@@ -3,12 +3,7 @@
 #' for meta file creation
 #' @return data.frame with meta data file structure
 #' @export
-create_wedeco_metafile <- function(raw_data_file  = file.path("//poseidon/projekte$",
-                                                            "WWT_Department/Projects/AquaNES",
-                                                            "Exchange/06 Datenauswertung WP3",
-                                                            "Rohdaten/WEDECO_Rohdaten",
-                                                            "NeueDatenstruktur",
-                                                            "Ozone_2017_KW_27.csv")) {
+create_wedeco_metafile <- function(raw_data_file) {
 
 
   print(paste("Importing raw data file:",raw_data_file ))
@@ -28,8 +23,8 @@ create_wedeco_metafile <- function(raw_data_file  = file.path("//poseidon/projek
                           SiteCode = rep(NA, nrow(ozone)),
                           SiteName = rep(NA, nrow(ozone)),
                           ParameterName_SiteName = names(ozone)[indices_names],
-                          ParameterUnit = names(ozone)[indices_units],
-                          ParameterUnitLabel = names(ozone)[indices_units]
+                          ParameterUnitOrg = names(ozone)[indices_units],
+                          ParameterUnit = names(ozone)[indices_units]
   )
 
   return(meta_file)
@@ -83,7 +78,7 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
   }
 
   ozone_tidy <- tidyr::gather_(data = df,
-                        key_col = "ParameterUnit",
+                        key_col = "ParameterUnitOrg",
                         value_col = "ParameterValue",
                         gather_cols = setdiff(names(df), "DateTime"))
 
@@ -92,7 +87,7 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
   meta_data  <- read.csv(file = meta_file_path,
                                       stringsAsFactors = FALSE)
 
-  meta_data$Label <- sprintf("%s (%s)",
+  meta_data$ParameterLabel <- sprintf("%s (%s)",
                              meta_data$ParameterName,
                              meta_data$ParameterUnit)
 
@@ -137,7 +132,7 @@ data_berlin_s$DataType <- "raw"
 data_berlin_s$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 data_berlin_s$SiteName,
                                                 data_berlin_s$ParameterName,
-                                                data_berlin_s$ParameterUnitLabel
+                                                data_berlin_s$ParameterUnit
                                                 )
 
 

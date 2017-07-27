@@ -45,11 +45,16 @@ thresholds <- aquanes.report::get_thresholds(csv_path = thresholds_file )
 if (params$run_as_standalone) {
   
 ### Raw data
-dat <- aquanes.report::import_data_berlin_s()
+raw_dat <- aquanes.report::import_data_berlin_s()
+
+calc_dat <- aquanes.report::calculate_operational_parameters_berlin_s(df = raw_dat)
+
+dat <- plyr::rbind.fill(raw_dat, calc_dat)
+
 
 conf_template <- aquanes.report::report_config_template(df = dat,
                                        temporal_aggregation = "raw", 
-                                      output_timezone = "Europe/Berlin")
+                                       output_timezone = "Europe/Berlin")
 aquanes.report::report_config_to_txt(config_list = conf_template, "report_config_template.txt")
 
 report_config_path <- file.path(getwd(), "report_config.txt")
@@ -66,7 +71,7 @@ input <- aquanes.report::report_txt_to_config(report_config_path)
 input <- list(report_sitenames = unique(dat$SiteName),
               report_aggregation = "day",
               report_parameters_online = unique(dat$ParameterName[dat$Source == "online"])[1],
-              report_parameters_offline = unique(dat$ParameterName[dat$Source == "offline"])[6],
+              #report_parameters_offline = unique(dat$ParameterName[dat$Source == "offline"])[6],
               report_add_thresholds = FALSE,
               report_daterange = c("2017-07-01", "2017-07-31"),
               report_timezone = "CET")
@@ -94,7 +99,7 @@ config <- list(run_as_standalone = TRUE,
                report_sitenames = input$report_sitenames,
                report_parameters_online = input$report_parameters_online,
                report_parameters_offline = input$report_parameters_offline,
-               report_parameters_calculated = unique(aquanes.report::calculate_operational_parameters(df = dat)$ParameterName),
+               report_parameters_calculated = NA,
                report_add_thresholds = input$report_add_thresholds,
                report_daterange = input$report_daterange,
                report_timezone = input$report_timezone
