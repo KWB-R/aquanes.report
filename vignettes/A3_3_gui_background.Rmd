@@ -7,3 +7,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+The background panel simply consists of screenshot of the Haridwar site 
+description. It is linked to the [AQUANES website](http://www.aquanes-h2020.eu/Default.aspx?t=1668), 
+which – if clicked – is opened in a new browser tab. 
+
+![background_tab_panel](figures/27.png)

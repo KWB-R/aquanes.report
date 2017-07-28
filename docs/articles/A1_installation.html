@@ -29,6 +29,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
+  <a href="../articles/A0_intro.html">0 Intro</a>
+</li>
+<li>
   <a href="../articles/A1_installation.html">1 Installation</a>
 </li>
 <li>
@@ -59,7 +62,7 @@
   </ul>
 </li>
 <li>
-  <a href="../articles/modification.html">4 Modify</a>
+  <a href="../articles/A4_modify.html">4 Modify</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -94,10 +97,10 @@
     
     
 <div class="contents">
-<p>In the following the <a href="#pre-required-software">pre-required software</a> and the workflow for installing the <a href="#r-package-installation">R package aquanes.report</a> is described.</p>
-<div id="pre-required-software" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pre-required-software" class="anchor"></a>Pre-required software</h2>
+<p>In the following the <a href="#1-1-pre-required-software">required software</a> and the workflow for installing the <a href="#1-2-r-package-installation">R package aquanes.report</a> is described.</p>
+<div id="pre-required-software" class="section level1">
+<h1 class="hasAnchor">
+<a href="#pre-required-software" class="anchor"></a>1.1 Pre-required software</h1>
 <ul>
 <li><p><a href="https://cloud.r-project.org/">R (&gt;= 3.3.2)</a>: for the development of the R package <strong>aquanes.report</strong> R 3.3.2 was used. However, also later R releases (e.g. 3.4) should be working.</p></li>
 <li><p><a href="https://cran.rstudio.com/bin/windows/Rtools/">Rtools</a>: required to compile R packages from source (Attention: the required version depends on the installed R version on your OS)</p></li>
@@ -106,21 +109,21 @@
 </ul>
 <p>For the advanced user it is further recommended to install the latest version of the integrated development environment (IDE) <a href="https://www.rstudio.com/products/rstudio/download2/#download">RStudio Desktop “open source licence”</a>.</p>
 </div>
-<div id="r-package-installation" class="section level2">
+<div id="workflow" class="section level1">
+<h1 class="hasAnchor">
+<a href="#workflow" class="anchor"></a>1.2 Workflow</h1>
+<p>Once all <a href="#1-1-pre-required-software">pre-required software</a> is installed the R package installation workflow as described below can be started.</p>
+<div id="step-1-installation-of-r-package-devtools" class="section level2">
 <h2 class="hasAnchor">
-<a href="#r-package-installation" class="anchor"></a>R package installation</h2>
-<p>Once all <a href="#pre-required-software">pre-required software</a> is installed on your operating system you can proceed with the R package installation workflow as described below.</p>
-<div id="step-1-installation-of-r-package-devtools" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-1-installation-of-r-package-devtools" class="anchor"></a>Step 1) Installation of R package “devtools”</h3>
-<p>The R package “devtools” is required for downloading and installing the R package “aquanes.report” from Github. For installing it execute the following lines of code in R(Studio):</p>
+<a href="#step-1-installation-of-r-package-devtools" class="anchor"></a>1.2.1 Step 1) Installation of R package “devtools”</h2>
+<p>The R package “devtools” is required for downloading and installing the R package “aquanes.report” from Github. Installation is done by executing the following lines of code in R or RStudio (from now on written as R(Studio)):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">"devtools"</span>)) {
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)
 }</code></pre></div>
 </div>
-<div id="step-2-installation-of-r-package-aquanes-report" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-2-installation-of-r-package-aquanes-report" class="anchor"></a>Step 2) Installation of R package “aquanes.report”</h3>
+<div id="step-2-installation-of-r-package-aquanes-report" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-2-installation-of-r-package-aquanes-report" class="anchor"></a>1.2.2 Step 2) Installation of R package “aquanes.report”</h2>
 <div id="specific-release" class="section level4">
 <h4 class="hasAnchor">
 <a href="#specific-release" class="anchor"></a>2.1) Specific release</h4>
@@ -130,33 +133,33 @@
                          <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><strong><em>Please cite <a href="https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0">v.0.4.0</a> of the R package as follows:</em></strong> <a href="https://doi.org/10.5281/zenodo.825030"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.825030.svg" alt="DOI"></a></p>
 </div>
-<div id="development-version" class="section level4">
-<h4 class="hasAnchor">
-<a href="#development-version" class="anchor"></a>2.2) Development version</h4>
-<p>If you want to install the latest (possibly unstable!) development version, execute the following lines of code in R(Studio):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">"kwb-r/aquanes.report"</span>, 
-                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
-</div>
-<div id="step-3-check-the-installation-folder-of-the-package-in-rstudio-with" class="section level3">
-<h3 class="hasAnchor">
-<a href="#step-3-check-the-installation-folder-of-the-package-in-rstudio-with" class="anchor"></a>Step 3) Check the installation folder of the package in R(Studio) with:</h3>
+<div id="step-3-check-the-installation-folder-of-the-package-in-rstudio-with" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-3-check-the-installation-folder-of-the-package-in-rstudio-with" class="anchor"></a>1.2.3 Step 3) Check the installation folder of the package in R(Studio) with:</h2>
+<p>By running the following code in R(Studio) you can check where the R package “aquanes.report” was installed on your computer:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
+<p>Under Windows it will be located in your personal Documents/R/win-library folder followed by the minor release version of the R version you are using (here: 3.3 because the R version used for this documentation is 3.3.2): “C:/Users/YOUR_USERNAME/Documents/R/win-library/3.3/aquanes.report”"</p>
 </div>
-<div id="step-4-two-files-need-to-be-copied" class="section level3">
+<div id="step-4-copy-site-specific-files" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-4-copy-site-specific-files" class="anchor"></a>1.2.4 Step 4) Copy site specific files</h2>
+<p>Knowing the installation folder of the “aquanes.report” package is important, because two additional files, which are described in detail in the following sub-chapters need to be copied into the package directory, so that it is working properly for the Haridwar site.</p>
+<div id="mysql-configuration-file--my-cnf" class="section level3">
 <h3 class="hasAnchor">
-<a href="#step-4-two-files-need-to-be-copied" class="anchor"></a>Step 4) Two files need to be copied:</h3>
-<div id="mysql-configuration-file--my-cnf" class="section level4">
-<h4 class="hasAnchor">
-<a href="#mysql-configuration-file--my-cnf" class="anchor"></a>4.1) mySQL configuration file (‘.my.cnf’)</h4>
-<p>The ‘.my.cnf’ file is required to establish a connection to the mySQL database for querying the operational data for the Haridwar site. It needs to be copied into the following directory:</p>
+<a href="#mysql-configuration-file--my-cnf" class="anchor"></a>1.2.4.1 mySQL configuration file (‘.my.cnf’)</h3>
+<p>The ‘.my.cnf’ file is required to establish a connection to the mySQL database for querying the opera-tional data for the Haridwar site. It needs to be copied into the directory which is returned after run-ning the following code in R(Studio) :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
+<p>In this example (which is based on the R 3.3.2 release) it will be located in your personal documents folder under: “C:/Users/YOUR_USERNAME/Documents/R/win-library/3.3/aquanes.report/shiny/haridwar”</p>
+<p><strong>Important note:</strong> The “.my.cnf” configuration file is not included in the R package, as it would provide direct access to the MySQL database of the AUTARCON company!</p>
 </div>
-<div id="analytics-spreadsheet-file-analytics-xlsx" class="section level4">
-<h4 class="hasAnchor">
-<a href="#analytics-spreadsheet-file-analytics-xlsx" class="anchor"></a>4.2) Analytics spreadsheet file (‘analytics.xlsx’)</h4>
-<p>The ‘analytics.xlsx’ file contains the analytics data for the Haridwar site and needs to be copied into the following directory:</p>
+<div id="analytics-spreadsheet-file-analytics-xlsx" class="section level3">
+<h3 class="hasAnchor">
+<a href="#analytics-spreadsheet-file-analytics-xlsx" class="anchor"></a>1.2.4.2 Analytics spreadsheet file (‘analytics.xlsx’)</h3>
+<p>The ‘analytics.xlsx’ file contains the analytics data (results of lab measurements) for the Haridwar site. It has a specific predefined structure which is expected by the R package and should not be changed (e.g. for all analytical parameter sheets to be imported the data entries are expected to start in row 70 and the first column is of type “DateTime”). Automatic reading of this file is not possible, if the structure is changed. This file needs to be copied into the directory which is returned after running the following code in R(Studio):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar/data"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
+<p>In this example (which is based on the R 3.3.2 release) it will be located in your personal documents folder under: “C:/Users/YOUR_USERNAME/Documents/R/win-library/3.3/aquanes.report/shiny/haridwar/data”</p>
+<p><strong>Important note:</strong> <strong><em>The “analytics.xlsx” file is not included in the R package due to IP reasons.</em></strong></p>
 </div>
 </div>
 </div>
@@ -168,8 +171,15 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#pre-required-software">Pre-required software</a></li>
-      <li><a href="#r-package-installation">R package installation</a></li>
+<li><a href="#pre-required-software">1.1 Pre-required software</a></li>
+      <li>
+<a href="#workflow">1.2 Workflow</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#step-1-installation-of-r-package-devtools">1.2.1 Step 1) Installation of R package “devtools”</a></li>
+      <li><a href="#step-2-installation-of-r-package-aquanes-report">1.2.2 Step 2) Installation of R package “aquanes.report”</a></li>
+      <li><a href="#step-3-check-the-installation-folder-of-the-package-in-rstudio-with">1.2.3 Step 3) Check the installation folder of the package in R(Studio) with:</a></li>
+      <li><a href="#step-4-copy-site-specific-files">1.2.4 Step 4) Copy site specific files</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>

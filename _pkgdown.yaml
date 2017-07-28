@@ -5,6 +5,8 @@ navbar:
   title: ~
   type: default
   left:
+  - text: 0 Intro
+    href: articles/A0_intro.html
   - text: 1 Installation
     href: articles/A1_installation.html
   - text: 2 App start
@@ -22,7 +24,7 @@ navbar:
     - text: 3.4 Site panel
       href: articles/A3_4_gui_site.html
   - text: 4 Modify
-    href: articles/modification.html
+    href: articles/A4_modify.html
   - text: News
     href: news/index.html
   - text: Reference
