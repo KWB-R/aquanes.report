@@ -6,7 +6,8 @@ library(aquanes.report)
 library(dplyr)
 
 
-metadata <- readr::read_csv(file = "data/parameter_site_metadata.csv") %>%
+metadata <- read.csv(file = "data/parameter_site_metadata.csv",
+                     stringsAsFactors = FALSE) %>%
     dplyr::filter(ZeroOne == 1) %>%
     dplyr::select("ParameterName_SiteName", "ZeroOne") %>%
     as.data.frame()
