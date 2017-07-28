@@ -12,6 +12,7 @@
 #' aggregation time step
 #' @import dplyr
 #' @importFrom xts align.time
+#' @importFrom fasttime fastPOSIXct
 #' @export
 
 group_datetime <- function(df,
@@ -46,10 +47,10 @@ if ((!by %in% names(grp_list)) & !is.numeric(by)) {
 
 datetime_org <- df[,col_datetime]
 tz_org <- base::check_tzones(datetime_org)
-df[,col_datetime] <- as.POSIXct(format(df[,col_datetime],
-                                        format = grp_list[[by]]),
-                                tz = tz_org)
-
+df[,col_datetime] <- fasttime::fastPOSIXct(format(df[,col_datetime],
+                                           format = grp_list[[by]]), 
+                                           tz = tz_org, 
+                                           required.components = 3L)
 if (by == "day") by <- "dai"
 if (dbg) print(sprintf("Performing %sly temporal aggregation!", by))  
 

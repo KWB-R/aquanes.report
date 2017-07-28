@@ -39,7 +39,6 @@ system.time(
                                                         by = "day"))
 
 
-
 saveRDS(siteData_raw_list, file = "data/siteData_raw_list.Rds")
 saveRDS(siteData_10min_list, file = "data/siteData_10min_list.Rds")
 saveRDS(siteData_hour_list, file = "data/siteData_hour_list.Rds")

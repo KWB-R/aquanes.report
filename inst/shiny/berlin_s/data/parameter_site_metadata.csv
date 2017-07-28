@@ -4,7 +4,7 @@ C_O3_Abgas,Ozonkonzentration im Offgas,,,A -  800002 - Ozonkonzentration im Offg
 Q_Ozonanlage,Durchfluss Rohwasser,S1,Ozonung Zulauf,A -  800003 - Durchfluss Rohwasser,m³.h,m³/h,1
 c_O3,Ozonkonzentration im Wasser,,,A -  800004 - Ozonkonzentration im Wasser (Option),ppm,ppm,0
 c_O3_Enviro,Ozonkonzentration Raumluft Container,,,A -  800005 - Ozonkonzentration Raumluft Container,ppm.1,ppm,1
-c_O2,Sauerstoffkonzentration Raumluft Container,,,A -  800006 - Sauerstoffkonzentration Raumluft Container,X.,%,0
+c_O2,Sauerstoffkonzentration Raumluft Container,,,A -  800006 - Sauerstoffkonzentration Raumluft Container,X.,%,1
 Soll_extern,Sollwert extern 4..20mA,,,A -  800007 - Sollwert extern 4..20mA,X..1,%,0
 Fuellstand,Füllstand Entgasungsbehälter,,,A -  800008 - Füllstand Entgasungsbehälter,X..2,%,1
 OSB_DOC_Inlet,OSB DOC,S1,Ozonung Zulauf,A -  800009 - OSB_DOC_Zulauf,mg_L,mg_L,0
