@@ -113,12 +113,17 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
 #' @param meta_file_path path to metadata file (default:
 #' system.file("shiny/berlin_s/data/parameter_site_metadata.csv", package =
 #' "aquanes.report")))
+#' @param rds_file_path path to rds file (default:
+#' system.file("shiny/berlin_s/data/siteData_raw_list.Rds", package =
+#' "aquanes.report")))
 #' @return data.frame with imported operational data (analytics data to be added as
 #' soon as available)
 #' @export
 import_data_berlin_s <- function(raw_data_dir = system.file("shiny/berlin_s/data/operation",
                                                             package = "aquanes.report"),
                                  meta_file_path = system.file("shiny/berlin_s/data/parameter_site_metadata.csv",
+                                                              package = "aquanes.report"),
+                                 rds_file_path = system.file("shiny/berlin_s/data/siteData_raw_list.Rds",
                                                               package = "aquanes.report")) {
 
 
@@ -134,6 +139,27 @@ data_berlin_s$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 data_berlin_s$ParameterName,
                                                 data_berlin_s$ParameterUnit
                                                 )
+
+if (file.exists(rds_file_path)) {
+print(sprintf("Loading already imported data from file: %s", rds_file_path))
+
+old_data <- readRDS(rds_file_path)
+new_data <- data_berlin_s[!data_berlin_s$DateTime %in% unique(old_data$DateTime), ]
+
+if (nrow(new_data) > 0) {
+print(sprintf("Adding new %d data points for time period: %s - %s",
+              nrow(new_data),
+              min(new_data$DateTime),
+              max(new_data$DateTime)))
+data_berlin_s <- rbind(old_data, new_data)
+} else {
+  cat(sprintf("No additional data points found in files:\n%s",
+              paste(list.files(raw_data_dir,
+                               pattern = "\\.",
+                               full.names = TRUE), collapse = "\n")))
+}
+
+}
 
 
 #### To do: joind with ANALYTICS data as soon as available

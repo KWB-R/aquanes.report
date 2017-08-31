@@ -73,11 +73,16 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
 #' "aquanes.report")))
 #' @return data.frame with imported operational data (analytics data to be added as
 #' soon as available)
+#' @param rds_file_path path to rds file (default:
+#' system.file("shiny/berlin_t/data/siteData_raw_list.Rds", package =
+#' "aquanes.report")))
 #' @export
 import_data_berlin_t <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
                                                             package = "aquanes.report"),
                                  meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
-                                                              package = "aquanes.report")) {
+                                                              package = "aquanes.report"),
+                                 rds_file_path = system.file("shiny/berlin_t/data/siteData_raw_list.Rds",
+                                                             package = "aquanes.report")) {
 
 
 data_berlin_t <- read_pentair_data(raw_data_dir = raw_data_dir,
@@ -93,7 +98,25 @@ data_berlin_t$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 data_berlin_t$ParameterUnit
                                                 )
 
+if (file.exists(rds_file_path)) {
+  print(sprintf("Loading already imported data from file: %s", rds_file_path))
 
+  old_data <- readRDS(rds_file_path)
+  new_data <- data_berlin_t[!data_berlin_t$DateTime %in% unique(old_data$DateTime), ]
+
+  if (nrow(new_data) > 0) {
+    print(sprintf("Adding new %d data points for time period: %s - %s",
+                  nrow(new_data),
+                  min(new_data$DateTime),
+                  max(new_data$DateTime)))
+    data_berlin_t <- rbind(old_data, new_data)
+  } else {
+    cat(sprintf("No additional data points found in files:\n%s",
+                  paste(list.files(raw_data_dir,
+                                   pattern = "\\.",
+                                   full.names = TRUE), collapse = "\n")))
+  }
+}
 #### To do: joind with ANALYTICS data as soon as available
 
 return(data_berlin_t)
