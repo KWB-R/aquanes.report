@@ -140,13 +140,18 @@ data_berlin_s$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 data_berlin_s$ParameterUnit
                                                 )
 
+added_data_points <- 0
+
 if (file.exists(rds_file_path)) {
 print(sprintf("Loading already imported data from file: %s", rds_file_path))
 
 old_data <- readRDS(rds_file_path)
 new_data <- data_berlin_s[!data_berlin_s$DateTime %in% unique(old_data$DateTime), ]
 
-if (nrow(new_data) > 0) {
+added_data_points <- nrow(new_data)
+
+if (added_data_points > 0) {
+
 print(sprintf("Adding new %d data points for time period: %s - %s",
               nrow(new_data),
               min(new_data$DateTime),
@@ -165,7 +170,8 @@ data_berlin_s <- rbind(old_data, new_data)
 
 #### To do: joind with ANALYTICS data as soon as available
 
-return(data_berlin_s)
+return(list(df = data_berlin_s,
+            added_data_points = added_data_points))
 }
 
 

@@ -51,7 +51,11 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
                              meta_data$ParameterUnit)
 
 
-  df_tidy <- df_tidy %>%
+  relevant_paras <- meta_data[meta_data$ZeroOne == 1, c("ParameterCode",
+                                                        "ZeroOne")]
+
+
+  df_tidy <- df_tidy[df_tidy$ParameterCode %in% relevant_paras$ParameterCode,] %>%
     dplyr::left_join(y = meta_data) %>%
     as.data.frame()
 
@@ -71,8 +75,10 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
 #' @param meta_file_path path to metadata file (default:
 #' system.file("shiny/berlin_t/data/parameter_site_metadata.csv", package =
 #' "aquanes.report")))
-#' @return data.frame with imported operational data (analytics data to be added as
-#' soon as available)
+#' @return list with "df": data.frame with imported operational data (analytics
+#' data to be added as soon as available) and "added_data_points": number of
+#' added data points in case of existing RDS file was updated with new operational
+#' data
 #' @param rds_file_path path to rds file (default:
 #' system.file("shiny/berlin_t/data/siteData_raw_list.Rds", package =
 #' "aquanes.report")))
@@ -98,13 +104,18 @@ data_berlin_t$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 data_berlin_t$ParameterUnit
                                                 )
 
+added_data_points <- 0
+
 if (file.exists(rds_file_path)) {
   print(sprintf("Loading already imported data from file: %s", rds_file_path))
 
   old_data <- readRDS(rds_file_path)
   new_data <- data_berlin_t[!data_berlin_t$DateTime %in% unique(old_data$DateTime), ]
 
-  if (nrow(new_data) > 0) {
+  added_data_points <- nrow(new_data)
+
+  if (added_data_points > 0) {
+
     print(sprintf("Adding new %d data points for time period: %s - %s",
                   nrow(new_data),
                   min(new_data$DateTime),
@@ -120,7 +131,8 @@ if (file.exists(rds_file_path)) {
 }
 #### To do: joind with ANALYTICS data as soon as available
 
-return(data_berlin_t)
+return(list(df = data_berlin_t,
+            added_data_points = added_data_points))
 }
 
 

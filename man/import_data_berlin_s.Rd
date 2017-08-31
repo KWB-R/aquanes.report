@@ -8,6 +8,8 @@
   import_data_berlin_s(raw_data_dir = system.file("shiny/berlin_s/data/operation",
   package = "aquanes.report"),
   meta_file_path = system.file("shiny/berlin_s/data/parameter_site_metadata.csv",
+  package = "aquanes.report"),
+  rds_file_path = system.file("shiny/berlin_s/data/siteData_raw_list.Rds",
   package = "aquanes.report"))
 }
 \arguments{
@@ -17,6 +19,10 @@ package = "aquanes.report"))))}
 
 \item{meta_file_path}{path to metadata file (default:
 system.file("shiny/berlin_s/data/parameter_site_metadata.csv", package =
+"aquanes.report")))}
+
+\item{rds_file_path}{path to rds file (default:
+system.file("shiny/berlin_s/data/siteData_raw_list.Rds", package =
 "aquanes.report")))}
 }
 \value{

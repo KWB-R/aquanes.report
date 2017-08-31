@@ -13,13 +13,13 @@ metadata <- read.csv(file = "data/parameter_site_metadata.csv",
     as.data.frame()
 
   system.time(
-    siteData_raw_list <- aquanes.report::import_data_berlin_s() %>%
+    newData_raw_list <- aquanes.report::import_data_berlin_s() %>%
       dplyr::filter(ParameterName_SiteName %in% metadata$ParameterName_SiteName))
 
+if (newData_raw_list$added_data_points > 0) {
+calc_dat <- aquanes.report::calculate_operational_parameters_berlin_s(df = newData_raw_list$df)
 
-calc_dat <- aquanes.report::calculate_operational_parameters_berlin_s(df = siteData_raw_list)
-
-siteData_raw_list <- plyr::rbind.fill(siteData_raw_list,
+newData_raw_list$df <- plyr::rbind.fill(newData_raw_list$df,
                                       calc_dat)
 
 
@@ -27,29 +27,30 @@ siteData_raw_list <- plyr::rbind.fill(siteData_raw_list,
 
 print("### Step 4: Performing temporal aggregation ##########################")
 system.time(
-siteData_10min_list <- aquanes.report::group_datetime(siteData_raw_list,
+newData_10min_list <- aquanes.report::group_datetime(newData_raw_list$df,
                                                       by = 10*60))
 
 system.time(
-siteData_hour_list <- aquanes.report::group_datetime(siteData_raw_list,
+newData_hour_list <- aquanes.report::group_datetime(newData_raw_list$df,
                                                      by = 60*60))
 
 system.time(
-  siteData_day_list <- aquanes.report::group_datetime(siteData_raw_list,
+  newData_day_list <- aquanes.report::group_datetime(newData_raw_list$df,
                                                         by = "day"))
 
 
-saveRDS(siteData_raw_list, file = "data/siteData_raw_list.Rds")
-saveRDS(siteData_10min_list, file = "data/siteData_10min_list.Rds")
-saveRDS(siteData_hour_list, file = "data/siteData_hour_list.Rds")
-saveRDS(siteData_day_list, file = "data/siteData_day_list.Rds")
-
-} else {
-  #siteData_raw_list <- readRDS("data/siteData_raw_list.Rds")
-  siteData_10min_list <- readRDS("data/siteData_10min_list.Rds")
-  #siteData_hour_list <- readRDS("data/siteData_hour_list.Rds")
-  #siteData_day_list <- readRDS("data/siteData_day_list.Rds")
+saveRDS(newData_raw_list, file = "data/siteData_raw_list.Rds")
+saveRDS(newData_10min_list, file = "data/siteData_10min_list.Rds")
+saveRDS(newData_hour_list, file = "data/siteData_hour_list.Rds")
+saveRDS(newData_day_list, file = "data/siteData_day_list.Rds")
 }
+} 
+
+#siteData_raw_list <- readRDS("data/siteData_raw_list.Rds")
+siteData_10min_list <- readRDS("data/siteData_10min_list.Rds")
+#siteData_hour_list <- readRDS("data/siteData_hour_list.Rds")
+#siteData_day_list <- readRDS("data/siteData_day_list.Rds")
+
 
 print("### Step 5: Importing threshold information ##########################")
 
