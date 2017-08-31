@@ -115,6 +115,7 @@ if (file.exists(rds_file_path)) {
                   paste(list.files(raw_data_dir,
                                    pattern = "\\.",
                                    full.names = TRUE), collapse = "\n")))
+    data_berlin_t <- old_data
   }
 }
 #### To do: joind with ANALYTICS data as soon as available

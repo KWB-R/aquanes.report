@@ -157,6 +157,7 @@ data_berlin_s <- rbind(old_data, new_data)
               paste(list.files(raw_data_dir,
                                pattern = "\\.",
                                full.names = TRUE), collapse = "\n")))
+  data_berlin_t <- old_data
 }
 
 }
