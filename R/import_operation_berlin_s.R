@@ -91,9 +91,16 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
                              meta_data$ParameterName,
                              meta_data$ParameterUnit)
 
-
-  df_tidy <- dplyr::left_join(x = ozone_tidy,
-                              y = meta_data)
+  relevant_paras <- meta_data[meta_data$ZeroOne == 1, c("ParameterName_SiteName",
+                                                        "ZeroOne")]
+  
+  
+  df_tidy <- ozone_tidy[ozone_tidy$ParameterName_SiteName %in% 
+                          relevant_paras$ParameterCode,] %>%
+    dplyr::left_join(y = meta_data) %>%
+    as.data.frame()
+  
+  
 
 
   df_tidy$Source <- "online"
@@ -116,8 +123,10 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
 #' @param rds_file_path path to rds file (default:
 #' system.file("shiny/berlin_s/data/siteData_raw_list.Rds", package =
 #' "aquanes.report")))
-#' @return data.frame with imported operational data (analytics data to be added as
-#' soon as available)
+#' @return list with "df": data.frame with imported operational data (analytics
+#' data to be added as soon as available) and "added_data_points": number of
+#' added data points in case of existing RDS file was updated with new operational
+#' data
 #' @export
 import_data_berlin_s <- function(raw_data_dir = system.file("shiny/berlin_s/data/operation",
                                                             package = "aquanes.report"),

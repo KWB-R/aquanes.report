@@ -75,13 +75,13 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
 #' @param meta_file_path path to metadata file (default:
 #' system.file("shiny/berlin_t/data/parameter_site_metadata.csv", package =
 #' "aquanes.report")))
+#' @param rds_file_path path to rds file (default:
+#' system.file("shiny/berlin_t/data/siteData_raw_list.Rds", package =
+#' "aquanes.report")))
 #' @return list with "df": data.frame with imported operational data (analytics
 #' data to be added as soon as available) and "added_data_points": number of
 #' added data points in case of existing RDS file was updated with new operational
 #' data
-#' @param rds_file_path path to rds file (default:
-#' system.file("shiny/berlin_t/data/siteData_raw_list.Rds", package =
-#' "aquanes.report")))
 #' @export
 import_data_berlin_t <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
                                                             package = "aquanes.report"),

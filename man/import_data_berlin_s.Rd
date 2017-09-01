@@ -26,8 +26,10 @@ system.file("shiny/berlin_s/data/siteData_raw_list.Rds", package =
 "aquanes.report")))}
 }
 \value{
-data.frame with imported operational data (analytics data to be added as
-soon as available)
+list with "df": data.frame with imported operational data (analytics
+data to be added as soon as available) and "added_data_points": number of
+added data points in case of existing RDS file was updated with new operational
+data
 }
 \description{
 Import data for Berlin Schoenerlinde
