@@ -18,34 +18,30 @@ siteData_raw_list <- plyr::rbind.fill(newData_raw_list$df,
 rm(newData_raw_list)
 
 
-
-print("### Step 4: Performing temporal aggregation ##########################")
-system.time(
-siteData_10min_list <- aquanes.report::group_datetime(siteData_raw_list,
-                                                      by = 10*60))
-
-system.time(
-siteData_hour_list <- aquanes.report::group_datetime(siteData_raw_list,
-                                                     by = 60*60))
-
-system.time(
-siteData_day_list <- aquanes.report::group_datetime(siteData_raw_list,
-                                                        by = "day"))
-
-
 compression_rate <- 100 ## maximum compression: 100, no compression: 0
 
 fst::write.fst(x = siteData_raw_list,
                path = "data/siteData_raw_list.fst",
                compress = compression_rate)
 
+print("### Step 4: Performing temporal aggregation ##########################")
+system.time(
+  siteData_10min_list <- aquanes.report::group_datetime(siteData_raw_list,
+                                                        by = 10*60))
 fst::write.fst(x = siteData_10min_list,
                path = "data/siteData_10min_list.fst")
+
+system.time(
+  siteData_hour_list <- aquanes.report::group_datetime(siteData_raw_list,by = 60*60))
+
 fst::write.fst(x = siteData_hour_list,
                path = "data/siteData_hour_list.fst")
+
+system.time(
+  siteData_day_list <- aquanes.report::group_datetime(siteData_raw_list,
+                                                      by = "day"))
 fst::write.fst(x = siteData_day_list,
                path = "data/siteData_day_list.fst")
-}
 } else {
 
   siteData_10min_list <- fst::read.fst(path = "data/siteData_10min_list.fst")
