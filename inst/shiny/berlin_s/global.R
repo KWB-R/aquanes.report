@@ -42,7 +42,7 @@ system.time(
                                                       by = "day"))
 fst::write.fst(x = siteData_day_list,
                path = "data/siteData_day_list.fst")
-} else {
+}} else {
 
   siteData_10min_list <- fst::read.fst(path = "data/siteData_10min_list.fst")
 
