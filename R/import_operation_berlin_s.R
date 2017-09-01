@@ -93,14 +93,14 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
 
   relevant_paras <- meta_data[meta_data$ZeroOne == 1, c("ParameterName_SiteName",
                                                         "ZeroOne")]
-  
-  
-  df_tidy <- ozone_tidy[ozone_tidy$ParameterName_SiteName %in% 
+
+
+  df_tidy <- ozone_tidy[ozone_tidy$ParameterName_SiteName %in%
                           relevant_paras$ParameterCode,] %>%
     dplyr::left_join(y = meta_data) %>%
     as.data.frame()
-  
-  
+
+
 
 
   df_tidy$Source <- "online"
@@ -120,19 +120,20 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
 #' @param meta_file_path path to metadata file (default:
 #' system.file("shiny/berlin_s/data/parameter_site_metadata.csv", package =
 #' "aquanes.report")))
-#' @param rds_file_path path to rds file (default:
-#' system.file("shiny/berlin_s/data/siteData_raw_list.Rds", package =
+#' @param fst_file_path path to fst file (default:
+#' system.file("shiny/berlin_s/data/siteData_raw_list.fst", package =
 #' "aquanes.report")))
 #' @return list with "df": data.frame with imported operational data (analytics
 #' data to be added as soon as available) and "added_data_points": number of
-#' added data points in case of existing RDS file was updated with new operational
+#' added data points in case of existing fst file was updated with new operational
 #' data
+#' @importFrom fst read.fst
 #' @export
 import_data_berlin_s <- function(raw_data_dir = system.file("shiny/berlin_s/data/operation",
                                                             package = "aquanes.report"),
                                  meta_file_path = system.file("shiny/berlin_s/data/parameter_site_metadata.csv",
                                                               package = "aquanes.report"),
-                                 rds_file_path = system.file("shiny/berlin_s/data/siteData_raw_list.Rds",
+                                 fst_file_path = system.file("shiny/berlin_s/data/siteData_raw_list.fst",
                                                               package = "aquanes.report")) {
 
 
@@ -149,12 +150,11 @@ data_berlin_s$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 data_berlin_s$ParameterUnit
                                                 )
 
-added_data_points <- 0
 
-if (file.exists(rds_file_path)) {
-print(sprintf("Loading already imported data from file: %s", rds_file_path))
+if (file.exists(fst_file_path)) {
+print(sprintf("Loading already imported data from file: %s", fst_file_path))
 
-old_data <- readRDS(rds_file_path)
+old_data <- fst::read.fst(fst_file_path)
 new_data <- data_berlin_s[!data_berlin_s$DateTime %in% unique(old_data$DateTime), ]
 
 added_data_points <- nrow(new_data)
@@ -162,7 +162,7 @@ added_data_points <- nrow(new_data)
 if (added_data_points > 0) {
 
 print(sprintf("Adding new %d data points for time period: %s - %s",
-              nrow(new_data),
+              added_data_points,
               min(new_data$DateTime),
               max(new_data$DateTime)))
 data_berlin_s <- rbind(old_data, new_data)
@@ -171,9 +171,15 @@ data_berlin_s <- rbind(old_data, new_data)
               paste(list.files(raw_data_dir,
                                pattern = "\\.",
                                full.names = TRUE), collapse = "\n")))
-  data_berlin_t <- old_data
+  data_berlin_s <- old_data
 }
 
+} else {
+  added_data_points <- nrow(data_berlin_s)
+  print(sprintf("First import (no existing 'fst' file): adding new %d data points for time period: %s - %s",
+                added_data_points,
+                min(data_berlin_s$DateTime),
+                max(data_berlin_s$DateTime)))
 }
 
 

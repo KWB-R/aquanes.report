@@ -9,6 +9,7 @@ library(dplyr)
 library(tidyr)
 library(dygraphs)
 library(xts)
+library(fst)
 library(aquanes.report)
 
 # By default, the file size limit is 5MB. It can be changed by

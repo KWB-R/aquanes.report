@@ -9,7 +9,7 @@
   package = "aquanes.report"),
   meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
   package = "aquanes.report"),
-  rds_file_path = system.file("shiny/berlin_t/data/siteData_raw_list.Rds",
+  fst_file_path = system.file("shiny/berlin_t/data/siteData_raw_list.fst",
   package = "aquanes.report"))
 }
 \arguments{
@@ -21,14 +21,14 @@ package = "aquanes.report"))))}
 system.file("shiny/berlin_t/data/parameter_site_metadata.csv", package =
 "aquanes.report")))}
 
-\item{rds_file_path}{path to rds file (default:
-system.file("shiny/berlin_t/data/siteData_raw_list.Rds", package =
+\item{fst_file_path}{path to fst file (default:
+system.file("shiny/berlin_t/data/siteData_raw_list.fst", package =
 "aquanes.report")))}
 }
 \value{
 list with "df": data.frame with imported operational data (analytics
 data to be added as soon as available) and "added_data_points": number of
-added data points in case of existing RDS file was updated with new operational
+added data points in case of existing fst file was updated with new operational
 data
 }
 \description{

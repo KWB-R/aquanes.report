@@ -82,7 +82,7 @@ server_report <- function(...) {
     object_name <- sprintf("siteData_%s_list", input$report_aggregation)
 
     if (!exists(object_name)) {
-      dat <- readRDS(sprintf("data/%s.Rds", object_name))
+      dat <- fst::read.fst(path = sprintf("data/%s.fst", object_name))
       assign(x = object_name,
              value = dat)
 
