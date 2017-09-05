@@ -18,33 +18,42 @@ siteData_raw_list <- plyr::rbind.fill(newData_raw_list$df,
 rm(newData_raw_list)
 
 
-compression_rate <- 100 ## maximum compression: 100, no compression: 0
-
-fst::write.fst(x = siteData_raw_list,
-               path = "data/siteData_raw_list.fst",
-               compress = compression_rate)
+saveRDS(siteData_raw_list,
+        file = "data/siteData_raw_list.Rds")
 
 print("### Step 4: Performing temporal aggregation ##########################")
 system.time(
   siteData_10min_list <- aquanes.report::group_datetime(siteData_raw_list,
                                                         by = 10*60))
-fst::write.fst(x = siteData_10min_list,
-               path = "data/siteData_10min_list.fst")
+saveRDS(siteData_10min_list,
+        file = "data/siteData_10min_list.Rds")
 
 system.time(
   siteData_hour_list <- aquanes.report::group_datetime(siteData_raw_list,by = 60*60))
 
-fst::write.fst(x = siteData_hour_list,
-               path = "data/siteData_hour_list.fst")
+saveRDS(siteData_hour_list,
+        file = "data/siteData_hour_list.Rds")
 
 system.time(
   siteData_day_list <- aquanes.report::group_datetime(siteData_raw_list,
                                                       by = "day"))
-fst::write.fst(x = siteData_day_list,
-               path = "data/siteData_day_list.fst")
+saveRDS(siteData_day_list,
+        file = "data/siteData_day_list.Rds")
 }} else {
 
-  siteData_10min_list <- fst::read.fst(path = "data/siteData_10min_list.fst")
+print("### Step 4: Loading data ##########################")
+print("### 1): Raw data")
+siteData_raw_list <- readRDS(file = "data/siteData_raw_list.Rds")
+
+
+print("### 2) 10 minutes data")
+siteData_10min_list <-  readRDS(file = "data/siteData_10min_list.Rds")
+
+print("### 3) hourly data")
+siteData_hour_list <- readRDS(file =  "data/siteData_hour_list.Rds")
+
+print("### 4) daily data")
+siteData_day_list <- readRDS(file =  "data/siteData_day_list.Rds")
 
 
 }

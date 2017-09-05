@@ -27,8 +27,7 @@ Imports:
 	rmarkdown (>= 1.3),
 	xts (>= 0.9-7),
 	lubridate (>= 1.6.0),
-	fasttime (>= 1.0-2),
-	fst (>= 0.7.2)
+	fasttime (>= 1.0-2)
 Suggests:
     devtools (>= 1.13.0),
     knitr
