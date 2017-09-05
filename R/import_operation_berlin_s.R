@@ -94,6 +94,9 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
   relevant_paras <- ozone_tidy$ParameterUnitOrg %in% meta_data$ParameterUnitOrg[meta_data$ZeroOne == 1]
 
 
+  meta_data <- meta_data %>%
+               select_(.dots = "-ZeroOne")
+
   df_tidy <- ozone_tidy[relevant_paras,] %>%
     dplyr::left_join(y = meta_data) %>%
     as.data.frame()

@@ -51,11 +51,13 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
                              meta_data$ParameterUnit)
 
 
-  relevant_paras <- meta_data[meta_data$ZeroOne == 1, c("ParameterCode",
-                                                        "ZeroOne")]
+  relevant_paras <- df_tidy$ParameterCode %in% meta_data$ParameterCode[meta_data$ZeroOne == 1]
+
+  meta_data <- meta_data %>%
+    select_(.dots = "-ZeroOne")
 
 
-  df_tidy <- df_tidy[df_tidy$ParameterCode %in% relevant_paras$ParameterCode,] %>%
+  df_tidy <- df_tidy[relevant_paras,] %>%
     dplyr::left_join(y = meta_data) %>%
     as.data.frame()
 
