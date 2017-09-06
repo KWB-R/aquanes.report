@@ -41,6 +41,7 @@ set_timezone <- function(df, tz = "UTC", col_datetime = "DateTime") {
 #' @references Check possible "tz" arguments in column "TZ*" of table
 #' \url{https://en.wikipedia.org/wiki/List_of_tz_database_time_zones} for more
 #' details.
+#' @importFrom lubridate with_tz
 #' @export
 change_timezone <- function(df, tz = "UTC", col_datetime = "DateTime",
                             debug = TRUE) {
@@ -54,7 +55,7 @@ change_timezone <- function(df, tz = "UTC", col_datetime = "DateTime",
     if(debug) {print(sprintf("Changing original time zone(s) %s to %s",
           tz_org,
           tz))}
-    df[,col_datetime] <- as.POSIXct(format(df[,col_datetime], tz = tz),tz = tz)
+    df[,col_datetime] <- lubridate::with_tz(time = df[,col_datetime],tzone = tz)
   } else {
     stop(sprintf("Column %s  needs to be of type DATE/TIME (POSIXct). Please check sheet 'xyz' of imported xls file 'xyz'!", col_datetime))
   }
@@ -75,7 +76,7 @@ url_tz <- "https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
 
 res <- url_tz %>%
   xml2::read_html() %>%
-  rvest::html_nodes(xpath = ".//*[@id='mw-content-text']/table[1]") %>%
+  rvest::html_nodes(xpath = ".//*[@id='mw-content-text']/div/table[1]") %>%
   rvest::html_table() %>%
   as.data.frame()
 

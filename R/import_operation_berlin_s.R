@@ -18,10 +18,10 @@ create_wedeco_metafile <- function(raw_data_file) {
   indices_names <- seq(from = 1,by = 2,to = ncol(ozone) - 1)
   indices_units <- seq(from = 2,by = 2,to = ncol(ozone))
 
-  meta_file <- data.frame(ParameterCode = rep(NA, nrow(ozone)),
-                          ParameterName = rep(NA, nrow(ozone)),
-                          SiteCode = rep(NA, nrow(ozone)),
-                          SiteName = rep(NA, nrow(ozone)),
+  meta_file <- data.frame(ParameterCode = rep(NA, length(indices_names)),
+                          ParameterName = rep(NA, length(indices_names)),
+                          SiteCode = rep(NA, length(indices_names)),
+                          SiteName = rep(NA, length(indices_names)),
                           ParameterName_SiteName = names(ozone)[indices_names],
                           ParameterUnitOrg = names(ozone)[indices_units],
                           ParameterUnit = names(ozone)[indices_units]
@@ -36,6 +36,7 @@ create_wedeco_metafile <- function(raw_data_file) {
 #'Import WEDECO raw data
 #' @param raw_data_dir path to raw data directory
 #' @param meta_file_path path to meta data file
+#' @importFrom lubridate parse_date_time2
 #' @export
 read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/operation",
                                                         package = "aquanes.report"),
@@ -64,11 +65,9 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
     names(ozone)[1] <- "DateTime"
 
 
-
-    ozone$DateTime <- as.POSIXct(strptime(ozone$DateTime,
-                                          format = "%d.%m.%y %H:%M:%S",
-                                          tz = "CET"))
-
+    ozone$DateTime <- lubridate::parse_date_time2(ozone$DateTime,
+                                                 orders = "d!.m!*.y!* H!:M!:S!",
+                                                 tz = "CET")
 
     if (pathfile == files_to_import[1]) {
       df <- ozone
