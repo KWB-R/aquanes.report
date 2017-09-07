@@ -1,7 +1,7 @@
 Package: aquanes.report
 Type: Package
 Title: Automated Reporting Tool for Water Suppliers
-Version: 0.4.9999
+Version: 0.4.1
 Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de", role = c("aut", "cre")))
 Description: Collects, aggregates and visualises operational and 
     analytical data from water suppliers (including a standardised 
@@ -27,7 +27,9 @@ Imports:
 	rmarkdown (>= 1.3),
 	xts (>= 0.9-7),
 	lubridate (>= 1.6.0),
-	fasttime (>= 1.0-2)
+	fasttime (>= 1.0-2), 
+	data.table (>= 1.10.4), 
+	stringr (>= 1.2.0)
 Suggests:
     devtools (>= 1.13.0),
     knitr
