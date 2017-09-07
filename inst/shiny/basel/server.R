@@ -34,11 +34,11 @@ if (exists_userTable) {
 # logo -------------------------------------------------------------------------
 logo <<- function
 (
-  src="kwb.png",
+  src="aquanes.png",
   target = "_blank", ### opens new tab/window
-  href="http://www.kompetenz-wasser.de",
+  href="http://aquanes-h2020.eu",
   align="middle",
-  label = "KWB_homepage",
+  label = "AQUANES_homepage",
   add_div = TRUE,
   ... ### add. arguments passed to img(), e.g. height=40
 )
@@ -61,7 +61,7 @@ logo <<- function
 siteLogo <- logo(
   src = "site.jpg",
   href = "http://www.aquanes-h2020.eu/Default.aspx?t=1663",
-  label = "Site5_Basel",
+  label = "Site6_Basel",
   add_div = FALSE
 )
 
@@ -93,7 +93,7 @@ shinyServer(function(input, output, session) {
   source("module/timeSeries.R", local = TRUE)
   source("module/report.R", local = TRUE)
   source("module/site.R", local = TRUE)
-  source("module/kwb.R", local = TRUE)
+  #source("module/kwb.R", local = TRUE)
   # Data ----
   #readRDS("data/siteData_raw_list.Rds")
   #Read user table
@@ -143,11 +143,11 @@ shinyServer(function(input, output, session) {
               div(class = " ", ui_site(output)),
               id = "site"
             ),
-            tabPanel(
-              "KWB", br(),
-              div(class = " ", ui_kwb(output)),
-              id = "kwb"
-            ),
+           # tabPanel(
+           #   "KWB", br(),
+           #   div(class = " ", ui_kwb(output)),
+           #   id = "kwb"
+           # ),
             #navbarMenu("More",
             #            reference,
             #            ui_kwb(output)),
