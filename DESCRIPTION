@@ -29,7 +29,8 @@ Imports:
 	lubridate (>= 1.6.0),
 	fasttime (>= 1.0-2), 
 	data.table (>= 1.10.4), 
-	stringr (>= 1.2.0)
+	stringr (>= 1.2.0),
+	fst (>= 0.7.2)
 Suggests:
     devtools (>= 1.13.0),
     knitr

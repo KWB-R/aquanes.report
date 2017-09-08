@@ -154,19 +154,19 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
 #' @param meta_file_path path to metadata file (default:
 #' system.file("shiny/berlin_s/data/parameter_site_metadata.csv", package =
 #' "aquanes.report")))
-#' @param rds_file_path path to Rds file (default:
-#' system.file("shiny/berlin_s/data/siteData_raw_list.Rds", package =
+#' @param fst_file_path path to fst file (default:
+#' system.file("shiny/berlin_s/data/siteData_raw_list.fst", package =
 #' "aquanes.report")))
 #' @return list with "df": data.frame with imported operational data (analytics
 #' data to be added as soon as available) and "added_data_points": number of
-#' added data points in case of existing Rds file was updated with new operational
+#' added data points in case of existing fst file was updated with new operational
 #' data
 #' @export
 import_data_berlin_s <- function(raw_data_dir = system.file("shiny/berlin_s/data/operation",
                                                             package = "aquanes.report"),
                                  meta_file_path = system.file("shiny/berlin_s/data/parameter_site_metadata.csv",
                                                               package = "aquanes.report"),
-                                 rds_file_path = system.file("shiny/berlin_s/data/siteData_raw_list.Rds",
+                                 fst_file_path = system.file("shiny/berlin_s/data/siteData_raw_list.fst",
                                                               package = "aquanes.report")) {
 
 
@@ -184,10 +184,10 @@ data_berlin_s$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 )
 
 
-if (file.exists(rds_file_path)) {
-print(sprintf("Loading already imported data from file: %s", rds_file_path))
+if (file.exists(fst_file_path)) {
+print(sprintf("Loading already imported data from file: %s", fst_file_path))
 
-old_data <- readRDS(rds_file_path)
+old_data <- readfst(fst_file_path)
 new_data <- data_berlin_s[!data_berlin_s$DateTime %in% unique(old_data$DateTime), ]
 
 added_data_points <- nrow(new_data)
@@ -209,7 +209,7 @@ data_berlin_s <- rbind(old_data, new_data)
 
 } else {
   added_data_points <- nrow(data_berlin_s)
-  print(sprintf("First import (no existing '.Rds' file): adding new %d data points for time period: %s - %s",
+  print(sprintf("First import (no existing '.fst' file): adding new %d data points for time period: %s - %s",
                 added_data_points,
                 min(data_berlin_s$DateTime),
                 max(data_berlin_s$DateTime)))
