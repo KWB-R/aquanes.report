@@ -187,7 +187,7 @@ data_berlin_s$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
 if (file.exists(fst_file_path)) {
 print(sprintf("Loading already imported data from file: %s", fst_file_path))
 
-old_data <- readfst(fst_file_path)
+old_data <- aquanes.report::read_fst(fst_file_path)
 new_data <- data_berlin_s[!data_berlin_s$DateTime %in% unique(old_data$DateTime), ]
 
 added_data_points <- nrow(new_data)
