@@ -9,7 +9,7 @@ server_timeSeries <- function(...) {
     if (exists(object_name)) {
       get(object_name)
     } else {
-      dat <- readRDS(sprintf("data/%s.Rds", object_name))
+      dat <- aquanes.report::read_fst(path = sprintf("data/%s.fst", object_name))
       assign(x = object_name,
              value = dat)
       dat
@@ -237,8 +237,8 @@ ui_timeSeries <- function(...) {
                   selected = "CET"),
       dateRangeInput('daterange',
                      label = 'Date range input: yyyy-mm-dd',
-                     start = "2017-06-01",
-                     end = "2017-06-30"),
+                     start = "2017-07-08",
+                     end = "2017-07-10"),
       checkboxInput('fix_daterange', "Fix daterange", value = FALSE),
       selectInput("sitename", label = "Select a sampling point",
                   choices = unique(siteData_10min_list$SiteName),
