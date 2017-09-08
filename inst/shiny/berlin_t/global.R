@@ -11,7 +11,7 @@ if (newData_raw_list$added_data_points > 0) {
 siteData_raw_list <- newData_raw_list$df
 rm(newData_raw_list)
 
-compression <- 80
+compression <- 100
 
 system.time(fst::write.fst(siteData_raw_list,
                            path = "data/siteData_raw_list.fst", 

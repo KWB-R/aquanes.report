@@ -18,7 +18,7 @@ siteData_raw_list <- plyr::rbind.fill(newData_raw_list$df,
 rm(newData_raw_list)
 
 
-compression <- 80
+compression <- 100
 
 system.time(fst::write.fst(siteData_raw_list,
                     path = "data/siteData_raw_list.fst", 
