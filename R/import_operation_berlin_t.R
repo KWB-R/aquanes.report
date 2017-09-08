@@ -8,6 +8,7 @@
 #' @return data.frame with imported PENTAIR operational data
 #' @import tidyr
 #' @importFrom readr read_tsv
+#' @importFrom magrittr "%>%"
 #' @export
 read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
                                                          package = "aquanes.report"),
