@@ -18,8 +18,9 @@ siteData_raw_list <- plyr::rbind.fill(newData_raw_list$df,
 rm(newData_raw_list)
 
 
-saveRDS(siteData_raw_list,
-        file = "data/siteData_raw_list.Rds")
+system.time(saveRDS(siteData_raw_list,
+                    file = "data/siteData_raw_list.Rds"))
+
 
 print("### Step 4: Performing temporal aggregation ##########################")
 system.time(
@@ -29,13 +30,13 @@ saveRDS(siteData_10min_list,
         file = "data/siteData_10min_list.Rds")
 
 system.time(
-  siteData_hour_list <- aquanes.report::group_datetime(siteData_raw_list,by = 60*60))
+  siteData_hour_list <- aquanes.report::group_datetime(siteData_10min_list,by = 60*60))
 
 saveRDS(siteData_hour_list,
         file = "data/siteData_hour_list.Rds")
 
 system.time(
-  siteData_day_list <- aquanes.report::group_datetime(siteData_raw_list,
+  siteData_day_list <- aquanes.report::group_datetime(siteData_hour_list,
                                                       by = "day"))
 saveRDS(siteData_day_list,
         file = "data/siteData_day_list.Rds")
