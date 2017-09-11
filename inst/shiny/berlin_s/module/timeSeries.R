@@ -9,7 +9,7 @@ server_timeSeries <- function(...) {
     if (exists(object_name)) {
       get(object_name)
     } else {
-      dat <- readRDS(sprintf("data/%s.Rds", object_name))
+      dat <- aquanes.report::read_fst(path = sprintf("data/%s.fst", object_name))
       assign(x = object_name,
              value = dat)
       dat

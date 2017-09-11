@@ -7,7 +7,13 @@
     + start to integrate case study 1 (Berlin-Tiefwerder)
     
     + start to integrate case study 12 (Berlin-Schoenerlinde)
+	
+	+ start to integrate case study 6 (Basel) 
 
+# [aquanes.report 0.4.1](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.1)
+
+- Haridwar (site 5): completed
+- Berlin site (sites 1 & 12): performance optimsation, analytics still to be integrated 
 
 # [aquanes.report 0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0)
 

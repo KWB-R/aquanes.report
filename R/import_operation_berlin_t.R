@@ -8,6 +8,7 @@
 #' @return data.frame with imported PENTAIR operational data
 #' @import tidyr
 #' @importFrom readr read_tsv
+#' @importFrom magrittr "%>%"
 #' @export
 read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
                                                          package = "aquanes.report"),
@@ -77,19 +78,19 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
 #' @param meta_file_path path to metadata file (default:
 #' system.file("shiny/berlin_t/data/parameter_site_metadata.csv", package =
 #' "aquanes.report")))
-#' @param rds_file_path path to Rds file (default:
-#' system.file("shiny/berlin_t/data/siteData_raw_list.Rds", package =
+#' @param fts_file_path path to fts file (default:
+#' system.file("shiny/berlin_t/data/siteData_raw_list.fts", package =
 #' "aquanes.report")))
 #' @return list with "df": data.frame with imported operational data (analytics
 #' data to be added as soon as available) and "added_data_points": number of
-#' added data points in case of existing Rds file was updated with new operational
+#' added data points in case of existing fts file was updated with new operational
 #' data
 #' @export
 import_data_berlin_t <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
                                                             package = "aquanes.report"),
                                  meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
                                                               package = "aquanes.report"),
-                                 rds_file_path = system.file("shiny/berlin_t/data/siteData_raw_list.Rds",
+                                 fts_file_path = system.file("shiny/berlin_t/data/siteData_raw_list.fts",
                                                              package = "aquanes.report")) {
 
 
@@ -107,10 +108,10 @@ data_berlin_t$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 )
 
 
-if (file.exists(rds_file_path)) {
-  print(sprintf("Loading already imported data from file: %s", rds_file_path))
+if (file.exists(fts_file_path)) {
+  print(sprintf("Loading already imported data from file: %s", fts_file_path))
 
-  old_data <- readRDS(rds_file_path)
+  old_data <- aquanes.report::read_fst(fts_file_path)
   new_data <- data_berlin_t[!data_berlin_t$DateTime %in% unique(old_data$DateTime), ]
 
   added_data_points <- nrow(new_data)
@@ -131,7 +132,7 @@ if (file.exists(rds_file_path)) {
   }
 }  else {
   added_data_points <- nrow(data_berlin_t)
-  print(sprintf("First import (no existing '.Rds' file): adding new %d data points for time period: %s - %s",
+  print(sprintf("First import (no existing '.fts' file): adding new %d data points for time period: %s - %s",
                 added_data_points,
                 min(data_berlin_t$DateTime),
                 max(data_berlin_t$DateTime)))
