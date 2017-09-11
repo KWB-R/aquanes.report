@@ -45,6 +45,7 @@ reference:
       - get_thresholds
       - check_thresholds
       - dygraph_add_limits
+      - read_fst
       - create_monthly_selection
       - create_report_batch 
       - starts_with("report_")

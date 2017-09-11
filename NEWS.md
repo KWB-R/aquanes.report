@@ -1,4 +1,4 @@
-# [aquanes.report 0.4.9999](https://github.com/KWB-R/aquanes.report)
+# [aquanes.report 0.4.1.9999](https://github.com/KWB-R/aquanes.report)
 
 * Site 5, Haridwar completed, 
 
@@ -13,7 +13,7 @@
 # [aquanes.report 0.4.1](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.1)
 
 - Haridwar (site 5): completed
-- Berlin site (sites 1 & 12): performance optimsation, analytics still to be integrated 
+- Berlin site (sites 1 & 12): performance optimisation, analytics still to be integrated 
 
 # [aquanes.report 0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0)
 

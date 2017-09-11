@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import data for Berlin Schoenerlinde — import_data_berlin_s â€¢ aquanes.report</title>
+<title>Wrapper for fst::read.fst to read DateTime column in POSIXct format — read_fst â€¢ aquanes.report</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -113,49 +113,40 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import data for Berlin Schoenerlinde</h1>
+    <h1>Wrapper for fst::read.fst to read DateTime column in POSIXct format</h1>
     </div>
 
     
-    <p>Import data for Berlin Schoenerlinde</p>
+    <p>Wrapper for fst::read.fst to read DateTime column in POSIXct format</p>
     
 
-    <pre class="usage"><span class='fu'>import_data_berlin_s</span>(<span class='kw'>raw_data_dir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"shiny/berlin_s/data/operation"</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"aquanes.report"</span>),
-  <span class='kw'>meta_file_path</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"shiny/berlin_s/data/parameter_site_metadata.csv"</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"aquanes.report"</span>),
-  <span class='kw'>fst_file_path</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"shiny/berlin_s/data/siteData_raw_list.fst"</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"aquanes.report"</span>))</pre>
+    <pre class="usage"><span class='fu'>read_fst</span>(<span class='no'>path</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"CET"</span>, <span class='kw'>col_datetime</span> <span class='kw'>=</span> <span class='st'>"DateTime"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>raw_data_dir</th>
-      <td><p>path of directory containing WEDECO CSV files (default:
-(default: system.file("shiny/berlin_s/data/operation",
-package = "aquanes.report"))))</p></td>
+      <th>path</th>
+      <td><p>path to fst file</p></td>
     </tr>
     <tr>
-      <th>meta_file_path</th>
-      <td><p>path to metadata file (default:
-system.file("shiny/berlin_s/data/parameter_site_metadata.csv", package =
-"aquanes.report")))</p></td>
+      <th>tz</th>
+      <td><p>timezone of DateTime to be imported (default: "CET")</p></td>
     </tr>
     <tr>
-      <th>fst_file_path</th>
-      <td><p>path to fst file (default:
-system.file("shiny/berlin_s/data/siteData_raw_list.fst", package =
-"aquanes.report")))</p></td>
+      <th>col_datetime</th>
+      <td><p>column name containing numeric values in nanoseconds since
+1970-01-01 (default: "DateTime")</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments passed to fst::read.fst</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list with "df": data.frame with imported operational data (analytics
-data to be added as soon as available) and "added_data_points": number of
-added data points in case of existing fst file was updated with new operational
-data</p>
+    <p>data.frame with formatting of DateTime column POSIXct</p>
     
 
   </div>
