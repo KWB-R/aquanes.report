@@ -1,7 +1,7 @@
 Package: aquanes.report
 Type: Package
 Title: Automated Reporting Tool for Water Suppliers
-Version: 0.4.1
+Version: 0.4.1.9999
 Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de", role = c("aut", "cre")))
 Description: Collects, aggregates and visualises operational and 
     analytical data from water suppliers (including a standardised 
