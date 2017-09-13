@@ -1,6 +1,7 @@
 server_timeSeries <- function(...) {
 
 
+
   ts_agg <- reactive({
 
     object_name <- sprintf("siteData_%s_list", input$temporal_aggregation)
@@ -81,7 +82,8 @@ ts_data1_xts <- reactive({
 
   output$dygraph1 <- renderDygraph({
 
-    dygraph(data = ts_data1_xts(),
+
+    dy1 <- dygraph(data = ts_data1_xts(),
             group = "dy_group",
            # main = unique(ts_data()$LocationName),
                     ylab = "Parameter value") %>%
@@ -93,10 +95,15 @@ ts_data1_xts <- reactive({
                        retainDateWindow = input$fix_daterange,
                        connectSeparatedPoints = TRUE,
                        drawPoints = TRUE,
-                       pointSize = 2) #%>%
-             # dyEvent(x = ts_errors()$DateTime,
-             #         label = ts_errors()$ParameterValue,
-             #         labelLoc = "bottom")
+                       pointSize = 2)
+
+  if (input$add_thresholds == TRUE) {
+    aquanes.report::dygraph_add_limits(dygraph = dy1,
+                                       limits = thresholds[thresholds$ParameterName %in% input$parameter1,])
+  } else {
+    dy1
+  }
+
   })
 
 
@@ -114,7 +121,7 @@ ts_data1_xts <- reactive({
 
   output$dygraph2 <- renderDygraph({
 
-    dygraph(data = ts_data2_xts(),
+    dy2 <- dygraph(data = ts_data2_xts(),
             group = "dy_group",
             # main = unique(ts_data()$LocationName),
             ylab = "Parameter value") %>%
@@ -126,10 +133,14 @@ ts_data1_xts <- reactive({
                 retainDateWindow = input$fix_daterange,
                 connectSeparatedPoints = TRUE,
                 drawPoints = TRUE,
-                pointSize = 2) #%>%
-    # dyEvent(x = ts_errors()$DateTime,
-    #         label = ts_errors()$ParameterValue,
-    #         labelLoc = "bottom")
+                pointSize = 2)
+
+    if (input$add_thresholds == TRUE) {
+    aquanes.report::dygraph_add_limits(dygraph = dy2,
+               limits = thresholds[thresholds$ParameterName %in% input$parameter2,])
+    } else {
+      dy2
+    }
   })
 
 
@@ -160,6 +171,9 @@ ts_data1_xts <- reactive({
       # Set up parameters to pass to Rmd document
       params <- list(myData1 = myData1,
                      myData2 = myData2,
+                     para1 = input$parameter1,
+                     para2 = input$parameter2,
+                     add_thresholds = input$add_thresholds,
                      myDateRange = input$daterange,
                      myTimezone = input$timezone)
 
@@ -223,25 +237,22 @@ ui_timeSeries <- function(...) {
                   selected = "CET"),
       dateRangeInput('daterange',
                      label = 'Date range input: yyyy-mm-dd',
-                     start = "2017-03-01",
-                     end = "2017-03-30"),
+                     start = "2017-07-08",
+                     end = "2017-07-10"),
       checkboxInput('fix_daterange', "Fix daterange", value = FALSE),
       selectInput("sitename", label = "Select a sampling point",
                   choices = unique(siteData_10min_list$SiteName),
                   multiple = TRUE,
                   selected = unique(siteData_10min_list$SiteName)),
       selectInput("parameter1", label = "Select a parameter(s) for plot 1",
-                  choices = list(Online = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])
-                                 #,Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])
-                  ),
-                  multiple = TRUE,
-                  selected = unique(siteData_10min_list$ParameterName)[c(1)]),
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"]),
+                                 Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
+                  multiple = TRUE),
       selectInput("parameter2", label = "Select a parameter(s) for plot 2",
-                  choices = list(Online = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])
-                                 #,Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])
-                                 ),
-                  multiple = TRUE,
-                  selected = unique(siteData_10min_list$ParameterName)[c(10)]),
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"]),
+                                 Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
+                  multiple = TRUE),
+      checkboxInput('add_thresholds', "Add thresholds to plots 1+2", value = FALSE),
       downloadButton("report", "Download plot"),
       selectInput("dataset", "Choose a dataset to download:",
                   choices = c("data_plot1", "data_plot2")),

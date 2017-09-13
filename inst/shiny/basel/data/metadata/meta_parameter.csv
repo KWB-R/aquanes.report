@@ -1,0 +1,97 @@
+ParameterCode,ParameterName,ParameterUnit
+1,Flow,L/h
+2,EC,µS/cm
+3,pH,pH
+4,Turbidity,FNU
+5,UV-Fluence,W/m2
+6,H2O2,mg/l
+15401,Abs254,1/m
+13301,O2,mg/L
+12601,Redox,mV
+12101,T,°C
+11107,Intact cell count,Cells/mL
+11108,Intact cells share,%
+11109,Intact cells,Cells
+11110,Total cell count,Cells/mL
+11111,LNA cell count,Cells/mL
+11112,HNA cell count,Cells/mL
+11113,LNA share,%
+11114,HNA share,%
+11115,Total cells,Cells
+11116,LNA-cells absolute,Cells
+11117,HNA-cells absolute,Cells
+11120,ATP,RLU
+11121,"ATP, free",RLU
+11122,"ATP, bact.",RLU
+11125,ATP,nmol/L
+11126,"ATP, free",nmol/L
+11127,"ATP, bact.",nmol/L
+11128,Gradient ATP,RLU / (nmol/L)
+11129,Intercept ATP,RLU
+11502,Aerobic Plate Count (20 °C),CFU/mL
+13302,rel. Oxygen saturation,%
+15201,DOC,mg/L
+15203,AOC,µg/L
+15204,TIC,mg/L
+15205,Biopolymers,mg/L
+15206,Humic substances,mg/L
+15207,Building blocks,mg/L
+15208,Low molecular weight neutrals,mg/L
+15209,Low molecular weight acids,mg/L
+20001,Bromide,mg/L
+20011,Bromate,mg/L
+25001,Calcium,mg/L
+25002,Potassium,mg/L
+25003,Magnesium,mg/L
+25004,Sodium,mg/L
+25301,Iron,mg/L
+25501,Manganese,mg/L
+40001,Alachlor,ng/l
+40003,Atrazine,ng/l
+40033,Simazine,ng/l
+40045,Diethyltoluamide DEET,ng/l
+44001,Tris(2-chloroethyl)phosphate,ng/l
+55040,Silicium,mg/L
+55045,Phosphor,mg/L
+60001,Acenaphthene,ng/l
+60002,Acenaphthylene,ng/l
+60004,Benz(a)anthracene,ng/l
+60005,Benzo(b)fluoranthene,ng/l
+60006,Benzo(k)fluoranthene,ng/l
+60007,Benzo(ghi)perylene,ng/l
+60008,Benzo(a)pyrene,ng/l
+60009,Chrysene,ng/l
+60010,Dibenzo(ah)anthracene,ng/l
+60012,Fluorene,ng/l
+60013,"Indeno(1,2,3,cd)pyrene",ng/l
+60014,Naphthalene,ng/l
+60015,Phenanthrene,ng/l
+60016,Pyrene,ng/l
+60019,Galaxolide,ng/l
+60026,3-Trifluoromethylanilin,ng/l
+82005,2-Chlorbiphenyl,ng/l
+82008,"2,3-Dichlorbiphenyl",ng/l
+82009,Hexachlorbenzene,ng/l
+82016,Trichlorbiphenyl,ng/l
+82018,Heptachlor,ng/l
+82020,Tetrachlorbiphenyl,ng/l
+82021,Aldrin,ng/l
+82022,Heptachlorepoxid,ng/l
+82023,Pentachlorbiphenyl,ng/l
+82025,gamma-Chlordan,ng/l
+82026,alpha-Chlordan,ng/l
+82027,trans-Nonachlor,ng/l
+82028,Hexachlorbiphenyl,ng/l
+82029,Endrin,ng/l
+82030,Dieldrin,ng/l
+82033,Heptachlorbiphenyl,ng/l
+82035,Octachlorbiphenyl,ng/l
+82037,Methoxychlor,ng/l
+82062,Triallylisocyanurat,ng/l
+82063,Caffeine,ng/l
+82064,cis-Nonachlor,ng/l
+82065,Diazepam,ng/l
+83010,Surfynol,ng/l
+90701,Silicon dioxide,mg/L
+91701,Phosphate totale,mg/L
+93100,"1,1,3-Trimethyl-3-phenyl",ng/l

@@ -75,3 +75,13 @@ reference:
       - calculate_operational_parameters_berlin_s
       - create_wedeco_metafile
 
+  - title: Basel-LangeErlen (site 6)
+    desc: >
+      Functions for importing data of Basel-LangeErlen site
+    contents:
+      - starts_with("add_")
+      - import_operation_basel
+      - import_analytics_basel
+      - import_operation_meta_basel
+      - import_analytics_meta_basel
+      - import_data_basel  

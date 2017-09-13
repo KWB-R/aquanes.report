@@ -59,9 +59,9 @@ logo <<- function
 
 # siteLogo ---------------------------------------------------------------------
 siteLogo <- logo(
-  src = "site.jpg",
+  src = "basel.jpg",
   href = "http://www.aquanes-h2020.eu/Default.aspx?t=1663",
-  label = "Site6_Basel",
+  label = "Site6_Basel_LangeErlen",
   add_div = FALSE
 )
 
@@ -95,7 +95,6 @@ shinyServer(function(input, output, session) {
   source("module/site.R", local = TRUE)
   #source("module/kwb.R", local = TRUE)
   # Data ----
-  #readRDS("data/siteData_raw_list.Rds")
   #Read user table
 
   # main page ----
@@ -110,7 +109,7 @@ shinyServer(function(input, output, session) {
       server_timeSeries(input, output, session)
       server_report(input, output, session)
       server_site(input, output)
-      server_kwb(input, output)
+      #server_kwb(input, output)
 
       div(
         class = "",
@@ -143,11 +142,11 @@ shinyServer(function(input, output, session) {
               div(class = " ", ui_site(output)),
               id = "site"
             ),
-           # tabPanel(
-           #   "KWB", br(),
-           #   div(class = " ", ui_kwb(output)),
-           #   id = "kwb"
-           # ),
+            # tabPanel(
+            #   "KWB", br(),
+            #   div(class = " ", ui_kwb(output)),
+            #   id = "kwb"
+            # ),
             #navbarMenu("More",
             #            reference,
             #            ui_kwb(output)),
