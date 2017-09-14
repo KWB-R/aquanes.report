@@ -2,12 +2,11 @@
 % Please edit documentation in R/import_data_basel.R
 \name{import_operation_meta_basel}
 \alias{import_operation_meta_basel}
-\title{Imports operational data for Basel (with metadata for both sites at once, i.e.
-"rhein" and "wiese")}
+\title{Imports operational data for Basel (with metadata for
+both sites at once, i.e. "rhein" and "wiese")}
 \usage{
-
-  import_operation_meta_basel(raw_dir_rhein = system.file("shiny/basel/data/operation/rhein",
-  package = "aquanes.report"),
+import_operation_meta_basel(raw_dir_rhein = system.file(file.path("shiny",
+  "basel/data/operation/rhein"), package = "aquanes.report"),
   raw_dir_wiese = system.file("shiny/basel/data/operation/wiese", package =
   "aquanes.report"),
   meta_online_path = system.file("shiny/basel/data/metadata/meta_online.csv",
@@ -45,6 +44,6 @@ for both sites (i.e."rhein" and "wiese")
 data.frame with operational data for Basel sites including metadata
 }
 \description{
-Imports operational data for Basel (with metadata for both sites at once, i.e.
-"rhein" and "wiese")
+Imports operational data for Basel (with metadata for
+both sites at once, i.e. "rhein" and "wiese")
 }

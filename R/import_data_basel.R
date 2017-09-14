@@ -53,6 +53,7 @@ import_operation_basel <- function(xlsx_dir = system.file("shiny/basel/data/oper
 #' @return returns data frame with imported raw analytics data
 #' @importFrom janitor clean_names
 #' @importFrom  readxl read_excel
+#' @importFrom  utils read.csv2
 #' @import dplyr
 #' @export
 
@@ -78,7 +79,7 @@ import_analytics_basel <- function(csv_dir = system.file("shiny/basel/data/analy
                                                              tmp$uhrzeit),
                                                    format = "%d.%m.%Y %H:%M"))) %>%
       dplyr::rename(SiteCode = "probestelle",
-                    ParameterCode = "prüfpunkt",
+                    ParameterCode = "pr\u00FCfpunkt",
                     ParameterOperator = "operator",
                     ParameterValue = "messwert",
                     ParameterUnitOrg = "einheit"
@@ -212,8 +213,8 @@ add_label <- function(df,
 
 
 
-#'Imports operational data for Basel (with metadata for both sites at once, i.e.
-#'"rhein" and "wiese")
+#'Imports operational data for Basel (with metadata for
+#'both sites at once, i.e. "rhein" and "wiese")
 #' @param raw_dir_rhein Define directory for site "rhein" with raw data in
 #' EXCEL spreadsheet format (.xlsx) to be imported (default:
 #' system.file("shiny/basel/data/operation/rhein", package = "aquanes.report"))
@@ -234,16 +235,20 @@ add_label <- function(df,
 #' @importFrom  dplyr left_join
 #' @return data.frame with operational data for Basel sites including metadata
 #' @export
-import_operation_meta_basel <- function(raw_dir_rhein = system.file("shiny/basel/data/operation/rhein",
-                            package = "aquanes.report"),
+import_operation_meta_basel <- function(
+raw_dir_rhein = system.file(file.path("shiny",
+"basel/data/operation/rhein"),package = "aquanes.report"),
 raw_dir_wiese = system.file("shiny/basel/data/operation/wiese",
-                            package = "aquanes.report"),
-meta_online_path = system.file("shiny/basel/data/metadata/meta_online.csv",
-                               package = "aquanes.report"),
-meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-                             package = "aquanes.report"),
-meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
-                                  package = "aquanes.report")) {
+            package = "aquanes.report"),
+meta_online_path =
+system.file("shiny/basel/data/metadata/meta_online.csv",
+            package = "aquanes.report"),
+meta_site_path =
+system.file("shiny/basel/data/metadata/meta_site.csv",
+            package = "aquanes.report"),
+meta_parameter_path =
+  system.file("shiny/basel/data/metadata/meta_parameter.csv",
+              package = "aquanes.report")) {
 
 
 
@@ -293,12 +298,13 @@ return(basel)
 #' package = "aquanes.report"))
 #' @return data.frame with analytics data for Basel sites including metadata
 #' @export
-import_analytics_meta_basel <- function(analytics_dir = system.file("shiny/basel/data/analytics",
-                                        package = "aquanes.report"),
-                                        meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-                                        package = "aquanes.report"),
-                                        meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
-                                        package = "aquanes.report")) {
+import_analytics_meta_basel <- function(
+analytics_dir = system.file("shiny/basel/data/analytics",
+                            package = "aquanes.report"),
+meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
+package = "aquanes.report"),
+meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
+package = "aquanes.report")) {
 
 print("###################################################################")
 print("###### Importing analytics data with metadata for sites 'Wiese' and Rhein'")
@@ -335,18 +341,19 @@ return(analytics_meta_data )
 #' @return data.frame with analytical & operational data for Basel
 #' @importFrom plyr rbind.fill
 #' @export
-import_data_basel <- function(analytics_dir = system.file("shiny/basel/data/analytics",
-                              package = "aquanes.report"),
-                              raw_dir_rhein = system.file("shiny/basel/data/operation/rhein",
-                              package = "aquanes.report"),
-                              raw_dir_wiese = system.file("shiny/basel/data/operation/wiese",
-                              package = "aquanes.report"),
-                              meta_online_path = system.file("shiny/basel/data/metadata/meta_online.csv",
-                              package = "aquanes.report"),
-                              meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
-                              package = "aquanes.report"),
-                              meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-                              package = "aquanes.report")) {
+import_data_basel <- function(
+analytics_dir = system.file("shiny/basel/data/analytics",
+package = "aquanes.report"),
+raw_dir_rhein = system.file("shiny/basel/data/operation/rhein",
+package = "aquanes.report"),
+raw_dir_wiese = system.file("shiny/basel/data/operation/wiese",
+package = "aquanes.report"),
+meta_online_path = system.file("shiny/basel/data/metadata/meta_online.csv",
+package = "aquanes.report"),
+meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
+package = "aquanes.report"),
+meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
+package = "aquanes.report")) {
 
 
   operation_meta <- import_operation_meta_basel(raw_dir_rhein = raw_dir_rhein,

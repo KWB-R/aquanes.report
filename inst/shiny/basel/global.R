@@ -16,11 +16,11 @@ siteData_10min_list <- aquanes.report::group_datetime(siteData_raw_list,
                                                       by = 10*60))
 
 system.time(
-siteData_hour_list <- aquanes.report::group_datetime(siteData_10min_list,
+siteData_hour_list <- aquanes.report::group_datetime(siteData_raw_list,
                                                      by = 60*60))
 
 system.time(
-  siteData_day_list <- aquanes.report::group_datetime(siteData_hour_list,
+  siteData_day_list <- aquanes.report::group_datetime(siteData_raw_list,
                                                         by = "day"))
 
 
