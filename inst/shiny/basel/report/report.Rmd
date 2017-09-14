@@ -1,5 +1,5 @@
 ---
-title: "Automated report for Berlin-Schoenerlinde"
+title: "Automated report for Basel - Lange Erlen"
 output:
   html_document:
     fig_height: 7
