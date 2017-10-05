@@ -22,7 +22,7 @@ Ozoneintrag = "(C_O3_Zugas - C_O3_Abgas)*Q_Gas/Q_Ozonanlage"))}
 calculation specified wit 'calc_list'. default: c('delta SAK', 'Ozoneintrag')}
 
 \item{calc_list_unit}{units of parameters to be used for plotting for each
-calculation specified wit 'calc_list'. default: c("delta SAK", "Ozoneintrag")}
+calculation specified wit 'calc_list'. default: c("percent", "mg-O3/L")}
 
 \item{calc_paras}{a vector with parameter codes used for performing calculations
 defined in 'calc_list' (default: c("SCAN_SAK_Ablauf", "SCAN_SAK_Zulauf",

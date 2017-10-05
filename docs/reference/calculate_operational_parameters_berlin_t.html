@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate operational parameters for Berlin-Schoenerlinde — calculate_operational_parameters_berlin_s â€¢ aquanes.report</title>
+<title>Calculate operational parameters for Berlin-Tiefwerder — calculate_operational_parameters_berlin_t â€¢ aquanes.report</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -113,48 +113,43 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate operational parameters for Berlin-Schoenerlinde</h1>
+    <h1>Calculate operational parameters for Berlin-Tiefwerder</h1>
     </div>
 
     
-    <p>Calculate operational parameters for Berlin-Schoenerlinde</p>
+    <p>Calculate operational parameters for Berlin-Tiefwerder</p>
     
 
-    <pre class="usage"><span class='fu'>calculate_operational_parameters_berlin_s</span>(<span class='no'>df</span>, <span class='kw'>calc_list</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>deltaSAK</span> <span class='kw'>=</span>
-  <span class='st'>"(1-SCAN_SAK_Ablauf/SCAN_SAK_Zulauf)*100"</span>, <span class='kw'>Ozoneintrag</span> <span class='kw'>=</span>
-  <span class='st'>"(C_O3_Zugas - C_O3_Abgas)*Q_Gas/Q_Ozonanlage"</span>),
-  <span class='kw'>calc_list_name</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"delta SAK"</span>, <span class='st'>"Ozoneintrag"</span>), <span class='kw'>calc_list_unit</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"%"</span>,
-  <span class='st'>"mg-O3/L"</span>), <span class='kw'>calc_paras</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"SCAN_SAK_Ablauf"</span>, <span class='st'>"SCAN_SAK_Zulauf"</span>,
-  <span class='st'>"C_O3_Zugas"</span>, <span class='st'>"C_O3_Abgas"</span>, <span class='st'>"Q_Gas"</span>, <span class='st'>"Q_Ozonanlage"</span>))</pre>
+    <pre class="usage"><span class='fu'>calculate_operational_parameters_berlin_t</span>(<span class='no'>df</span>, <span class='kw'>calc_list</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>recovery</span> <span class='kw'>=</span>
+  <span class='st'>"100*`FY-20-01`/`FT-10-01`"</span>), <span class='kw'>calc_list_name</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"recovery"</span>),
+  <span class='kw'>calc_list_unit</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"%"</span>), <span class='kw'>calc_paras</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"FY-20-01"</span>, <span class='st'>"FT-10-01"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>df</th>
-      <td><p>a data frame as retrieved by read_wedeco_data()</p></td>
+      <td><p>a data frame as retrieved by read_pentair_data()</p></td>
     </tr>
     <tr>
       <th>calc_list</th>
       <td><p>list with calculation operations to be carried out
-(default: list(deltaSAK  = "(1-SCAN_SAK_Ablauf/SCAN_SAK_Zulauf)*100",
-Ozoneintrag = "(C_O3_Zugas - C_O3_Abgas)*Q_Gas/Q_Ozonanlage"))</p></td>
+(default: list(recovery  = "100*`FY-20-01`/`FT-10-01`"))</p></td>
     </tr>
     <tr>
       <th>calc_list_name</th>
       <td><p>full names of parameters to be used for plotting for each
-calculation specified wit 'calc_list'. default: c('delta SAK', 'Ozoneintrag')</p></td>
+calculation specified wit 'calc_list'. default: c('recovery')</p></td>
     </tr>
     <tr>
       <th>calc_list_unit</th>
       <td><p>units of parameters to be used for plotting for each
-calculation specified wit 'calc_list'. default: c("percent", "mg-O3/L")</p></td>
+calculation specified wit 'calc_list'. default: c("percent")</p></td>
     </tr>
     <tr>
       <th>calc_paras</th>
       <td><p>a vector with parameter codes used for performing calculations
-defined in 'calc_list' (default: c("SCAN_SAK_Ablauf", "SCAN_SAK_Zulauf",
-"C_O3_Zugas", "C_O3_Abgas", "Q_Gas",´"Q_Ozonanlage"))</p></td>
+defined in 'calc_list' (default: c("FY-20-01", "FT-10-01")</p></td>
     </tr>
     </table>
     
@@ -165,8 +160,8 @@ defined in 'calc_list' (default: c("SCAN_SAK_Ablauf", "SCAN_SAK_Zulauf",
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>raw_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_wedeco_data.html'>read_wedeco_data</a></span>()
-<span class='no'>myDat</span> <span class='kw'>&lt;-</span> <span class='fu'>calculate_operational_parameters_berlin_s</span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>raw_list</span>)
+<span class='no'>raw_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_pentair_data.html'>read_pentair_data</a></span>()
+<span class='no'>myDat</span> <span class='kw'>&lt;-</span> <span class='fu'>calculate_operational_parameters_berlin_t</span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>raw_list</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -108,6 +108,8 @@ data_berlin_t$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
                                                 )
 
 
+
+
 if (file.exists(fts_file_path)) {
   print(sprintf("Loading already imported data from file: %s", fts_file_path))
 
