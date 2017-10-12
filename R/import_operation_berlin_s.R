@@ -56,6 +56,7 @@ create_wedeco_metafile <- function(raw_data_file) {
 #' @param meta_file_path path to meta data file
 #' @importFrom lubridate parse_date_time2
 #' @importFrom stringr str_sub
+#' @importFrom plyr rbind.fill
 #' @export
 read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/operation",
                                                         package = "aquanes.report"),
@@ -98,7 +99,7 @@ read_wedeco_data <- function(raw_data_dir = system.file("shiny/berlin_s/data/ope
     if (pathfile == files_to_import[1]) {
       df <- ozone
     } else {
-      df <- rbind(df, ozone)
+      df <- plyr::rbind.fill(df, ozone)
     }
   }
 
