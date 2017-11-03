@@ -27,7 +27,7 @@ remove_duplicates <- function(df,
                     paste(capture.output(print(df[dups_indices,])),
                           collapse = "\n")))
 
-      df <- df[!dups_indices,]
+      df <- df[!dups,]
     }
 
   }
