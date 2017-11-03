@@ -32,7 +32,8 @@ Imports:
 	stringr (>= 1.2.0),
 	fst (>= 0.7.2),
 	magrittr (>= 1.5),
-	janitor (>= 0.3.0)
+	janitor (>= 0.3.0), 
+	data.table (>= 1.10.4-3)
 Suggests:
     devtools (>= 1.13.0),
     knitr
