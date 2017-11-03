@@ -7,9 +7,11 @@
 
   import_data_berlin_t(raw_data_dir = system.file("shiny/berlin_t/data/operation",
   package = "aquanes.report"),
+  analytics_path = system.file("shiny/berlin_t/data/analytics.xlsx", package =
+  "aquanes.report"),
   meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
   package = "aquanes.report"),
-  fts_file_path = system.file("shiny/berlin_t/data/siteData_raw_list.fts",
+  fst_file_path = system.file("shiny/berlin_t/data/siteData_raw_list.fst",
   package = "aquanes.report"))
 }
 \arguments{
@@ -17,18 +19,22 @@
 (default: system.file("shiny/berlin_t/data/operation",
 package = "aquanes.report"))))}
 
+\item{analytics_path}{full path to lab data EXCEL file in xlsx format (default:
+(default: system.file("shiny/berlin_t/data/analytics.xlsx",
+package = "aquanes.report"))))}
+
 \item{meta_file_path}{path to metadata file (default:
 system.file("shiny/berlin_t/data/parameter_site_metadata.csv", package =
 "aquanes.report")))}
 
-\item{fts_file_path}{path to fts file (default:
-system.file("shiny/berlin_t/data/siteData_raw_list.fts", package =
+\item{fst_file_path}{path to fst file (default:
+system.file("shiny/berlin_t/data/siteData_raw_list.fst", package =
 "aquanes.report")))}
 }
 \value{
 list with "df": data.frame with imported operational data (analytics
 data to be added as soon as available) and "added_data_points": number of
-added data points in case of existing fts file was updated with new operational
+added data points in case of existing fst file was updated with new operational
 data
 }
 \description{
