@@ -5,7 +5,7 @@
 \title{Read PENTAIR operational data}
 \usage{
 read_pentair_data(raw_data_dir = system.file("shiny/berlin_t/data/operation",
-  package = "aquanes.report"),
+  package = "aquanes.report"), raw_data_files = NULL,
   meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
   package = "aquanes.report"))
 }
@@ -13,6 +13,10 @@ read_pentair_data(raw_data_dir = system.file("shiny/berlin_t/data/operation",
 \item{raw_data_dir}{path of directory containing PENTAIR xls files (default:
 (default: system.file("shiny/berlin_t/data/operation",
 package = "aquanes.report"))))}
+
+\item{raw_data_files}{vector with full path to operational raw data files that
+allows to limit import to specific files (default: NULL). If specified parameter
+"raw_data_dir" will not be used}
 
 \item{meta_file_path}{path to metadata file (default:
 system.file("shiny/berlin_t/data/parameter_site_metadata.csv", package =

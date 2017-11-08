@@ -4,60 +4,61 @@ if (use_live_data) {
 
 library(aquanes.report)
 
-system.time(
-newData_raw_list <- aquanes.report::import_data_berlin_t())
+year_month_start <- format(Sys.Date() - months(1, abbreviate = FALSE),
+                           format = "%Y-%m")
+year_month_end <- format(Sys.Date(), format = "%Y-%m")
 
-if (newData_raw_list$added_data_points > 0) {
-calc_dat <- aquanes.report::calculate_operational_parameters_berlin_t(df = newData_raw_list$df)
+print("#################################################################################")
+print(sprintf(" ###### Generating & exporting .fst files for months: %s - %s",
+      year_month_start,
+      year_month_end))
+print("#################################################################################")
 
-siteData_raw_list <- plyr::rbind.fill(newData_raw_list$df,
-                                        calc_dat)
-rm(newData_raw_list)
-
-compression <- 100
-
-system.time(fst::write.fst(siteData_raw_list,
-                           path = "data/siteData_raw_list.fst",
-                           compress = compression))
+aquanes.report::aggregate_export_fst_berlin_t(year_month_start = year_month_start,
+                                              year_month_end = year_month_end)
 
 
-print("### Step 4: Performing temporal aggregation ##########################")
-system.time(
-  siteData_10min_list <- aquanes.report::group_datetime(siteData_raw_list,
-                                                        by = 10*60))
-fst::write.fst(siteData_10min_list,
-               path = "data/siteData_10min_list.fst",
-               compress = compression)
+data_dir <- system.file("shiny/berlin_t/data",
+                        package = "aquanes.report")
 
-system.time(
-  siteData_hour_list <- aquanes.report::group_datetime(siteData_10min_list,by = 60*60))
+fst_dir <- file.path(data_dir, "fst")
 
-fst::write.fst(siteData_hour_list,
-               path = "data/siteData_hour_list.fst",
-               compress = compression)
+available_months <- list.dirs(fst_dir,
+                              full.names = FALSE)[-1]
 
-system.time(
-  siteData_day_list <- aquanes.report::group_datetime(siteData_hour_list,
-                                                      by = "day"))
-fst::write.fst(siteData_day_list,
-               path = "data/siteData_day_list.fst",
-               compress = compression)
+n_months <- length(available_months)
+
+if (n_months > 0) {
+last_month <- available_months[n_months]
+
+o_path <- list.files(path = file.path(fst_dir, last_month),
+                     full.names = TRUE)
+t_path <- gsub(sprintf("fst/%s/", last_month), "", o_path, fixed = TRUE)
+
+for (index in seq_along(o_path)) {
+print(sprintf("Copy fst data for latest month from %s to %s (is used as default in app!)",
+              o_path[index],
+              t_path[index]))
+file.copy(from = o_path[index],
+          to = t_path[index],
+          overwrite = FALSE)
 }
+aquanes.report::load_fst_data(fst_dir = system.file("shiny/berlin_t/data",
+package = "aquanes.report"))
+
+} else {
+  stop(sprintf("No fst data available under path: %s",
+               list.dirs(fst_dir,
+                         full.names = TRUE)))
+}
+
+
+
 } else {
 
-  print("### Step 4: Loading data ##########################")
-  print("### 1): Raw data")
-  system.time(siteData_raw_list <- aquanes.report::read_fst(path = "data/siteData_raw_list.fst"))
+  aquanes.report::load_fst_data(fst_dir = system.file("shiny/berlin_t/data",
+                                          package = "aquanes.report"))
 
-
-  print("### 2) 10 minutes data")
-  siteData_10min_list <-  aquanes.report::read_fst(path = "data/siteData_10min_list.fst")
-
-  print("### 3) hourly data")
-  siteData_hour_list <- aquanes.report::read_fst(path =  "data/siteData_hour_list.fst")
-
-  print("### 4) daily data")
-  siteData_day_list <- aquanes.report::read_fst(path =  "data/siteData_day_list.fst")
 
 }
 

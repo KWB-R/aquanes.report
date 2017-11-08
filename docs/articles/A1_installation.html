@@ -117,7 +117,7 @@
 <h2 class="hasAnchor">
 <a href="#step-1-installation-of-r-package-devtools" class="anchor"></a>1.2.1 Step 1) Installation of R package “devtools”</h2>
 <p>The R package “devtools” is required for downloading and installing the R package “aquanes.report” from Github. Installation is done by executing the following lines of code in R or RStudio (from now on written as R(Studio)):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">"devtools"</span>)) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
   <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)
 }</code></pre></div>
 </div>
@@ -128,7 +128,7 @@
 <h4 class="hasAnchor">
 <a href="#specific-release" class="anchor"></a>2.1) Specific release</h4>
 <p>In case you want to install a specific release you need to specify the parameter “ref”, which needs to be set to a valid release (check here: <a href="https://github.com/KWB-R/aquanes.report/releases">releases</a>) by running the following code in R(Studio). This tutorial at least requires release version <a href="https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0">v.0.4.0</a>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">"kwb-r/aquanes.report"</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kwb-r/aquanes.report"</span>, 
                          <span class="dt">ref =</span> <span class="st">"v.0.4.0"</span>,
                          <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><strong><em>Please cite <a href="https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0">v.0.4.0</a> of the R package as follows:</em></strong> <a href="https://doi.org/10.5281/zenodo.825030"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.825030.svg" alt="DOI"></a></p>

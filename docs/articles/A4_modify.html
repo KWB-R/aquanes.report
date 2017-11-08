@@ -102,12 +102,12 @@
 <h2 class="hasAnchor">
 <a href="#basic-update-operationalanalytical-data" class="anchor"></a>4.1 Basic: update operational/analytical data</h2>
 <p>In order to use the latest operational data (from the MySQL DB of the Haridwar site) in the R reporting tool you need to run the following code in R(Studio):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aquanes.report::<span class="kw"><a href="../reference/run_app.html">run_app</a></span>(<span class="dt">use_live_data =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aquanes.report<span class="op">::</span><span class="kw">run_app</span>(<span class="dt">use_live_data =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>If also the analytical data was updated you need to save the analytics file with the filename “analytics.xlsx” at the location returned by running the following code in R(Studio):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar/data/analytics.xlsx"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
 <p>In this example (which is based on the R 3.3.2 release) it will be located in your personal documents folder under: “C:/Users/YOUR_USERNAME/Documents/R/win-library/3.3/aquanes.report/shiny/haridwar/data/analytics.xlsx”</p>
 <p>In order to use the latest analytics data in the R reporting tool you also need to run the following code in R(Studio):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aquanes.report::<span class="kw"><a href="../reference/run_app.html">run_app</a></span>(<span class="dt">use_live_data =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aquanes.report<span class="op">::</span><span class="kw">run_app</span>(<span class="dt">use_live_data =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="basic-update-thresholds" class="section level2">
 <h2 class="hasAnchor">
@@ -118,7 +118,7 @@
 <p>For updating e.g. the threshold for the parameter “Battery voltage” for example to “24”, the value in column ParameterThreshold (see Table 1) needs to be updated and saved. A threshold value for a parameter not defined in the table below can be added by typing its ParameterCode, Parameter-Name, ParameterUnit into a new line of “thresholds.csv”. For example all valid parameters values for the operational Haridwar data are defined here:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar/data/operation_parameters.csv"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
 <p>In addition data entries for the columns ParameterThresholdComparison (i.e. &gt;=, =, &gt;=) and Pa-rameterThreshold are required, whilst ParameterThresholdSource can be freely defined by the user or even left blank. Finally the app needs to be restarted as described in Chapter 3.1.2 (in case no new operation/analytical data should be used) or in Chapter 3.1.1 (in case also new operational/analytical data should be used).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">kable</span>(<span class="dt">x =</span> aquanes.report::<span class="kw"><a href="../reference/get_thresholds.html">get_thresholds</a></span>(), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="dt">x =</span> aquanes.report<span class="op">::</span><span class="kw">get_thresholds</span>(), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
 <div id="basic-update-map-in-site-panel-tab" class="section level2">
 <h2 class="hasAnchor">

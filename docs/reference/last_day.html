@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import data for Berlin Tiefwerder — import_data_berlin_t â€¢ aquanes.report</title>
+<title>Helper function to get last day of month — last_day â€¢ aquanes.report</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -113,53 +113,27 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import data for Berlin Tiefwerder</h1>
+    <h1>Helper function to get last day of month</h1>
     </div>
 
     
-    <p>Import data for Berlin Tiefwerder</p>
+    <p>Helper function to get last day of month</p>
     
 
-    <pre class="usage"><span class='fu'>import_data_berlin_t</span>(<span class='kw'>raw_data_dir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"shiny/berlin_t/data/operation"</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"aquanes.report"</span>), <span class='kw'>raw_data_files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>analytics_path</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"shiny/berlin_t/data/analytics.xlsx"</span>, <span class='kw'>package</span> <span class='kw'>=</span>
-  <span class='st'>"aquanes.report"</span>),
-  <span class='kw'>meta_file_path</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"shiny/berlin_t/data/parameter_site_metadata.csv"</span>,
-  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"aquanes.report"</span>))</pre>
+    <pre class="usage"><span class='fu'>last_day</span>(<span class='no'>date</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>raw_data_dir</th>
-      <td><p>path of directory containing PENTAIR xls files (default:
-(default: system.file("shiny/berlin_t/data/operation",
-package = "aquanes.report"))))</p></td>
-    </tr>
-    <tr>
-      <th>raw_data_files</th>
-      <td><p>vector with full path to operational raw data files that
-allows to limit import to specific files (default: NULL). If specified parameter
-"raw_data_dir" will not be used</p></td>
-    </tr>
-    <tr>
-      <th>analytics_path</th>
-      <td><p>full path to lab data EXCEL file in xlsx format (default:
-(default: system.file("shiny/berlin_t/data/analytics.xlsx",
-package = "aquanes.report"))))</p></td>
-    </tr>
-    <tr>
-      <th>meta_file_path</th>
-      <td><p>path to metadata file (default:
-system.file("shiny/berlin_t/data/parameter_site_metadata.csv", package =
-"aquanes.report")))</p></td>
+      <th>date</th>
+      <td><p>in format as.Date()</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame with imported operational data (analytics´data to be added as
-soon as available)</p>
+    <p>vector with last day of month(s)</p>
     
 
   </div>
