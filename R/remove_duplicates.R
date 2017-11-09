@@ -3,6 +3,7 @@
 #' @param col_names  column names to be used for duplicate checking (default: names(df)).
 #' can be defined by providing: c("col_name1", "col_name2")
 #' @return data.frame without duplicates
+#' @importFrom utils capture.output
 #' @export
 remove_duplicates <- function(df,
                               col_names = names(df)) {
@@ -24,7 +25,7 @@ remove_duplicates <- function(df,
       dups_indices <- which(dups)
       warning(sprintf("Removing %d duplicates:\n%s",
                     length(dups_indices),
-                    paste(capture.output(print(df[dups_indices,])),
+                    paste(utils::capture.output(print(df[dups_indices,])),
                           collapse = "\n")))
 
       df <- df[!dups,]

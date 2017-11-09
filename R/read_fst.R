@@ -28,20 +28,29 @@ load_fst_data <- function(fst_dir) {
 
 print("### Step 4: Loading data ##########################")
 print("### 1): Raw data")
-siteData_raw_list <<- aquanes.report::read_fst(path = file.path(fst_dir,
-"siteData_raw_list.fst"))
+assign(x = "siteData_raw_list",
+       value = aquanes.report::read_fst(path = file.path(fst_dir,
+                                                         "siteData_raw_list.fst")),
+       envir = .GlobalEnv)
 
 
 print("### 2) 10 minutes data")
-siteData_10min_list <<-  aquanes.report::read_fst(path = file.path(fst_dir,
-"siteData_10min_list.fst"))
+assign(x = "siteData_10min_list",
+       value = aquanes.report::read_fst(path = file.path(fst_dir,
+                                                         "siteData_10min_list.fst")),
+       envir = .GlobalEnv)
+
 
 print("### 3) hourly data")
-siteData_hour_list <<- aquanes.report::read_fst(path = file.path(fst_dir,
- "siteData_hour_list.fst"))
+assign(x = "siteData_hour_list",
+       value = aquanes.report::read_fst(path = file.path(fst_dir,
+                                        "siteData_hour_list.fst")),
+      envir = .GlobalEnv)
+
 
 print("### 4) daily data")
-siteData_day_list <<- aquanes.report::read_fst(path = file.path(fst_dir,
-"siteData_day_list.fst"))
-
+assign(x = "siteData_hour_list",
+       value = aquanes.report::read_fst(path = file.path(fst_dir,
+                                        "siteData_day_list.fst")),
+       envir = .GlobalEnv)
 }

@@ -133,12 +133,14 @@
 first row of get_monthly_periods(), i.e. year month is (default: '2017-06')</p></td>
     </tr>
     <tr>
-      <th>year_month_end</th>
-      <td><p>end year month (default: current month )</p></td>
+      <th>raw_data_dir</th>
+      <td><p>directory with operational raw data files for Berlin Tiefwerder
+(default: system.file("shiny/berlin_t/data/operation", package = "aquanes.report")</p></td>
     </tr>
     <tr>
-      <th>tz</th>
-      <td><p>(default: 'CET')</p></td>
+      <th>max_offset_days</th>
+      <td><p>number of days in previous/next month to look for beginning/
+ending of month (default: 7)</p></td>
     </tr>
     </table>
     

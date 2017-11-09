@@ -12,9 +12,11 @@ get_rawfilespaths_for_month(monthly_period = get_monthly_periods()[1, ],
 \item{monthly_period}{one row of data.frame as retrieved by function
 first row of get_monthly_periods(), i.e. year month is (default: '2017-06')}
 
-\item{year_month_end}{end year month (default: current month )}
+\item{raw_data_dir}{directory with operational raw data files for Berlin Tiefwerder
+(default: system.file("shiny/berlin_t/data/operation", package = "aquanes.report")}
 
-\item{tz}{(default: 'CET')}
+\item{max_offset_days}{number of days in previous/next month to look for beginning/
+ending of month (default: 7)}
 }
 \value{
 dataframe with monthly periods

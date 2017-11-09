@@ -38,8 +38,10 @@ data.frame(year_month = format(month_start,format = "%Y-%m"),
 #'Berlin-Tiefwerder: get rawfilepaths for months
 #' @param monthly_period one row of data.frame as retrieved by function
 #' first row of get_monthly_periods(), i.e. year month is (default: '2017-06')
-#' @param year_month_end end year month (default: current month )
-#' @param tz (default: 'CET')
+#' @param  raw_data_dir directory with operational raw data files for Berlin Tiefwerder
+#' (default: system.file("shiny/berlin_t/data/operation", package = "aquanes.report")
+#' @param max_offset_days number of days in previous/next month to look for beginning/
+#' ending of month (default: 7)
 #' @return dataframe with monthly periods
 #' @importFrom lubridate days
 #' @export
