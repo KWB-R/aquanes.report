@@ -23,6 +23,9 @@ aquanes.report::merge_and_export_fst(time_pattern = month_pattern)
 
 }
 
+aquanes.report::load_fst_data(fst_dir = system.file("shiny/berlin_t/data",
+                                                    package = "aquanes.report"))
+
 print("### Step 5: Importing threshold information ##########################")
 
 threshold_file <- system.file("shiny/berlin_t/data/thresholds.csv",

@@ -49,7 +49,7 @@ assign(x = "siteData_hour_list",
 
 
 print("### 4) daily data")
-assign(x = "siteData_hour_list",
+assign(x = "siteData_day_list",
        value = aquanes.report::read_fst(path = file.path(fst_dir,
                                         "siteData_day_list.fst")),
        envir = .GlobalEnv)
