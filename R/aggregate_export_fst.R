@@ -39,7 +39,7 @@ datetime_end <- as.POSIXct(sprintf("%s 23:59:59", monthly_period$end),
 condition <- siteData_raw_list$DateTime >= datetime_start &
              siteData_raw_list$DateTime <= datetime_end
 
-siteData_raw_list <- newData_raw_list[condition,]
+siteData_raw_list <- siteData_raw_list[condition,]
 
 print(sprintf("Reduced imported data points to time period: %s - %s",
       as.character(min(siteData_raw_list$DateTime)),
