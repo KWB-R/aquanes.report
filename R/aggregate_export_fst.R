@@ -25,7 +25,7 @@ for (year_month in monthly_periods$year_month) {
 
 
 system.time(
-  newData_raw_list <- import_data_berlin_t(
+  siteData_raw_list <- import_data_berlin_t(
     raw_data_files = raw_data_file_paths))
 
 
@@ -36,23 +36,19 @@ datetime_end <- as.POSIXct(sprintf("%s 23:59:59", monthly_period$end),
                              tz = "CET")
 
 
-condition <- newData_raw_list$DateTime >= datetime_start &
-             newData_raw_list$DateTime <= datetime_end
+condition <- siteData_raw_list$DateTime >= datetime_start &
+             siteData_raw_list$DateTime <= datetime_end
 
-newData_raw_list <- newData_raw_list[condition,]
+siteData_raw_list <- newData_raw_list[condition,]
 
 print(sprintf("Reduced imported data points to time period: %s - %s",
-      as.character(min(newData_raw_list$DateTime)),
-      as.character(max(newData_raw_list$DateTime))))
+      as.character(min(siteData_raw_list$DateTime)),
+      as.character(max(siteData_raw_list$DateTime))))
 
-newData_raw_list$added_data_points <- nrow(newData_raw_list)
+  calc_dat <- calculate_operational_parameters_berlin_t(df = siteData_raw_list)
 
-if (newData_raw_list$added_data_points > 0) {
-  calc_dat <- calculate_operational_parameters_berlin_t(df = newData_raw_list)
-
-  siteData_raw_list <- plyr::rbind.fill(newData_raw_list,
+  siteData_raw_list <- plyr::rbind.fill(siteData_raw_list,
                                         calc_dat)
-  rm(newData_raw_list)
 
 
   export_dir_path <- sprintf("%s/data/fst/%s",
@@ -60,7 +56,7 @@ if (newData_raw_list$added_data_points > 0) {
                                          package = "aquanes.report"),
                              monthly_period$year_month)
 
-  if(!dir.exists(export_dir_path)) {
+  if (!dir.exists(export_dir_path)) {
     print(sprintf("Creating export path: %s", export_dir_path ))
     dir.create(export_dir_path,recursive = TRUE)
   }
@@ -93,4 +89,4 @@ if (newData_raw_list$added_data_points > 0) {
                  compress = compression)
 }
 }
-}
+
