@@ -99,40 +99,13 @@ import_lab_data_berlin_t <- function(xlsx_path = system.file("shiny/berlin_t/dat
 #' @import tidyr
 #' @importFrom readr read_tsv
 #' @importFrom magrittr "%>%"
+#' @importFrom data.table rbindlist
 #' @export
 read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
                                                          package = "aquanes.report"),
                               raw_data_files = NULL,
                               meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
                                                            package = "aquanes.report")) {
-
-  if(is.null(raw_data_files)) {
-  xls_files <- list.files(path = raw_data_dir,
-                          pattern = "*.xls",
-                          full.names = TRUE)
-  } else {
-    xls_files <- raw_data_files
-  }
-
-  for (xls_file in xls_files) {
-    print(paste("Importing raw data file:", xls_file))
-    tmp <- readr::read_tsv(file = xls_file,
-                           locale = readr::locale(tz = "CET"))
-
-
-
-    if (xls_file == xls_files[1]) {
-      df <- tmp
-    }  else {
-      df <- rbind(df, tmp)
-    }
-  }
-  df_tidy <- tidyr::gather_(data = df,
-                            key_col = "ParameterCode",
-                            value_col = "ParameterValue",
-                            gather_cols = setdiff(names(df), "TimeStamp")) %>%
-             dplyr::rename_(DateTime = "TimeStamp")
-
 
   meta_data <- read.csv(file = meta_file_path,
                         header = TRUE,
@@ -142,19 +115,38 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
 
 
   meta_data$ParameterLabel <- sprintf("%s (%s)",
-                             meta_data$ParameterName,
-                             meta_data$ParameterUnit)
+                                      meta_data$ParameterName,
+                                      meta_data$ParameterUnit)
 
 
-  relevant_paras <- df_tidy$ParameterCode %in% meta_data$ParameterCode[meta_data$ZeroOne == 1]
+  if(is.null(raw_data_files)) {
+  xls_files <- list.files(path = raw_data_dir,
+                          pattern = "*.xls",
+                          full.names = TRUE)
+  } else {
+    xls_files <- raw_data_files
+  }
 
-  meta_data <- meta_data %>%
-    select_(.dots = "-ZeroOne")
+  raw_list <- lapply(xls_files,
+                     FUN = function(xls_file) {
+                       print(paste("Importing raw data file:", xls_file))
+                       tmp <- readr::read_tsv(file = xls_file,
+                                       locale = readr::locale(tz = "CET"))
+                       relevant_paras <-  names(tmp)[names(tmp) %in%
+                         c("TimeStamp", meta_data$ParameterCode[meta_data$ZeroOne == 1])]
+                       tmp[,relevant_paras]}
+                     )
 
 
-  df_tidy <- df_tidy[relevant_paras,] %>%
-    dplyr::left_join(y = meta_data) %>%
-    as.data.frame()
+  df_tidy <- data.table::rbindlist(l = raw_list,
+                                   use.names = TRUE) %>%
+             tidyr::gather_(key_col = "ParameterCode",
+                            value_col = "ParameterValue",
+                            gather_cols = setdiff(names(raw_list[[1]]), "TimeStamp")) %>%
+             dplyr::rename_(DateTime = "TimeStamp") %>%
+              dplyr::left_join(y = meta_data %>%
+                        select_(.dots = "-ZeroOne")) %>%
+             as.data.frame()
 
   df_tidy$Source <- "online"
 
@@ -214,7 +206,7 @@ data_berlin_t$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
 
 ### Remove duplicates if any exist
 data_berlin_t <- remove_duplicates(df = data_berlin_t,
-                                   col_names = c("DateTime", "ParameterCode", "SiteCode"))
+                                    col_names = c("DateTime", "ParameterCode", "SiteCode"))
 
 return(data_berlin_t)
 }

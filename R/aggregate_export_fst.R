@@ -3,7 +3,7 @@
 #' @param year_month_end end year month (default: current month)
 #' @param compression (default: 100)
 #' @return exports data for each month into subfolder: /data/fts/year-month
-#' @importFrom plyr rbind.fill
+#' @importFrom data.table rbindlist
 #' @importFrom fst write.fst
 #' @export
 aggregate_export_fst_berlin_t <- function(year_month_start = "2017-06",
@@ -47,8 +47,11 @@ print(sprintf("Reduced imported data points to time period: %s - %s",
 
   calc_dat <- calculate_operational_parameters_berlin_t(df = siteData_raw_list)
 
-  siteData_raw_list <- plyr::rbind.fill(siteData_raw_list,
-                                        calc_dat)
+  siteData_raw_list <- data.table::rbindlist(l = list(siteData_raw_list,
+                                                      calc_dat),
+                                             use.names = TRUE,
+                                             fill = TRUE) %>%
+                       as.data.frame()
 
 
   export_dir_path <- sprintf("%s/data/fst/%s",
