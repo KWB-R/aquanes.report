@@ -1,4 +1,4 @@
-#'Dygraph: add (multiple) horizontal lines to plot
+#' Dygraph: add (multiple) horizontal lines to plot
 #'
 #' @param dygraph a dygraph object where (possibly) multiple horizontal lines
 #' should be added
@@ -15,21 +15,22 @@
 #' @import dygraphs
 #' @export
 dygraph_add_limits <- function(dygraph,
-                         limits_df, #thresholds[thresholds$ParameterName %in% "Battery voltage",],
-                         label_loc = "left",
-                         col_limits = "ParameterThreshold",
-                         col_label = "label",
-                         ...) {
-
-    if (nrow(limits_df) > 0) {
-      for (i in seq_len(nrow(limits_df))) {
-        dygraph <- dygraphs::dyLimit(dygraph = dygraph,
-                                     limit = limits_df[i, col_limits],
-                                     label = limits_df[i, col_label],
-                                     labelLoc = label_loc,
-                                     ...)
-      }
+                               limits_df, # thresholds[thresholds$ParameterName %in% "Battery voltage",],
+                               label_loc = "left",
+                               col_limits = "ParameterThreshold",
+                               col_label = "label",
+                               ...) {
+  if (nrow(limits_df) > 0) {
+    for (i in seq_len(nrow(limits_df))) {
+      dygraph <- dygraphs::dyLimit(
+        dygraph = dygraph,
+        limit = limits_df[i, col_limits],
+        label = limits_df[i, col_label],
+        labelLoc = label_loc,
+        ...
+      )
     }
-
-    return(dygraph)
   }
+
+  return(dygraph)
+}

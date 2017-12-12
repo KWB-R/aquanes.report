@@ -1,4 +1,4 @@
-#'BerlinTiefwerder: import lab data
+#' BerlinTiefwerder: import lab data
 #' @param xlsx_path  full path to lab data EXCEL file in xlsx format (default:
 #' (default: system.file("shiny/berlin_t/data/analytics.xlsx",
 #' package = "aquanes.report"))))
@@ -8,42 +8,50 @@
 #' @importFrom readxl read_xlsx
 #' @importFrom magrittr "%>%"
 #' @export
-import_lab_data_berlin_t <- function(xlsx_path = system.file("shiny/berlin_t/data/analytics.xlsx",
-                                                package = "aquanes.report")) {
-
-
-
-
-
-
-  lab_results <- readxl::read_xlsx(path = xlsx_path,
-                                   sheet = "Tabelle1",
-                                   skip = 12) %>%
-    dplyr::mutate_(ParameterName = gsub(pattern ="\\s*\\(.*", "", "ParameterCode"))
+import_lab_data_berlin_t <- function(xlsx_path = system.file(
+                                     "shiny/berlin_t/data/analytics.xlsx",
+                                     package = "aquanes.report"
+                                   )) {
+  lab_results <- readxl::read_xlsx(
+    path = xlsx_path,
+    sheet = "Tabelle1",
+    skip = 12
+  ) %>%
+    dplyr::mutate_(ParameterName = gsub(pattern = "\\s*\\(.*", "", "ParameterCode"))
 
 
   lab_results_list <- lab_results %>%
-    tidyr::gather_(key_col = "Combi",
-                   value_col = "ParameterValueRaw",
-                   gather_cols = setdiff(names(lab_results),
-                                         c("ParameterCode",
-                                           "ParameterUnit",
-                                           "ParameterName"))) %>%
-    tidyr::separate_(col = "Combi",
-                    into = c("ProbenNr",
-                             "Date",
-                             "Termin",
-                             "Komplexkuerzel",
-                             "Ort_Typ",
-                             "Art",
-                             "Gegenstand",
-                             "Bezeichnung",
-                             "SiteName",
-                             "InterneKN",
-                             "Bemerkung",
-                             "DateTime"),
-                    sep = "@",
-                    remove = TRUE)  %>%
+    tidyr::gather_(
+      key_col = "Combi",
+      value_col = "ParameterValueRaw",
+      gather_cols = setdiff(
+        names(lab_results),
+        c(
+          "ParameterCode",
+          "ParameterUnit",
+          "ParameterName"
+        )
+      )
+    ) %>%
+    tidyr::separate_(
+      col = "Combi",
+      into = c(
+        "ProbenNr",
+        "Date",
+        "Termin",
+        "Komplexkuerzel",
+        "Ort_Typ",
+        "Art",
+        "Gegenstand",
+        "Bezeichnung",
+        "SiteName",
+        "InterneKN",
+        "Bemerkung",
+        "DateTime"
+      ),
+      sep = "@",
+      remove = TRUE
+    ) %>%
     dplyr::mutate_(Date = "as.numeric(Date)") %>%
     dplyr::mutate_(Date = "janitor::excel_numeric_to_date(date_num = Date,
                                                         date_system = 'modern')") %>%
@@ -54,38 +62,46 @@ import_lab_data_berlin_t <- function(xlsx_path = system.file("shiny/berlin_t/dat
     dplyr::mutate_(DateTime = "as.POSIXct(as.numeric(DateTime)*24*3600,
                                         origin = '1899-12-30',
                                         tz = 'CET')") %>%
-    dplyr::mutate_(ParameterValue = "gsub(',', '.', ParameterValueRaw)",
-                  DetectionLimit = "ifelse(test = grepl('<', ParameterValue),
+    dplyr::mutate_(
+      ParameterValue = "gsub(',', '.', ParameterValueRaw)",
+      DetectionLimit = "ifelse(test = grepl('<', ParameterValue),
                                           yes = 'below',
-                                          no = 'above')") %>%
-    dplyr::mutate_(DetectionLimit_numeric = "ifelse(test = grepl('<', ParameterValue),
+                                          no = 'above')"
+    ) %>%
+    dplyr::mutate_(
+      DetectionLimit_numeric = "ifelse(test = grepl('<', ParameterValue),
                                                     yes = as.numeric(gsub('<', '', ParameterValue)),
                                                     no = NA)",
-                  ParameterValue = "ifelse(test = grepl('<', ParameterValue),
+      ParameterValue = "ifelse(test = grepl('<', ParameterValue),
                                           yes = as.numeric(gsub('<', '', ParameterValue))/2,
-                                          no = as.numeric(ParameterValue))")
+                                          no = as.numeric(ParameterValue))"
+    )
 
 
   site_names <- unique(lab_results_list$SiteName)
 
-  site_meta <- data.frame(SiteCode = seq_along(site_names),
-                          SiteName = site_names,
-                          stringsAsFactors = FALSE)
+  site_meta <- data.frame(
+    SiteCode = seq_along(site_names),
+    SiteName = site_names,
+    stringsAsFactors = FALSE
+  )
 
   lab_results_list <- lab_results_list %>%
-                      dplyr::left_join(site_meta) %>%
-                      dplyr::mutate(Source = "offline")
+    dplyr::left_join(site_meta) %>%
+    dplyr::mutate(Source = "offline")
 
 
 
-  res <- list(matrix = lab_results,
-              list = lab_results_list)
+  res <- list(
+    matrix = lab_results,
+    list = lab_results_list
+  )
 
   return(res)
 }
 
 
-#'Read PENTAIR operational data
+#' Read PENTAIR operational data
 #' @param raw_data_dir path of directory containing PENTAIR xls files (default:
 #' (default: system.file("shiny/berlin_t/data/operation",
 #' package = "aquanes.report"))))
@@ -101,52 +117,69 @@ import_lab_data_berlin_t <- function(xlsx_path = system.file("shiny/berlin_t/dat
 #' @importFrom magrittr "%>%"
 #' @importFrom data.table rbindlist
 #' @export
-read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
-                                                         package = "aquanes.report"),
-                              raw_data_files = NULL,
-                              meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
-                                                           package = "aquanes.report")) {
+read_pentair_data <- function(raw_data_dir = system.file(
+                              "shiny/berlin_t/data/operation",
+                              package = "aquanes.report"
+                            ),
+                            raw_data_files = NULL,
+                            meta_file_path = system.file(
+                              "shiny/berlin_t/data/parameter_site_metadata.csv",
+                              package = "aquanes.report"
+                            )) {
+  meta_data <- read.csv(
+    file = meta_file_path,
+    header = TRUE,
+    sep = ",",
+    dec = ".",
+    stringsAsFactors = FALSE
+  )
 
-  meta_data <- read.csv(file = meta_file_path,
-                        header = TRUE,
-                        sep = ",",
-                        dec = ".",
-                        stringsAsFactors = FALSE)
+
+  meta_data$ParameterLabel <- sprintf(
+    "%s (%s)",
+    meta_data$ParameterName,
+    meta_data$ParameterUnit
+  )
 
 
-  meta_data$ParameterLabel <- sprintf("%s (%s)",
-                                      meta_data$ParameterName,
-                                      meta_data$ParameterUnit)
-
-
-  if(is.null(raw_data_files)) {
-  xls_files <- list.files(path = raw_data_dir,
-                          pattern = "*.xls",
-                          full.names = TRUE)
+  if (is.null(raw_data_files)) {
+    xls_files <- list.files(
+      path = raw_data_dir,
+      pattern = "*.xls",
+      full.names = TRUE
+    )
   } else {
     xls_files <- raw_data_files
   }
 
-  raw_list <- lapply(xls_files,
-                     FUN = function(xls_file) {
-                       print(paste("Importing raw data file:", xls_file))
-                       tmp <- readr::read_tsv(file = xls_file,
-                                       locale = readr::locale(tz = "CET"))
-                       relevant_paras <-  names(tmp)[names(tmp) %in%
-                         c("TimeStamp", meta_data$ParameterCode[meta_data$ZeroOne == 1])]
-                       tmp[,relevant_paras]}
-                     )
+  raw_list <- lapply(
+    xls_files,
+    FUN = function(xls_file) {
+      print(paste("Importing raw data file:", xls_file))
+      tmp <- readr::read_tsv(
+        file = xls_file,
+        locale = readr::locale(tz = "CET")
+      )
+      relevant_paras <- names(tmp)[names(tmp) %in%
+        c("TimeStamp", meta_data$ParameterCode[meta_data$ZeroOne == 1])]
+      tmp[, relevant_paras]
+    }
+  )
 
 
-  df_tidy <- data.table::rbindlist(l = raw_list,
-                                   use.names = TRUE) %>%
-             tidyr::gather_(key_col = "ParameterCode",
-                            value_col = "ParameterValue",
-                            gather_cols = setdiff(names(raw_list[[1]]), "TimeStamp")) %>%
-             dplyr::rename_(DateTime = "TimeStamp") %>%
-              dplyr::left_join(y = meta_data %>%
-                        select_(.dots = "-ZeroOne")) %>%
-             as.data.frame()
+  df_tidy <- data.table::rbindlist(
+    l = raw_list,
+    use.names = TRUE
+  ) %>%
+    tidyr::gather_(
+      key_col = "ParameterCode",
+      value_col = "ParameterValue",
+      gather_cols = setdiff(names(raw_list[[1]]), "TimeStamp")
+    ) %>%
+    dplyr::rename_(DateTime = "TimeStamp") %>%
+    dplyr::left_join(y = meta_data %>%
+      select_(.dots = "-ZeroOne")) %>%
+    as.data.frame()
 
   df_tidy$Source <- "online"
 
@@ -173,42 +206,49 @@ read_pentair_data <- function(raw_data_dir = system.file("shiny/berlin_t/data/op
 #' @return data.frame with imported operational data (analytics´data to be added as
 #' soon as available)
 #' @export
-import_data_berlin_t <- function(raw_data_dir = system.file("shiny/berlin_t/data/operation",
-                                                            package = "aquanes.report"),
-                                 raw_data_files = NULL,
-                                 analytics_path = system.file("shiny/berlin_t/data/analytics.xlsx",
-                                                             package = "aquanes.report"),
-                                 meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
-                                                              package = "aquanes.report")) {
+import_data_berlin_t <- function(raw_data_dir = system.file(
+                                 "shiny/berlin_t/data/operation",
+                                 package = "aquanes.report"
+                               ),
+                               raw_data_files = NULL,
+                               analytics_path = system.file(
+                                 "shiny/berlin_t/data/analytics.xlsx",
+                                 package = "aquanes.report"
+                               ),
+                               meta_file_path = system.file(
+                                 "shiny/berlin_t/data/parameter_site_metadata.csv",
+                                 package = "aquanes.report"
+                               )) {
+  data_berlin_t <- read_pentair_data(
+    raw_data_dir = raw_data_dir,
+    raw_data_files = raw_data_files,
+    meta_file_path = meta_file_path
+  )
+
+  #### To do: joind with ANALYTICS data as soon as available
+  # data_berlin_t_offline <- read_pentair_data(raw_data_dir = raw_data_dir,
+  #                                    meta_file_path = meta_file_path)
+
+  # data_berlin_t_offline <- import_lab_data_berlin_t(raw_data_dir = raw_data_dir,
+  #                                           meta_file_path = meta_file_path)
 
 
-data_berlin_t <- read_pentair_data(raw_data_dir = raw_data_dir,
-                                   raw_data_files = raw_data_files,
-                                   meta_file_path = meta_file_path)
-
-#### To do: joind with ANALYTICS data as soon as available
-# data_berlin_t_offline <- read_pentair_data(raw_data_dir = raw_data_dir,
-#                                    meta_file_path = meta_file_path)
-
-# data_berlin_t_offline <- import_lab_data_berlin_t(raw_data_dir = raw_data_dir,
-#                                           meta_file_path = meta_file_path)
+  data_berlin_t$DataType <- "raw"
 
 
-data_berlin_t$DataType <- "raw"
+  data_berlin_t$SiteName_ParaName_Unit <- sprintf(
+    "%s: %s (%s)",
+    data_berlin_t$SiteName,
+    data_berlin_t$ParameterName,
+    data_berlin_t$ParameterUnit
+  )
 
 
-data_berlin_t$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
-                                                data_berlin_t$SiteName,
-                                                data_berlin_t$ParameterName,
-                                                data_berlin_t$ParameterUnit
-                                                )
+  ### Remove duplicates if any exist
+  data_berlin_t <- remove_duplicates(
+    df = data_berlin_t,
+    col_names = c("DateTime", "ParameterCode", "SiteCode")
+  )
 
-
-### Remove duplicates if any exist
-data_berlin_t <- remove_duplicates(df = data_berlin_t,
-                                    col_names = c("DateTime", "ParameterCode", "SiteCode"))
-
-return(data_berlin_t)
+  return(data_berlin_t)
 }
-
-

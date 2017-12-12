@@ -1,5 +1,5 @@
-#'Imports operational data for Basel (without metadata and only for one site
-#'at once, e.g. "rhein" or "wiese")
+#' Imports operational data for Basel (without metadata and only for one site
+#' at once, e.g. "rhein" or "wiese")
 #' @param xlsx_dir Define directory with raw data in EXCEL spreadsheet (.xlsx) to
 #' be imported (default: system.file("shiny/basel/data/operation/wiese",
 #' package = "aquanes.report"))
@@ -8,13 +8,15 @@
 #' @importFrom  tidyr gather_
 #' @export
 
-import_operation_basel <- function(xlsx_dir = system.file("shiny/basel/data/operation/wiese",
-                                                                package = "aquanes.report")) {
-
-
-  xlsx_files <- list.files(path = xlsx_dir,
-                           pattern = "\\.xls",
-                           full.names = TRUE)
+import_operation_basel <- function(xlsx_dir = system.file(
+                                   "shiny/basel/data/operation/wiese",
+                                   package = "aquanes.report"
+                                 )) {
+  xlsx_files <- list.files(
+    path = xlsx_dir,
+    pattern = "\\.xls",
+    full.names = TRUE
+  )
 
 
   for (xlsx_file in xlsx_files) {
@@ -31,22 +33,24 @@ import_operation_basel <- function(xlsx_dir = system.file("shiny/basel/data/oper
   names(raw_data)[1] <- "DateTime"
 
   print(sprintf("Setting time zone to 'CET'"))
-  raw_data <- aquanes.report::set_timezone(raw_data,tz = "CET")
+  raw_data <- aquanes.report::set_timezone(raw_data, tz = "CET")
 
-  raw_data_tidy <- tidyr::gather_(data = raw_data,
-                                  key_col = "Parameter_Site_Unit",
-                                  value_col = "ParameterValue",
-                                  gather_cols = setdiff(names(raw_data), "DateTime"))
+  raw_data_tidy <- tidyr::gather_(
+    data = raw_data,
+    key_col = "Parameter_Site_Unit",
+    value_col = "ParameterValue",
+    gather_cols = setdiff(names(raw_data), "DateTime")
+  )
 
 
   raw_data_tidy$Source <- "online"
   raw_data_tidy$DataType <- "raw"
 
-  return(raw_data_tidy )
+  return(raw_data_tidy)
 }
 
 
-#'Imports analytical data for Basel (without metadata)
+#' Imports analytical data for Basel (without metadata)
 #' @param csv_dir Define directory with raw analytical data in CSV (.csv) format to
 #' be imported (default: system.file("shiny/basel/data/analytics",
 #' package = "aquanes.report"))
@@ -58,38 +62,49 @@ import_operation_basel <- function(xlsx_dir = system.file("shiny/basel/data/oper
 #' @export
 
 
-import_analytics_basel <- function(csv_dir = system.file("shiny/basel/data/analytics",
-                                                        package = "aquanes.report")) {
-
-
-  csv_files <- list.files(path = csv_dir,
-                          pattern = "\\.csv",
-                          full.names = TRUE)
+import_analytics_basel <- function(csv_dir = system.file(
+                                   "shiny/basel/data/analytics",
+                                   package = "aquanes.report"
+                                 )) {
+  csv_files <- list.files(
+    path = csv_dir,
+    pattern = "\\.csv",
+    full.names = TRUE
+  )
 
 
   for (csv_file in csv_files) {
     print(sprintf("Importing: %s", csv_file))
-    tmp <- read.csv2(file = csv_file,
-                     na.strings = "",
-                     stringsAsFactors = FALSE)  %>%
+    tmp <- read.csv2(
+      file = csv_file,
+      na.strings = "",
+      stringsAsFactors = FALSE
+    ) %>%
       janitor::clean_names()
 
-    tmp <-  tmp %>%
-      dplyr::mutate(DateTime = as.POSIXct(strptime(x = paste(tmp$datum,
-                                                             tmp$uhrzeit),
-                                                   format = "%d.%m.%Y %H:%M"))) %>%
-      dplyr::rename(SiteCode = "probestelle",
-                    ParameterCode = "pr\u00FCfpunkt",
-                    ParameterOperator = "operator",
-                    ParameterValue = "messwert",
-                    ParameterUnitOrg = "einheit"
+    tmp <- tmp %>%
+      dplyr::mutate(DateTime = as.POSIXct(strptime(
+        x = paste(
+          tmp$datum,
+          tmp$uhrzeit
+        ),
+        format = "%d.%m.%Y %H:%M"
+      ))) %>%
+      dplyr::rename(
+        SiteCode = "probestelle",
+        ParameterCode = "pr\u00FCfpunkt",
+        ParameterOperator = "operator",
+        ParameterValue = "messwert",
+        ParameterUnitOrg = "einheit"
       ) %>%
-      dplyr::select("DateTime",
-                    "SiteCode",
-                    "ParameterCode",
-                    "ParameterOperator",
-                    "ParameterValue",
-                    "ParameterUnitOrg")
+      dplyr::select(
+        "DateTime",
+        "SiteCode",
+        "ParameterCode",
+        "ParameterOperator",
+        "ParameterValue",
+        "ParameterUnitOrg"
+      )
 
 
 
@@ -101,7 +116,7 @@ import_analytics_basel <- function(csv_dir = system.file("shiny/basel/data/analy
   }
 
   print(sprintf("Setting time zone to 'CET'"))
-  raw_data <- aquanes.report::set_timezone(raw_data,tz = "CET")
+  raw_data <- aquanes.report::set_timezone(raw_data, tz = "CET")
 
   raw_data$ParameterValue <- as.numeric(raw_data$ParameterValue)
   raw_data$Source <- "offline"
@@ -111,7 +126,7 @@ import_analytics_basel <- function(csv_dir = system.file("shiny/basel/data/analy
 }
 
 
-#'Helper function: add site metadata
+#' Helper function: add site metadata
 #' @param df data frame containing at least a column "SiteCode"
 #' @param df_col_sitecode column in df containing site code (default: "SiteCode")
 #' @param meta_site_path Define path of "meta_site.csv" to be imported
@@ -123,48 +138,57 @@ import_analytics_basel <- function(csv_dir = system.file("shiny/basel/data/analy
 
 add_site_metadata <- function(df,
                               df_col_sitecode = "SiteCode",
-                              meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-                                          package = "aquanes.report")) {
-
-  meta_site <- read.csv(file = meta_site_path ,
-                       stringsAsFactors = FALSE)
+                              meta_site_path = system.file(
+                                "shiny/basel/data/metadata/meta_site.csv",
+                                package = "aquanes.report"
+                              )) {
+  meta_site <- read.csv(
+    file = meta_site_path,
+    stringsAsFactors = FALSE
+  )
 
   res <- df %>%
-    tidyr::separate_(col = df_col_sitecode,
-                     sep = "-",
-                     into = paste0("SiteName", 1:3),
-                     remove = FALSE)
+    tidyr::separate_(
+      col = df_col_sitecode,
+      sep = "-",
+      into = paste0("SiteName", 1:3),
+      remove = FALSE
+    )
 
 
   for (siteID in 1:3) {
-    print(sprintf("Replacing SiteCode%d with SiteName%d",
-                  siteID,
-                  siteID))
+    print(sprintf(
+      "Replacing SiteCode%d with SiteName%d",
+      siteID,
+      siteID
+    ))
     col_sitename <- paste0("SiteName", siteID)
-    sites <- meta_site[meta_site$SiteID == siteID,]
+    sites <- meta_site[meta_site$SiteID == siteID, ]
 
     if (nrow(sites) > 0) {
       for (site_idx in 1:nrow(sites)) {
-        sel_site <- sites[site_idx,]
-        strings_to_replace <- !is.na(res[,col_sitename]) & res[,col_sitename] == sel_site$SiteLocation
+        sel_site <- sites[site_idx, ]
+        strings_to_replace <- !is.na(res[, col_sitename]) & res[, col_sitename] == sel_site$SiteLocation
         if (sum(strings_to_replace) > 0) {
-          res[strings_to_replace,col_sitename] <- sel_site$SiteLocationName
+          res[strings_to_replace, col_sitename] <- sel_site$SiteLocationName
         }
       }
     }
-    res[is.na(res[,col_sitename]), col_sitename] <- ""
+    res[is.na(res[, col_sitename]), col_sitename] <- ""
   }
 
-  res$SiteName <- sprintf("%s (%s %s)",
-                          res$SiteName1,
-                          res$SiteName2,
-                          res$SiteName3)
+  res$SiteName <- sprintf(
+    "%s (%s %s)",
+    res$SiteName1,
+    res$SiteName2,
+    res$SiteName3
+  )
 
   return(res)
 }
 
 
-#'Helper function: add parameter metadata
+#' Helper function: add parameter metadata
 #' @param df data frame containing at least a column "ParameterCode"
 #' @param meta_parameter_path Define path of "meta_parameter.csv" to be imported
 #' (default: system.file("shiny/basel/data/metadata/meta_parameter.csv",
@@ -173,21 +197,23 @@ add_site_metadata <- function(df,
 #' @importFrom  dplyr left_join
 #' @export
 add_parameter_metadata <- function(df,
-                                   meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
-                                                                     package = "aquanes.report")) {
-
-
-  meta_parameter <- read.csv(file = meta_parameter_path,
-                            stringsAsFactors = FALSE)
+                                   meta_parameter_path = system.file(
+                                     "shiny/basel/data/metadata/meta_parameter.csv",
+                                     package = "aquanes.report"
+                                   )) {
+  meta_parameter <- read.csv(
+    file = meta_parameter_path,
+    stringsAsFactors = FALSE
+  )
 
 
   res <- df %>%
-         dplyr::left_join(meta_parameter)
+    dplyr::left_join(meta_parameter)
 
-return(res)
+  return(res)
 }
 
-#'Helper function: add label ("SiteName_ParaName_Unit")
+#' Helper function: add label ("SiteName_ParaName_Unit")
 #' @param df data frame containing at least a columns "SiteName", "ParameterName",
 #' "ParameterUnit"
 #' @param col_sitename column in df containing site name (default: "SiteName")
@@ -200,21 +226,20 @@ add_label <- function(df,
                       col_sitename = "SiteName",
                       col_parametername = "ParameterName",
                       col_parameterunit = "ParameterUnit") {
-
-
-  df$SiteName_ParaName_Unit <- sprintf("%s: %s (%s)",
-                                       df[,col_sitename],
-                                       df[,col_parametername],
-                                       df[,col_parameterunit])
+  df$SiteName_ParaName_Unit <- sprintf(
+    "%s: %s (%s)",
+    df[, col_sitename],
+    df[, col_parametername],
+    df[, col_parameterunit]
+  )
 
   return(df)
-
 }
 
 
 
-#'Imports operational data for Basel (with metadata for
-#'both sites at once, i.e. "rhein" and "wiese")
+#' Imports operational data for Basel (with metadata for
+#' both sites at once, i.e. "rhein" and "wiese")
 #' @param raw_dir_rhein Define directory for site "rhein" with raw data in
 #' EXCEL spreadsheet format (.xlsx) to be imported (default:
 #' system.file("shiny/basel/data/operation/rhein", package = "aquanes.report"))
@@ -236,57 +261,72 @@ add_label <- function(df,
 #' @return data.frame with operational data for Basel sites including metadata
 #' @export
 import_operation_meta_basel <- function(
-raw_dir_rhein = system.file(file.path("shiny",
-"basel/data/operation/rhein"),package = "aquanes.report"),
-raw_dir_wiese = system.file("shiny/basel/data/operation/wiese",
-            package = "aquanes.report"),
-meta_online_path =
-system.file("shiny/basel/data/metadata/meta_online.csv",
-            package = "aquanes.report"),
-meta_site_path =
-system.file("shiny/basel/data/metadata/meta_site.csv",
-            package = "aquanes.report"),
-meta_parameter_path =
-  system.file("shiny/basel/data/metadata/meta_parameter.csv",
-              package = "aquanes.report")) {
+                                        raw_dir_rhein = system.file(file.path(
+                                          "shiny",
+                                          "basel/data/operation/rhein"
+                                        ), package = "aquanes.report"),
+                                        raw_dir_wiese = system.file(
+                                          "shiny/basel/data/operation/wiese",
+                                          package = "aquanes.report"
+                                        ),
+                                        meta_online_path =
+                                        system.file(
+                                          "shiny/basel/data/metadata/meta_online.csv",
+                                          package = "aquanes.report"
+                                        ),
+                                        meta_site_path =
+                                        system.file(
+                                          "shiny/basel/data/metadata/meta_site.csv",
+                                          package = "aquanes.report"
+                                        ),
+                                        meta_parameter_path =
+                                        system.file(
+                                          "shiny/basel/data/metadata/meta_parameter.csv",
+                                          package = "aquanes.report"
+                                        )) {
+  meta_online <- read.csv(
+    file = meta_online_path,
+    stringsAsFactors = FALSE
+  )
 
 
+  online_meta <- add_site_metadata(
+    df = meta_online,
+    meta_site_path = meta_site_path
+  ) %>%
+    add_parameter_metadata(meta_parameter_path = meta_parameter_path) %>%
+    add_label()
 
-meta_online <- read.csv(file = meta_online_path,
-                        stringsAsFactors = FALSE)
+  ### 1.1) Wiese: Import XLSX data and join with metadata
+  print("###################################################################")
+  print("######## Importing operational data with metadata for site 'Wiese'")
+  print("###################################################################")
+
+  wiese <- import_operation_basel(xlsx_dir = raw_dir_wiese) %>%
+    dplyr::left_join(online_meta[grep(
+      pattern = "WF",
+      online_meta$SiteCode
+    ), ])
 
 
-online_meta <- add_site_metadata(df = meta_online,
-                                 meta_site_path = meta_site_path) %>%
-  add_parameter_metadata(meta_parameter_path = meta_parameter_path) %>%
-  add_label()
+  ### 1.2) Rhein: Import XLSX data and join with metadata
+  print("###################################################################")
+  print("######## Importing operational data with metadata for site 'Rhein'")
+  print("###################################################################")
 
-### 1.1) Wiese: Import XLSX data and join with metadata
-print("###################################################################")
-print("######## Importing operational data with metadata for site 'Wiese'")
-print("###################################################################")
+  rhein <- import_operation_basel(xlsx_dir = raw_dir_rhein) %>%
+    dplyr::left_join(online_meta[grep(
+      pattern = "RF",
+      online_meta$SiteCode
+    ), ])
 
-wiese <- import_operation_basel(xlsx_dir = raw_dir_wiese) %>%
-  dplyr::left_join(online_meta[grep(pattern = "WF",
-                                    online_meta$SiteCode),])
+  basel <- rbind(wiese, rhein)
 
-
-### 1.2) Rhein: Import XLSX data and join with metadata
-print("###################################################################")
-print("######## Importing operational data with metadata for site 'Rhein'")
-print("###################################################################")
-
-rhein <- import_operation_basel(xlsx_dir = raw_dir_rhein) %>%
-  dplyr::left_join(online_meta[grep(pattern = "RF",
-                                    online_meta$SiteCode),])
-
-basel <- rbind(wiese, rhein)
-
-return(basel)
+  return(basel)
 }
 
-#'Imports analytical data for Basel (with metadata for both sites at once, i.e.
-#'"rhein" and "wiese")
+#' Imports analytical data for Basel (with metadata for both sites at once, i.e.
+#' "rhein" and "wiese")
 #' @param analytics_dir Define directory with raw analytical data in CSV (.csv) format to
 #' be imported (default: system.file("shiny/basel/data/analytics",
 #' package = "aquanes.report"))
@@ -299,27 +339,32 @@ return(basel)
 #' @return data.frame with analytics data for Basel sites including metadata
 #' @export
 import_analytics_meta_basel <- function(
-analytics_dir = system.file("shiny/basel/data/analytics",
-                            package = "aquanes.report"),
-meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-package = "aquanes.report"),
-meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
-package = "aquanes.report")) {
+                                        analytics_dir = system.file(
+                                          "shiny/basel/data/analytics",
+                                          package = "aquanes.report"
+                                        ),
+                                        meta_site_path = system.file(
+                                          "shiny/basel/data/metadata/meta_site.csv",
+                                          package = "aquanes.report"
+                                        ),
+                                        meta_parameter_path = system.file(
+                                          "shiny/basel/data/metadata/meta_parameter.csv",
+                                          package = "aquanes.report"
+                                        )) {
+  print("###################################################################")
+  print("###### Importing analytics data with metadata for sites 'Wiese' and Rhein'")
+  print("###################################################################")
 
-print("###################################################################")
-print("###### Importing analytics data with metadata for sites 'Wiese' and Rhein'")
-print("###################################################################")
+  analytics_meta_data <- import_analytics_basel(csv_dir = analytics_dir) %>%
+    add_site_metadata(meta_site_path = meta_site_path) %>%
+    add_parameter_metadata(meta_parameter_path = meta_parameter_path) %>%
+    add_label()
 
-analytics_meta_data <- import_analytics_basel(csv_dir = analytics_dir) %>%
-  add_site_metadata(meta_site_path = meta_site_path) %>%
-  add_parameter_metadata(meta_parameter_path = meta_parameter_path) %>%
-  add_label()
-
-return(analytics_meta_data )
+  return(analytics_meta_data)
 }
 
-#'Imports operational & analytical data for Basel (with metadata for both sites
-#'at once, i.e. "rhein" and "wiese")
+#' Imports operational & analytical data for Basel (with metadata for both sites
+#' at once, i.e. "rhein" and "wiese")
 #' @param analytics_dir Define directory with raw analytical data in CSV (.csv) format to
 #' be imported (default: system.file("shiny/basel/data/analytics",
 #' package = "aquanes.report"))
@@ -342,28 +387,42 @@ return(analytics_meta_data )
 #' @importFrom plyr rbind.fill
 #' @export
 import_data_basel <- function(
-analytics_dir = system.file("shiny/basel/data/analytics",
-package = "aquanes.report"),
-raw_dir_rhein = system.file("shiny/basel/data/operation/rhein",
-package = "aquanes.report"),
-raw_dir_wiese = system.file("shiny/basel/data/operation/wiese",
-package = "aquanes.report"),
-meta_online_path = system.file("shiny/basel/data/metadata/meta_online.csv",
-package = "aquanes.report"),
-meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
-package = "aquanes.report"),
-meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-package = "aquanes.report")) {
-
-
-  operation_meta <- import_operation_meta_basel(raw_dir_rhein = raw_dir_rhein,
-                                                raw_dir_wiese = raw_dir_wiese,
-                                                meta_online_path = meta_online_path,
-                                                meta_site_path = meta_site_path,
-                                                meta_parameter_path = meta_parameter_path)
-  analytics_meta <- import_analytics_meta_basel(analytics_dir = analytics_dir,
-                                                meta_site_path = meta_site_path,
-                                                meta_parameter_path = meta_parameter_path)
+                              analytics_dir = system.file(
+                                "shiny/basel/data/analytics",
+                                package = "aquanes.report"
+                              ),
+                              raw_dir_rhein = system.file(
+                                "shiny/basel/data/operation/rhein",
+                                package = "aquanes.report"
+                              ),
+                              raw_dir_wiese = system.file(
+                                "shiny/basel/data/operation/wiese",
+                                package = "aquanes.report"
+                              ),
+                              meta_online_path = system.file(
+                                "shiny/basel/data/metadata/meta_online.csv",
+                                package = "aquanes.report"
+                              ),
+                              meta_parameter_path = system.file(
+                                "shiny/basel/data/metadata/meta_parameter.csv",
+                                package = "aquanes.report"
+                              ),
+                              meta_site_path = system.file(
+                                "shiny/basel/data/metadata/meta_site.csv",
+                                package = "aquanes.report"
+                              )) {
+  operation_meta <- import_operation_meta_basel(
+    raw_dir_rhein = raw_dir_rhein,
+    raw_dir_wiese = raw_dir_wiese,
+    meta_online_path = meta_online_path,
+    meta_site_path = meta_site_path,
+    meta_parameter_path = meta_parameter_path
+  )
+  analytics_meta <- import_analytics_meta_basel(
+    analytics_dir = analytics_dir,
+    meta_site_path = meta_site_path,
+    meta_parameter_path = meta_parameter_path
+  )
 
 
   print("###################################################################")
@@ -373,6 +432,3 @@ package = "aquanes.report")) {
 
   return(data_basel)
 }
-
-
-

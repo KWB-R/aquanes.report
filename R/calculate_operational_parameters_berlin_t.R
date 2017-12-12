@@ -1,4 +1,4 @@
-#'Calculate operational parameters for Berlin-Tiefwerder
+#' Calculate operational parameters for Berlin-Tiefwerder
 #' @param df a data frame as retrieved by read_pentair_data()
 #' @param calc_list list with calculation operations to be carried out
 #' (default: list(recovery  = "100*`FY-20-01`/`FT-10-01`"))
@@ -17,20 +17,22 @@
 
 
 calculate_operational_parameters_berlin_t <- function(df,
-calc_list = list(recovery  = "100*`FY-20-01`/`FT-10-01`"),
-calc_list_name = c("recovery"),
-calc_list_unit = c("%"),
-calc_paras = c("FY-20-01",
-               "FT-10-01")) {
-
-
-  res <- aquanes.report::calculate_operational_parameters(df,
-                                                          calc_list,
-                                                          calc_list_name,
-                                                          calc_list_unit,
-                                                          calc_paras)
+                                                      calc_list = list(recovery = "100*`FY-20-01`/`FT-10-01`"),
+                                                      calc_list_name = c("recovery"),
+                                                      calc_list_unit = c("%"),
+                                                      calc_paras = c(
+                                                        "FY-20-01",
+                                                        "FT-10-01"
+                                                      )) {
+  res <- aquanes.report::calculate_operational_parameters(
+    df,
+    calc_list,
+    calc_list_name,
+    calc_list_unit,
+    calc_paras
+  )
   res$SiteName <- "General"
-  res$SiteName_ParaName_Unit  <- sprintf("General (calculated): %s",  res$ParameterLabel)
+  res$SiteName_ParaName_Unit <- sprintf("General (calculated): %s", res$ParameterLabel)
   res$DataType <- "calculated"
   res$Source <- "online"
   return(res)

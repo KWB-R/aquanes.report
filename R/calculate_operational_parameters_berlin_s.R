@@ -1,4 +1,4 @@
-#'Calculate operational parameters for Berlin-Schoenerlinde
+#' Calculate operational parameters for Berlin-Schoenerlinde
 #' @param df a data frame as retrieved by read_wedeco_data()
 #' @param calc_list list with calculation operations to be carried out
 #' (default: list(deltaSAK  = "(1-SCAN_SAK_Ablauf/SCAN_SAK_Zulauf)*100",
@@ -9,7 +9,7 @@
 #' calculation specified wit 'calc_list'. default: c("percent", "mg-O3/L")
 #' @param calc_paras a vector with parameter codes used for performing calculations
 #' defined in 'calc_list' (default: c("SCAN_SAK_Ablauf", "SCAN_SAK_Zulauf",
-#' "C_O3_Zugas", "C_O3_Abgas", "Q_Gas",´"Q_Ozonanlage"))
+#' "C_O3_Zugas", "C_O3_Abgas", "Q_Gas", "Q_Ozonanlage"))
 #' @return dataframe with calculated operational parameters
 #' @export
 #' @examples
@@ -19,25 +19,29 @@
 
 
 calculate_operational_parameters_berlin_s <- function(df,
-calc_list = list(deltaSAK  = "(1-SCAN_SAK_Ablauf/SCAN_SAK_Zulauf)*100",
-Ozoneintrag = "(C_O3_Zugas - C_O3_Abgas)*Q_Gas/Q_Ozonanlage"),
-calc_list_name = c("delta SAK", "Ozoneintrag"),
-calc_list_unit = c("%", "mg-O3/L"),
-calc_paras = c("SCAN_SAK_Ablauf",
-               "SCAN_SAK_Zulauf",
-               "C_O3_Zugas",
-               "C_O3_Abgas",
-               "Q_Gas",
-               "Q_Ozonanlage")) {
-
-
-  res <- aquanes.report::calculate_operational_parameters(df,
-                                                          calc_list,
-                                                          calc_list_name,
-                                                          calc_list_unit,
-                                                          calc_paras)
+                                                      calc_list = list(
+                                                        deltaSAK = "(1-SCAN_SAK_Ablauf/SCAN_SAK_Zulauf)*100",
+                                                        Ozoneintrag = "(C_O3_Zugas - C_O3_Abgas)*Q_Gas/Q_Ozonanlage"
+                                                      ),
+                                                      calc_list_name = c("delta SAK", "Ozoneintrag"),
+                                                      calc_list_unit = c("%", "mg-O3/L"),
+                                                      calc_paras = c(
+                                                        "SCAN_SAK_Ablauf",
+                                                        "SCAN_SAK_Zulauf",
+                                                        "C_O3_Zugas",
+                                                        "C_O3_Abgas",
+                                                        "Q_Gas",
+                                                        "Q_Ozonanlage"
+                                                      )) {
+  res <- aquanes.report::calculate_operational_parameters(
+    df,
+    calc_list,
+    calc_list_name,
+    calc_list_unit,
+    calc_paras
+  )
   res$SiteName <- "General"
-  res$SiteName_ParaName_Unit  <- sprintf("General (calculated): %s",  res$ParameterLabel)
+  res$SiteName_ParaName_Unit <- sprintf("General (calculated): %s", res$ParameterLabel)
   res$DataType <- "calculated"
   res$Source <- "online"
   return(res)

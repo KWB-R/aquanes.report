@@ -7,33 +7,36 @@
 #' @export
 remove_duplicates <- function(df,
                               col_names = names(df)) {
-
   col_names_in_df <- col_names %in% names(df)
 
-  if(!all(col_names_in_df)) {
+  if (!all(col_names_in_df)) {
     stop(sprintf(
-        "The following 'col_names' specified by the user are not defined in the 'df': %s",
-        paste(col_names[!col_names_in_df], collapse =  ",")))
+      "The following 'col_names' specified by the user are not defined in the 'df': %s",
+      paste(col_names[!col_names_in_df], collapse = ",")
+    ))
   } else {
-    print(sprintf("Checking if duplicated entries (for columns: %s) in %d rows...",
-                  paste("'", col_names, "'", sep = "", collapse = ", "),
-                  nrow(df)))
+    print(sprintf(
+      "Checking if duplicated entries (for columns: %s) in %d rows...",
+      paste("'", col_names, "'", sep = "", collapse = ", "),
+      nrow(df)
+    ))
 
-    dups <- duplicated(df[,col_names])
+    dups <- duplicated(df[, col_names])
 
     if (any(dups)) {
       dups_indices <- which(dups)
-      warning(sprintf("Removing %d duplicates:\n%s",
-                    length(dups_indices),
-                    paste(utils::capture.output(print(df[dups_indices,])),
-                          collapse = "\n")))
+      warning(sprintf(
+        "Removing %d duplicates:\n%s",
+        length(dups_indices),
+        paste(
+          utils::capture.output(print(df[dups_indices, ])),
+          collapse = "\n"
+        )
+      ))
 
-      df <- df[!dups,]
+      df <- df[!dups, ]
     }
-
   }
 
   return(df)
-
 }
-
