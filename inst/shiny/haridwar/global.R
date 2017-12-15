@@ -1,4 +1,4 @@
-use_live_data <- TRUE
+use_live_data <- FALSE
 
 if (use_live_data) {
 
@@ -48,8 +48,13 @@ saveRDS(siteData_day_list, file = "data/siteData_day_list.Rds")
 print("### Step 5: Importing threshold information ##########################")
 thresholds <- aquanes.report::get_thresholds()
 
+# Limit reporting time range to available data
+data_timerange <- as.Date(paste0(format(range(siteData_10min_list$DateTime), format = "%Y-%m"), "-01"))
+
 print("### Step 6: Specify available months for reporting ##########################")
-report_months <- aquanes.report::create_monthly_selection()
+report_months <- aquanes.report::create_monthly_selection(startDate = as.character(data_timerange[1]),
+                                                          endDate = data_timerange[2])
+
 
 print("### Step 7: Add default calculated operational parameters ##########################")
 report_calc_paras <- unique(aquanes.report::calculate_operational_parameters(df = siteData_10min_list)$ParameterName)

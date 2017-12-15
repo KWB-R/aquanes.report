@@ -11,3 +11,21 @@ knitr::opts_chunk$set(echo = TRUE)
 Collects, aggregates and visualises operational analytical data from water suppliers (including a standardised reporting document)
 
 [![Build Status](https://travis-ci.org/KWB-R/aquanes.report.svg?branch=master)](https://travis-ci.org/KWB-R/aquanes.report)
+
+# Demo of reporting tool for Haridwar site   
+
+If you are interested in the capabilities of the R reporting tool, just make sure your computer satisfies the [software requirements](articles/A1_installation.html#pre-required-software) and subsequently execute the following lines of code below in R/RStudio. 
+
+```{r eval=FALSE}
+if (!require("devtools")) {
+  install.packages("devtools", repos = "https://cloud.r-project.org")
+}
+
+devtools::install_github("kwb-r/aquanes.report", 
+                         dependencies = TRUE)
+
+aquanes.report::run_app()
+
+```
+
+This will launch the R reporting tool in your default webbrowser. The demo is based on real operational and analytical data for the AQUANES site Haridwar for the time period from 2017-03-24 until 2017-07-25. 

@@ -100,6 +100,20 @@
 <p>Collects, aggregates and visualises operational analytical data from water suppliers (including a standardised reporting document)</p>
 <p><a href="https://travis-ci.org/KWB-R/aquanes.report"><img src="https://travis-ci.org/KWB-R/aquanes.report.svg?branch=master" alt="Build Status"></a></p>
 </div>
+<div id="demo-of-reporting-tool-for-haridwar-site" class="section level1">
+<h1 class="hasAnchor">
+<a href="#demo-of-reporting-tool-for-haridwar-site" class="anchor"></a>Demo of reporting tool for Haridwar site</h1>
+<p>If you are interested in the capabilities of the R reporting tool, just make sure your computer satisfies the <a href="articles/A1_installation.html#pre-required-software">software requirements</a> and subsequently execute the following lines of code below in R/RStudio.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
+  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)
+}
+
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kwb-r/aquanes.report"</span>, 
+                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
+
+aquanes.report<span class="op">::</span><span class="kw">run_app</span>()</code></pre></div>
+<p>This will launch the R reporting tool in your default webbrowser. The demo is based on real operational and analytical data for the AQUANES site Haridwar for the time period from 2017-03-24 until 2017-07-25.</p>
+</div>
 </div>
   </div>
 

@@ -127,8 +127,8 @@
   <span class='kw'>operation_meta_path</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='fu'>file.path</span>(<span class='st'>"shiny/haridwar/data"</span>,
   <span class='st'>"operation_parameters.csv"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"aquanes.report"</span>),
   <span class='kw'>excludedSheets</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Parameters"</span>, <span class='st'>"Location"</span>, <span class='st'>"Sites"</span>, <span class='st'>"#Summary"</span>,
-  <span class='st'>"Site_and_Parameter"</span>, <span class='st'>"Observations"</span>, <span class='st'>"dP"</span>, <span class='st'>"ORP"</span>, <span class='st'>"Flow"</span>, <span class='st'>"SAK_254"</span>,
-  <span class='st'>"SAK_463"</span>, <span class='st'>"As_total_Arsenator"</span>), <span class='kw'>skip</span> <span class='kw'>=</span> <span class='fl'>69</span>, <span class='kw'>debug</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='st'>"Site_and_Parameter"</span>, <span class='st'>"Observations"</span>, <span class='st'>"dP"</span>, <span class='st'>"ORP"</span>, <span class='st'>"Flow"</span>, <span class='st'>"Current_Voltage"</span>,
+  <span class='st'>"As_total_Arsenator"</span>), <span class='kw'>skip</span> <span class='kw'>=</span> <span class='fl'>69</span>, <span class='kw'>debug</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -155,7 +155,7 @@ parameters (default: system.file(file.path("shiny/haridwar/data",
       <th>excludedSheets</th>
       <td><p>all sheets, which are not listed here will be imported
 as lab data sheets (default: c("Parameters", "Location", "Sites", "#Summary",
-"Site_and_Parameter", "Observations", "dP", "ORP", "Flow", "SAK_254", "SAK_463",
+"Site_and_Parameter", "Observations", "dP", "ORP", "Flow", "Current_Voltage",
 "As_total_Arsenator"))</p></td>
     </tr>
     <tr>
