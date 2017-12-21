@@ -5,12 +5,16 @@
 \title{Import WEDECO raw data}
 \usage{
 read_wedeco_data(raw_data_dir = system.file("shiny/berlin_s/data/operation",
-  package = "aquanes.report"),
+  package = "aquanes.report"), raw_data_files = NULL,
   meta_file_path = system.file("shiny/berlin_s/data/parameter_site_metadata.csv",
   package = "aquanes.report"))
 }
 \arguments{
 \item{raw_data_dir}{path to raw data directory}
+
+\item{raw_data_files}{vector with full path to operational raw data files that
+allows to limit import to specific files (default: NULL). If specified parameter
+"raw_data_dir" will not be used}
 
 \item{meta_file_path}{path to meta data file}
 }

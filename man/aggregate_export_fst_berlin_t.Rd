@@ -15,7 +15,7 @@ aggregate_export_fst_berlin_t(year_month_start = "2017-06",
 \item{compression}{(default: 100)}
 }
 \value{
-exports data for each month into subfolder: /data/fts/year-month
+exports data for each month into subfolder: /data/fst/year-month
 }
 \description{
 Berlin-Tiefwerder: aggregate and export to fst
