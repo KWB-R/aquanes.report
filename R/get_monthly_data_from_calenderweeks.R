@@ -1,7 +1,6 @@
 #' Helper function: get calender weeks for time period
 #' @param start start of period (default: '2017-04-24')
 #' @param end end of period (default: .Date())
-#' @param compression (default: 100)
 #' @return data.frame with daily date sequence for  and corresponding calendar week
 #' @importFrom lubridate ymd
 #' @export
@@ -44,11 +43,11 @@ cw_for_month <- calenderweek_from_dates() %>%
 
 
 
-files_to_import <- tidyr::separate(data = data.frame(files = list.files(system.file("shiny/berlin_s/data/operation",
+files_to_import <- tidyr::separate_(data = data.frame(files = list.files(system.file("shiny/berlin_s/data/operation",
                                                                    package = "aquanes.report"),
                                                        pattern = ".csv"),
                                     stringsAsFactors =  FALSE),
-                  files,
+                  col = "files",
                   into = c("a", "year", "c", "cw", "e"),
                   remove = FALSE) %>%
     dplyr::select_("files", "year", "cw") %>%

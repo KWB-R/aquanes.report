@@ -149,7 +149,7 @@ read_wedeco_data <- function(raw_data_dir = system.file(
 
 
 
-       ozone[, ..relevant_paras]%>%
+       ozone[, ..relevant_paras] %>%
         tidyr::gather_(
           key_col = "ProzessID",
           value_col = "ParameterValue",
