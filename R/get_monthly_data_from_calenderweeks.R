@@ -4,6 +4,7 @@
 #' @param compression (default: 100)
 #' @return data.frame with daily date sequence for  and corresponding calendar week
 #' @importFrom lubridate ymd
+#' @export
 
 calenderweek_from_dates <- function(start = "2017-04-24",
                        end = Sys.Date()) {
@@ -31,13 +32,14 @@ data.frame(date = dates,
 #' that need to be imported for Berlin Schoenerlinde
 #' @import dplyr
 #' @importFrom tidyr separate
+#' @export
 get_monthly_data_from_calendarweeks <- function(year_month) {
 
 
 
 cw_for_month <- calenderweek_from_dates() %>%
-    dplyr::filter(yearmonth == year_month) %>%
-    dplyr::pull(cw) %>%
+    dplyr::filter_(~yearmonth == year_month) %>%
+    dplyr::pull("cw") %>%
     unique()
 
 
@@ -49,13 +51,13 @@ files_to_import <- tidyr::separate(data = data.frame(files = list.files(system.f
                   files,
                   into = c("a", "year", "c", "cw", "e"),
                   remove = FALSE) %>%
-    dplyr::select(files, year, cw) %>%
-    dplyr::filter(cw %in% cw_for_month) %>%
-    dplyr::mutate(file_path =  sprintf("%s/%s",
-                                       system.file("shiny/berlin_s/data/operation",
-                                                   package = "aquanes.report"),
-                                       files)) %>%
-    dplyr::pull(file_path)
+    dplyr::select_("files", "year", "cw") %>%
+    dplyr::filter_(~cw %in% cw_for_month) %>%
+    dplyr::mutate_(file_path =  "sprintf('%s/%s',
+                                       system.file('shiny/berlin_s/data/operation',
+                                                   package = 'aquanes.report'),
+                                       files)") %>%
+    dplyr::pull("file_path")
 
 
 return(files_to_import)
