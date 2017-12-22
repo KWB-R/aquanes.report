@@ -212,20 +212,20 @@ ts_data1_xts <- reactive({
 
 
 selected_online_paras <- c("Pressure difference",
-                  "Water head",
-                  "Pressure",
-                  "Redox potential",
-                  "Flow rate",
-                  "Current at the Pump",
-                  "Current at the Electrolysis cell",
-                  "Tank level",
-                  "Voltage at the Pump",
-                  "Battery voltage",
-                  "Voltage at the Electrolysis cell")
+                           "Water head",
+                           "Pressure",
+                           "Redox potential",
+                           "Flow rate",
+                           "Current at the Pump",
+                           "Current at the Electrolysis cell",
+                           "Tank level",
+                           "Voltage at the Pump",
+                           "Battery voltage",
+                           "Voltage at the Electrolysis cell")
+
 
 ui_timeSeries <- function(...) {
-  fluidPage(
-  titlePanel("Time series"),
+  fluidPage(titlePanel("Time series"),
 
   sidebarLayout(
     sidebarPanel(
@@ -260,12 +260,12 @@ ui_timeSeries <- function(...) {
                   multiple = TRUE,
                   selected = unique(siteData_10min_list$SiteName)),
       selectInput("parameter1", label = "Select a parameter(s) for plot 1",
-                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[selected_online_paras],
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName)[unique(siteData_10min_list$ParameterName) %in% selected_online_paras],
                                  Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
                   multiple = TRUE,
-                  selected = unique(siteData_10min_list$ParameterName)["Redox potential"]),
+                  selected = unique(siteData_10min_list$ParameterName)[unique(siteData_10min_list$ParameterName) %in% "Redox potential"]),
       selectInput("parameter2", label = "Select a parameter(s) for plot 2",
-                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[selected_online_paras],
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName)[unique(siteData_10min_list$ParameterName) %in% selected_online_paras],
                                  Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
                   multiple = TRUE,
                   selected = unique(siteData_10min_list$ParameterName)[c(28)]),
