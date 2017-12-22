@@ -1,0 +1,89 @@
+#' Helper function: get calender weeks for time period
+#' @param start start of period (default: '2017-04-24')
+#' @param end end of period (default: .Date())
+#' @param compression (default: 100)
+#' @return data.frame with daily date sequence for  and corresponding calendar week
+#' @importFrom lubridate ymd
+
+calenderweek_from_dates <- function(start = "2017-04-24",
+                       end = Sys.Date()) {
+
+
+dates <- seq(from = lubridate::ymd(start),
+             to = lubridate::ymd(end),
+             by = "days")
+
+
+data.frame(date = dates,
+           yearmonth =  format(dates, format = "%Y-%m"),
+           jahrmonattag = format(dates, format = "%d.%m.%y"),
+           year = as.numeric(format(dates, format = "%Y")),
+           month = as.numeric(format(dates, format = "%m")),
+           day = as.numeric(format(dates, format = "%d")),
+           cw = lubridate::isoweek(dates),
+           stringsAsFactors = FALSE)
+
+}
+
+#' Helper function for Berlin-S: get all calendar week files for monthy
+#' @param year_month month to be imported (e.g. 2017-04')
+#' @return character vector with operational filenames with all calendar weeks
+#' that need to be imported for Berlin Schoenerlinde
+#' @import dplyr
+#' @importFrom tidyr separate
+get_monthly_data_from_calendarweeks <- function(year_month) {
+
+
+
+cw_for_month <- calenderweek_from_dates() %>%
+    dplyr::filter(yearmonth == year_month) %>%
+    dplyr::pull(cw) %>%
+    unique()
+
+
+
+files_to_import <- tidyr::separate(data = data.frame(files = list.files(system.file("shiny/berlin_s/data/operation",
+                                                                   package = "aquanes.report"),
+                                                       pattern = ".csv"),
+                                    stringsAsFactors =  FALSE),
+                  files,
+                  into = c("a", "year", "c", "cw", "e"),
+                  remove = FALSE) %>%
+    dplyr::select(files, year, cw) %>%
+    dplyr::filter(cw %in% cw_for_month) %>%
+    dplyr::mutate(file_path =  sprintf("%s/%s",
+                                       system.file("shiny/berlin_s/data/operation",
+                                                   package = "aquanes.report"),
+                                       files)) %>%
+    dplyr::pull(file_path)
+
+
+return(files_to_import)
+}
+
+if (FALSE) {
+
+
+##########################################################################################
+#### Make one CSV file of Ozone_2017_BisKW_29.csv for each calendar week 17-29
+##########################################################################################
+
+old_data <- readLines(system.file("shiny/berlin_s/data/operation/Ozone_2017_BisKW_29.csv",
+                                  package = "aquanes.report"))
+
+
+for (selected_cw in 17:29) {
+
+  jahrmonattag <-  calenderweek_from_dates() %>%
+    dplyr::filter(cw == selected_cw) %>%
+    dplyr::pull(jahrmonattag)
+
+  print(sprintf("Search data for calender week %d", selected_cw))
+  indices <- grep(stringr::str_sub(old_data, 1, 8),pattern = paste0(jahrmonattag,collapse = "|"))
+
+
+  writeLines(c(old_data[1:3], old_data[indices]),
+             con = sprintf("Ozone_2017_KW_%d.csv", selected_cw) )
+}
+
+}
