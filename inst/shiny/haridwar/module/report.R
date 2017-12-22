@@ -1,3 +1,15 @@
+selected_online_paras <- c("Pressure difference",
+                           "Water head",
+                           "Pressure",
+                           "Redox potential",
+                           "Flow rate",
+                           "Current at the Pump",
+                           "Current at the Electrolysis cell",
+                           "Tank level",
+                           "Voltage at the Pump",
+                           "Battery voltage",
+                           "Voltage at the Electrolysis cell")
+
 
 ui_report <- function(...) {
   fluidPage(
@@ -35,9 +47,9 @@ ui_report <- function(...) {
                     selected = unique(siteData_10min_list$SiteName)),
         h3("Select parameters"),
         selectInput("report_parameters_online", label = "Online",
-                    choices = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
+                    choices = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[selected_online_paras],
                     multiple = TRUE,
-                    selected = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[23]),
+                    selected = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])["Redox potential"]),
         selectInput("report_parameters_offline", label = "Offline",
                     choices = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"]),
                     multiple = TRUE,

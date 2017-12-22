@@ -210,6 +210,19 @@ ts_data1_xts <- reactive({
 
 }
 
+
+selected_online_paras <- c("Pressure difference",
+                  "Water head",
+                  "Pressure",
+                  "Redox potential",
+                  "Flow rate",
+                  "Current at the Pump",
+                  "Current at the Electrolysis cell",
+                  "Tank level",
+                  "Voltage at the Pump",
+                  "Battery voltage",
+                  "Voltage at the Electrolysis cell")
+
 ui_timeSeries <- function(...) {
   fluidPage(
   titlePanel("Time series"),
@@ -247,12 +260,12 @@ ui_timeSeries <- function(...) {
                   multiple = TRUE,
                   selected = unique(siteData_10min_list$SiteName)),
       selectInput("parameter1", label = "Select a parameter(s) for plot 1",
-                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[selected_online_paras],
                                  Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
                   multiple = TRUE,
-                  selected = unique(siteData_10min_list$ParameterName)[c(23)]),
+                  selected = unique(siteData_10min_list$ParameterName)["Redox potential"]),
       selectInput("parameter2", label = "Select a parameter(s) for plot 2",
-                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[c(4,12,15,16:20,22:24)],
+                  choices = list(Online =  unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "online"])[selected_online_paras],
                                  Offline = unique(siteData_10min_list$ParameterName[siteData_10min_list$Source == "offline"])),
                   multiple = TRUE,
                   selected = unique(siteData_10min_list$ParameterName)[c(28)]),
