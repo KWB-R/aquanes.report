@@ -10,8 +10,6 @@ calenderweek_from_dates(start = "2017-04-24", end = Sys.Date())
 \item{start}{start of period (default: '2017-04-24')}
 
 \item{end}{end of period (default: .Date())}
-
-\item{compression}{(default: 100)}
 }
 \value{
 data.frame with daily date sequence for  and corresponding calendar week
