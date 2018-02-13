@@ -20,7 +20,7 @@ data.frame(date = dates,
            year = as.numeric(format(dates, format = "%Y")),
            month = as.numeric(format(dates, format = "%m")),
            day = as.numeric(format(dates, format = "%d")),
-           cw = lubridate::isoweek(dates),
+           cw = sprintf("%02d", lubridate::isoweek(dates)),
            stringsAsFactors = FALSE)
 
 }
