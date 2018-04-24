@@ -7,3 +7,5 @@ sudo: required
 before_install:
   - sudo apt-get install libv8-dev
   - sudo apt-get install libudunits2-dev
+r_packages:
+  - devtools
