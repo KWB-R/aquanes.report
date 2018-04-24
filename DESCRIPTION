@@ -6,7 +6,7 @@ Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de
 Description: Collects, aggregates and visualises operational and 
     analytical data from water suppliers (including a standardised 
 	reporting document).
-Depends: R (>= 3.3.2)
+Depends: R (>= 3.3)
 Imports:
 	plyr (>= 1.8.4),
 	RMySQL (>= 0.10.9),
