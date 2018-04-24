@@ -6,3 +6,7 @@ sites_info.csv
 ^docs\.*
 _pkgdown.yaml
 README.Rmd
+^packrat/
+^\.Rprofile$
+^binder$
+
