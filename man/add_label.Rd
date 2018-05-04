@@ -2,24 +2,28 @@
 % Please edit documentation in R/import_data_basel.R
 \name{add_label}
 \alias{add_label}
-\title{Helper function: add label ("SiteName_ParaName_Unit")}
+\title{Helper function: add label ("SiteName_ParaName_Unit_Method")}
 \usage{
 add_label(df, col_sitename = "SiteName",
-  col_parametername = "ParameterName", col_parameterunit = "ParameterUnit")
+  col_parametername = "ParameterName", col_parameterunit = "ParameterUnit",
+  col_method = "Method")
 }
 \arguments{
 \item{df}{data frame containing at least a columns "SiteName", "ParameterName",
-"ParameterUnit"}
+"ParameterUnit" and optionally "Method" (if not existent no "Method" will be
+available!)}
 
 \item{col_sitename}{column in df containing site name (default: "SiteName")}
 
 \item{col_parametername}{column in df containing parameter name (default: "ParameterName")}
 
-\item{col_parameterunit}{column in df containing parameter unit (default: "ParameterUnit")}
+\item{col_parameterunit}{column in df containing parameter unit}
+
+\item{col_method}{column in df containing method code (default: "Method")}
 }
 \value{
-returns input data frame with added column "SiteName_ParaName_Unit"
+returns input data frame with added column "SiteName_ParaName_Unit_Method"
 }
 \description{
-Helper function: add label ("SiteName_ParaName_Unit")
+Helper function: add label ("SiteName_ParaName_Unit_Method")
 }

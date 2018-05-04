@@ -46,6 +46,7 @@ import_operation_basel <- function(xlsx_dir = system.file(
   raw_data_tidy$Source <- "online"
   raw_data_tidy$DataType <- "raw"
 
+
   return(raw_data_tidy)
 }
 
@@ -58,6 +59,7 @@ import_operation_basel <- function(xlsx_dir = system.file(
 #' @importFrom janitor clean_names
 #' @importFrom  readxl read_excel
 #' @importFrom  utils read.csv2
+#' @importFrom kwb.utils multiSubstitute
 #' @import dplyr
 #' @export
 
@@ -82,7 +84,35 @@ import_analytics_basel <- function(csv_dir = system.file(
     ) %>%
       janitor::clean_names()
 
+
+    ### Correct manually "prufpunkt_bezeichnung" for all "prufpunkt >= 94000" in
+    ### case these are different from the "prufpunkt_bezeichnung" compared to
+    ### "prufpunkt < 94000"
+
+
+    rep_strings <- list("Metolachlor OA" = "Metolachlor-OXA",
+                        "Metolachlor ESA" = "Metolachlor-ESA",
+                        "N-Acetyl-4-aminoantipyri" = "N-Acetyl-4-Aminoantipyri",
+                        "\\<Cyprosulfamid\\>" = "Cyprosulfamide")
+
+    tmp$prufpunkt_bezeichnung_cor <-
+      kwb.utils::multiSubstitute(strings = tmp$prufpunkt_bezeichnung,
+                                 replacements = rep_strings)
+
+
+
+    correction_df <- tmp %>%
+      dplyr::group_by_("prufpunkt_bezeichnung",
+                       "prufpunkt") %>%
+      dplyr::summarise(total.count = n()) %>%
+      dplyr::select_("prufpunkt_bezeichnung",
+                     "prufpunkt") %>%
+      dplyr::filter_("prufpunkt < 94000 | prufpunkt %in% c(94004,94006)") %>%
+      dplyr::rename_("prufpunkt_bezeichnung_cor" = "prufpunkt_bezeichnung",
+                     "prufpunkt_cor" = "prufpunkt")
+
     tmp <- tmp %>%
+      dplyr::left_join(correction_df) %>%
       dplyr::mutate(DateTime = as.POSIXct(strptime(
         x = paste(
           tmp$datum,
@@ -92,18 +122,26 @@ import_analytics_basel <- function(csv_dir = system.file(
       ))) %>%
       dplyr::rename(
         SiteCode = "probestelle",
-        ParameterCode = "pr\u00FCfpunkt",
+        ParameterCodeOrg = "prufpunkt",
+        ParameterCode = "prufpunkt_cor",
+        ParameterNameOrg = "prufpunkt_bezeichnung",
         ParameterOperator = "operator",
         ParameterValue = "messwert",
-        ParameterUnitOrg = "einheit"
+        ParameterUnitOrg = "einheit",
+        Method = "methode",
+        MethodName = "methoden_bezeichnung"
       ) %>%
       dplyr::select(
         "DateTime",
         "SiteCode",
         "ParameterCode",
+        "ParameterCodeOrg",
+        "ParameterNameOrg",
         "ParameterOperator",
         "ParameterValue",
-        "ParameterUnitOrg"
+        "ParameterUnitOrg",
+        "Method",
+        "MethodName"
       )
 
 
@@ -213,29 +251,55 @@ add_parameter_metadata <- function(df,
   return(res)
 }
 
-#' Helper function: add label ("SiteName_ParaName_Unit")
+#' Helper function: add label ("SiteName_ParaName_Unit_Method")
 #' @param df data frame containing at least a columns "SiteName", "ParameterName",
-#' "ParameterUnit"
+#' "ParameterUnit" and optionally "Method" (if not existent no "Method" will be
+#' available!)
 #' @param col_sitename column in df containing site name (default: "SiteName")
 #' @param col_parametername column in df containing parameter name (default: "ParameterName")
-#' @param col_parameterunit column in df containing parameter unit (default: "ParameterUnit")
-#' @return returns input data frame with added column "SiteName_ParaName_Unit"
+#' @param col_parameterunit column in df containing parameter unit
+#' @param col_method column in df containing method code (default: "Method")
+#' @return returns input data frame with added column "SiteName_ParaName_Unit_Method"
 #' @export
 
 add_label <- function(df,
                       col_sitename = "SiteName",
                       col_parametername = "ParameterName",
-                      col_parameterunit = "ParameterUnit") {
-  df$SiteName_ParaName_Unit <- sprintf(
-    "%s: %s (%s)",
-    df[, col_sitename],
-    df[, col_parametername],
-    df[, col_parameterunit]
-  )
+                      col_parameterunit = "ParameterUnit",
+                      col_method = "Method") {
 
+
+  col_method_exists <- col_method %in% names(df)
+
+  if(col_method_exists) {
+  boolean_no_method <- is.na(df[,col_method]) | df[,col_method] == ""
+  } else {
+  boolean_no_method <- rep(TRUE, times = nrow(df))
+  }
+
+  df$SiteName_ParaName_Unit_Method <- ""
+
+
+  if(any(boolean_no_method)) {
+    ind <- which(boolean_no_method)
+    df$SiteName_ParaName_Unit_Method[ind] <- sprintf(
+      "%s: %s (%s)",
+      df[ind , col_sitename],
+      df[ind , col_parametername],
+      df[ind , col_parameterunit]) }
+
+  if(any(!boolean_no_method)) {
+    ind <- which(!boolean_no_method)
+        df$SiteName_ParaName_Unit_Method[!boolean_no_method] <- sprintf(
+      "%s: %s (%s, Method: %s)",
+      df[ind , col_sitename],
+      df[ind , col_parametername],
+      df[ind , col_parameterunit],
+      df[ind , col_method]
+    )
+  }
   return(df)
 }
-
 
 
 #' Imports operational data for Basel (with metadata for

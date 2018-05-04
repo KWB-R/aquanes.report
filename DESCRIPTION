@@ -32,10 +32,12 @@ Imports:
 	stringr (>= 1.2.0),
 	fst (>= 0.8),
 	magrittr (>= 1.5),
-	janitor (>= 0.3.0)
+	janitor (>= 1.0), 
+	kwb.utils
 Suggests:
     devtools (>= 1.13.0),
     knitr
+Remotes: github::kwb-r/kwb.utils
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

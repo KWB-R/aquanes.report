@@ -40,9 +40,9 @@ server_timeSeries <- function(...) {
     para_idx <- ts_tz()[,"ParameterName"] %in%  input$parameter1
     row_idx <- date_idx & site_idx & para_idx
     ts_tz()[row_idx, c("DateTime",
-                       "SiteName_ParaName_Unit",
+                       "SiteName_ParaName_Unit_Method",
                        "ParameterValue")] %>%
-      tidyr::spread_(key_col = "SiteName_ParaName_Unit",
+      tidyr::spread_(key_col = "SiteName_ParaName_Unit_Method",
                      value_col = "ParameterValue")
 
 
@@ -57,9 +57,9 @@ server_timeSeries <- function(...) {
     para_idx <- ts_tz()[,"ParameterName"] %in%  input$parameter2
     row_idx <- date_idx & site_idx & para_idx
     ts_tz()[row_idx, c("DateTime",
-                       "SiteName_ParaName_Unit",
+                       "SiteName_ParaName_Unit_Method",
                        "ParameterValue")] %>%
-      tidyr::spread_(key_col = "SiteName_ParaName_Unit",
+      tidyr::spread_(key_col = "SiteName_ParaName_Unit_Method",
                      value_col = "ParameterValue")
 
 
