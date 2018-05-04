@@ -122,26 +122,28 @@ import_analytics_basel <- function(csv_dir = system.file(
       ))) %>%
       dplyr::rename(
         SiteCode = "probestelle",
-        ParameterCodeOrg = "prufpunkt",
+        ParameterCode_Org = "prufpunkt",
         ParameterCode = "prufpunkt_cor",
-        ParameterNameOrg = "prufpunkt_bezeichnung",
+        ParameterName_Org = "prufpunkt_bezeichnung",
+        ParameterName_Cor = "prufpunkt_bezeichnung_cor",
         ParameterOperator = "operator",
         ParameterValue = "messwert",
-        ParameterUnitOrg = "einheit",
-        Method = "methode",
-        MethodName = "methoden_bezeichnung"
+        ParameterUnit_Org = "einheit",
+        Method_Org = "methode",
+        MethodName_Org = "methoden_bezeichnung"
       ) %>%
       dplyr::select(
         "DateTime",
         "SiteCode",
+        "ParameterCode_Org",
         "ParameterCode",
-        "ParameterCodeOrg",
-        "ParameterNameOrg",
+        "ParameterName_Org",
+        "ParameterName_Cor",
         "ParameterOperator",
         "ParameterValue",
-        "ParameterUnitOrg",
-        "Method",
-        "MethodName"
+        "ParameterUnit_Org",
+        "Method_Org",
+        "MethodName_Org"
       )
 
 
@@ -182,7 +184,8 @@ add_site_metadata <- function(df,
                               )) {
   meta_site <- read.csv(
     file = meta_site_path,
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE,
+    na.strings = ""
   )
 
   res <- df %>%
@@ -231,7 +234,7 @@ add_site_metadata <- function(df,
 #' @param meta_parameter_path Define path of "meta_parameter.csv" to be imported
 #' (default: system.file("shiny/basel/data/metadata/meta_parameter.csv",
 #' package = "aquanes.report"))
-#' @return returns input data frame with joined metadata
+#' @return returns input data frame with joined metadata (parameters )
 #' @importFrom  dplyr left_join
 #' @export
 add_parameter_metadata <- function(df,
@@ -241,7 +244,8 @@ add_parameter_metadata <- function(df,
                                    )) {
   meta_parameter <- read.csv(
     file = meta_parameter_path,
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE,
+    na.strings = ""
   )
 
 
@@ -253,12 +257,12 @@ add_parameter_metadata <- function(df,
 
 #' Helper function: add label ("SiteName_ParaName_Unit_Method")
 #' @param df data frame containing at least a columns "SiteName", "ParameterName",
-#' "ParameterUnit" and optionally "Method" (if not existent no "Method" will be
+#' "ParameterUnit" and optionally "Method_Org" (if not existent no "Method_Org" will be
 #' available!)
 #' @param col_sitename column in df containing site name (default: "SiteName")
 #' @param col_parametername column in df containing parameter name (default: "ParameterName")
-#' @param col_parameterunit column in df containing parameter unit
-#' @param col_method column in df containing method code (default: "Method")
+#' @param col_parameterunit column in df containing parameter unit (default: "ParameterUnit")
+#' @param col_method column in df containing method code (default: "Method_Org")
 #' @return returns input data frame with added column "SiteName_ParaName_Unit_Method"
 #' @export
 
@@ -266,7 +270,7 @@ add_label <- function(df,
                       col_sitename = "SiteName",
                       col_parametername = "ParameterName",
                       col_parameterunit = "ParameterUnit",
-                      col_method = "Method") {
+                      col_method = "Method_Org") {
 
 
   col_method_exists <- col_method %in% names(df)
@@ -350,7 +354,8 @@ import_operation_meta_basel <- function(
                                         )) {
   meta_online <- read.csv(
     file = meta_online_path,
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE,
+    na.strings = ""
   )
 
 
