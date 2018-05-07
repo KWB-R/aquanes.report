@@ -6,20 +6,20 @@
 \usage{
 add_label(df, col_sitename = "SiteName",
   col_parametername = "ParameterName", col_parameterunit = "ParameterUnit",
-  col_method = "Method")
+  col_method = "Method_Org")
 }
 \arguments{
 \item{df}{data frame containing at least a columns "SiteName", "ParameterName",
-"ParameterUnit" and optionally "Method" (if not existent no "Method" will be
+"ParameterUnit" and optionally "Method_Org" (if not existent no "Method_Org" will be
 available!)}
 
 \item{col_sitename}{column in df containing site name (default: "SiteName")}
 
 \item{col_parametername}{column in df containing parameter name (default: "ParameterName")}
 
-\item{col_parameterunit}{column in df containing parameter unit}
+\item{col_parameterunit}{column in df containing parameter unit (default: "ParameterUnit")}
 
-\item{col_method}{column in df containing method code (default: "Method")}
+\item{col_method}{column in df containing method code (default: "Method_Org")}
 }
 \value{
 returns input data frame with added column "SiteName_ParaName_Unit_Method"
