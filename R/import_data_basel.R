@@ -234,7 +234,8 @@ add_site_metadata <- function(df,
 #' @param meta_parameter_path Define path of "meta_parameter.csv" to be imported
 #' (default: system.file("shiny/basel/data/metadata/meta_parameter.csv",
 #' package = "aquanes.report"))
-#' @return returns input data frame with joined metadata (parameters )
+#' @return returns input data frame with joined metadata (parameter codes/ methods
+#' not included in meta_parameter file will not be imported!!!!)
 #' @importFrom  dplyr left_join
 #' @export
 add_parameter_metadata <- function(df,
@@ -250,7 +251,7 @@ add_parameter_metadata <- function(df,
 
 
   res <- df %>%
-    dplyr::left_join(meta_parameter)
+    dplyr::inner_join(meta_parameter)
 
   return(res)
 }

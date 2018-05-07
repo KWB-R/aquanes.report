@@ -28,7 +28,6 @@ ParameterCode,ParameterName_Cor,ParameterUnit_Org,Method_Org,ParameterName,Param
 12101,Wassertemperatur,°C,O2 SÄUL FH,T,°C,Wassertemperatur,°C
 12101,Wassertemperatur,°C,O2 SOND FH,T,°C,Wassertemperatur,°C
 12601,Redox,mV,REDOX FH,Redox,mV,Redox,mV
-13301,Sauerstoff,mg/L,O2 SÄUL FH,O2,mg/L,Sauerstoff,mg/L
 13301,Sauerstoff,mg/L,O2 SOND FH,O2,mg/L,Sauerstoff,mg/L
 13302,rel. Sauerstoffsättigung,%,O2 SÄUL FH,rel. Oxygen saturation,%,rel. Sauerstoffsättigung,%
 13302,rel. Sauerstoffsättigung,%,O2 SOND FH,rel. Oxygen saturation,%,rel. Sauerstoffsättigung,%
@@ -50,7 +49,7 @@ ParameterCode,ParameterName_Cor,ParameterUnit_Org,Method_Org,ParameterName,Param
 25301,Eisen,mg Fe/L,ICPOES-SCR,Iron,mg/L,Eisen,mg Fe/L
 25501,Mangan,mg Mn/L,ICPOES-SCR,Manganese,mg/L,Mangan,mg Mn/L
 40001,Alachlor,ng/l,GC-MS-SCR.,Alachlor,ng/l,Alachlor,ng/l
-40003,Atrazin,µg/L,LCMS ORBI,Atrazine,ng/l,Atrazin,µg/L
+40003,Atrazin,µg/L,LCMS ORBI,Atrazine,µg/l,Atrazin,µg/L
 40003,Atrazin,ng/l,GC-MS-SCR.,Atrazine,ng/l,Atrazin,ng/l
 40005,Desethylatrazin,µg/L,LCMS ORBI,Desethylatrazine,µg/L,Desethylatrazin,µg/L
 40008,Metazachlor,µg/L,LCMS ORBI,Metazachlor,µg/L,Metazachlor,µg/L
@@ -116,7 +115,7 @@ ParameterCode,ParameterName_Cor,ParameterUnit_Org,Method_Org,ParameterName,Param
 82062,Triallylisocyanurat,ng/l,GC-MS-SCR.,Triallylisocyanurat,ng/l,Triallylisocyanurat,ng/l
 82063,Caffeine,ng/l,GC-MS-SCR.,Caffeine,ng/l,Caffeine,ng/l
 82064,cis-Nonachlor,ng/l,GC-MS-SCR.,cis-Nonachlor,ng/l,cis-Nonachlor,ng/l
-82065,Diazepam,µg/L,LCMS MULTI,Diazepam,ng/l,Diazepam,µg/L
+82065,Diazepam,µg/L,LCMS MULTI,Diazepam,µg/l,Diazepam,µg/L
 82065,Diazepam,ng/l,GC-MS-SCR.,Diazepam,ng/l,Diazepam,ng/l
 83010,Surfynol_104,ng/l,GC-MS-SCR.,Surfynol,ng/l,Surfynol_104,ng/l
 84000,Benzafibrat,µg/L,LCMS MULTI,Benzafibrate,µg/L,Benzafibrat,µg/L

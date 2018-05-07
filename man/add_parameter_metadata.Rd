@@ -16,7 +16,8 @@ add_parameter_metadata(df,
 package = "aquanes.report"))}
 }
 \value{
-returns input data frame with joined metadata (parameters )
+returns input data frame with joined metadata (parameter codes/ methods
+not included in meta_parameter file will not be imported!!!!)
 }
 \description{
 Helper function: add parameter metadata
