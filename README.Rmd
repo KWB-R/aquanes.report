@@ -8,9 +8,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # aquanes.report
-Collects, aggregates and visualises operational analytical data from water suppliers (including a standardised reporting document)
 
-[![Build Status](https://travis-ci.org/KWB-R/aquanes.report.svg?branch=master)](https://travis-ci.org/KWB-R/aquanes.report)
+[![Travis-CI Build Status](https://travis-ci.org/KWB-R/aquanes.report.svg?branch=master)](https://travis-ci.org/KWB-R/aquanes.report)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
+
+Collects, aggregates and visualises operational analytical data from water suppliers (including a standardised reporting document)
 
 # Demo of reporting tool for Haridwar site   
 

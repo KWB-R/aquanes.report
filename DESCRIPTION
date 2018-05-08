@@ -2,7 +2,10 @@ Package: aquanes.report
 Type: Package
 Title: Automated Reporting Tool for Water Suppliers
 Version: 0.4.1.9999
-Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de", role = c("aut", "cre")))
+Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de", role = c("aut", "cre"), 
+             comment = c(ORCID = "0000-0003-0647-7726")),
+             person("Kompetenzzentrum Wasser Berlin gGmbH", role = c("cph")),
+             person("AquaNES", role = c("fnd")))
 Description: Collects, aggregates and visualises operational and 
     analytical data from water suppliers (including a standardised 
 	reporting document).
@@ -32,12 +35,10 @@ Imports:
 	stringr (>= 1.2.0),
 	fst (>= 0.8),
 	magrittr (>= 1.5),
-	janitor (>= 1.0), 
-	kwb.utils
+	janitor (>= 0.3.0)
 Suggests:
     devtools (>= 1.13.0),
     knitr
-Remotes: github::kwb-r/kwb.utils
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

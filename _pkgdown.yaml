@@ -1,6 +1,24 @@
+url: https://kwb-r.github.io/aquanes.report
+
+authors:
+  Michael Rustler:
+    href: http://mrustl.de
+  
+  Kompetenzzentrum Wasser Berlin gGmbH:
+    href: https://www.kompetenz-wasser.de
+    html: <img src="http://www.kompetenz-wasser.de/wp-content/uploads/2017/08/cropped-logo-kwb_klein-new.png" height="24" />
+  AquaNES: 
+    href: http://aquanes.eu/Default.aspx?t=1593
+    html: <img src="http://aquanes.eu/App_Themes/assets/img/logo.png" height="24" />
+
 template:
   params:
     bootswatch: cerulean
+    docsearch:
+
+development:
+  mode: auto
+
 navbar:
   title: ~
   type: default
@@ -85,4 +103,4 @@ reference:
       - import_analytics_basel
       - import_operation_meta_basel
       - import_analytics_meta_basel
-      - import_data_basel  
+      - import_data_basel
