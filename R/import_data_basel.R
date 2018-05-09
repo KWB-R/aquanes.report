@@ -1,3 +1,56 @@
+# multiSubstitute (copied from: "kwb.utils" R package to avoid importing it)
+# Source: file.path(https://github.com/KWB-R/kwb.utils/blob",
+#         "59d4de1357932d2b8e20e9b7e48362350364c078/R/string.R")
+
+#' Multiple Substitutions
+#'
+#' apply multiple substitutions on a vector of character. For each element in
+#'   \emph{replacements} gsub is called with the element name being the pattern
+#'   and the element value being the replacement.
+#'
+#' @param strings vector of character
+#' @param replacements list of pattern = replacement pairs.
+#' @param \dots additional arguments passed to gsub
+#' @param dbg if \code{TRUE} (the default is \code{FALSE}) it is shown which
+#'   strings were replaced
+#'
+multiSubstitute <- function(strings, replacements, ..., dbg = FALSE)
+{
+  for (pattern in names(replacements)) {
+
+    if (dbg) {
+
+      strings.bak <- strings
+    }
+
+    replacement <- replacements[[pattern]]
+
+    strings <- gsub(pattern, replacement, strings, ...)
+
+    if (dbg) {
+
+      changed <- strings != strings.bak
+
+      if (any(changed)) {
+
+        frequencies <- table(strings.bak[changed])
+
+        items <- sprintf("'%s' (%d-times)", names(frequencies), frequencies)
+
+        cat(sprintf(
+          paste0(
+            "In the following strings the parts matching the pattern ",
+            "'%s' are replaced with '%s':\n  %s\n"
+          ),
+          pattern, replacement, collapsed(items, ",\n  ")
+        ))
+      }
+    }
+  }
+
+  strings
+}
+
 #' Imports operational data for Basel (without metadata and only for one site
 #' at once, e.g. "rhein" or "wiese")
 #' @param xlsx_dir Define directory with raw data in EXCEL spreadsheet (.xlsx) to
@@ -59,7 +112,6 @@ import_operation_basel <- function(xlsx_dir = system.file(
 #' @importFrom janitor clean_names
 #' @importFrom  readxl read_excel
 #' @importFrom  utils read.csv2
-#' @importFrom kwb.utils multiSubstitute
 #' @import dplyr
 #' @export
 
@@ -96,8 +148,8 @@ import_analytics_basel <- function(csv_dir = system.file(
                         "\\<Cyprosulfamid\\>" = "Cyprosulfamide")
 
     tmp$prufpunkt_bezeichnung_cor <-
-      kwb.utils::multiSubstitute(strings = tmp$prufpunkt_bezeichnung,
-                                 replacements = rep_strings)
+      multiSubstitute(strings = tmp$prufpunkt_bezeichnung,
+                      replacements = rep_strings)
 
 
 

@@ -1,7 +1,7 @@
 Package: aquanes.report
 Type: Package
 Title: Automated Reporting Tool for Water Suppliers
-Version: 0.4.1.9999
+Version: 0.5.0
 Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de", role = c("aut", "cre"), 
              comment = c(ORCID = "0000-0003-0647-7726")),
              person("Kompetenzzentrum Wasser Berlin gGmbH", role = c("cph")),
@@ -39,7 +39,6 @@ Imports:
 Suggests:
     devtools (>= 1.13.0),
     knitr
-Remotes: github::kwb-r/kwb.utils
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
