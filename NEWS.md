@@ -1,6 +1,3 @@
-# [aquanes.report 0.5.0.9999](https://github.com/KWB-R/aquanes.report)
-
-Current development version
 
 # [aquanes.report 0.5.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.5.0)
 
