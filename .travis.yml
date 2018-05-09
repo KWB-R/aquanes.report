@@ -9,3 +9,6 @@ before_install:
   - sudo apt-get install libudunits2-dev
 r_packages:
   - devtools
+ 
+ r_github_packages:
+  - kwb-r/kwb.utils
