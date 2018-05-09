@@ -1,23 +1,28 @@
-# [aquanes.report 0.4.1.9999](https://github.com/KWB-R/aquanes.report)
+# [aquanes.report 0.5.0.9999](https://github.com/KWB-R/aquanes.report)
 
-* Site 5, Haridwar completed, 
+Current development version
 
-* current development version 
+# [aquanes.report 0.5.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.5.0)
 
-    + start to integrate case study 1 (Berlin-Tiefwerder)
-    
-    + start to integrate case study 12 (Berlin-Schoenerlinde)
-	
-	+ start to integrate case study 6 (Basel) 
+Offical release for AQUANES
+
+- Haridwar (site 5): completed
+- Berlin (sites 1 & 12): integrated with performance optimisation (but without analytics)
+- Basel (site 6): integrated operational and analytical data for Wiese/Rhine sites (with new 
+                  metadata for analytics)
+
+Cite as: [![DOI](https://zenodo.org/badge/83431353.svg)](https://zenodo.org/badge/latestdoi/83431353)
 
 # [aquanes.report 0.4.1](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.1)
 
 - Haridwar (site 5): completed
 - Berlin site (sites 1 & 12): performance optimisation, analytics still to be integrated 
 
+Cite as: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.888819.svg)](https://doi.org/10.5281/zenodo.888819)
+
 # [aquanes.report 0.4.0](https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0)
 
-Cite as: [![DOI](https://zenodo.org/badge/83431353.svg)](https://zenodo.org/badge/latestdoi/83431353)
+Cite as: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.825030.svg)](https://doi.org/10.5281/zenodo.825030)
 
 
 * adapted "analytics" import routine to new Autarcon spreadsheet style (for details, 

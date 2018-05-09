@@ -14,7 +14,6 @@ authors:
 template:
   params:
     bootswatch: cerulean
-    docsearch:
 
 development:
   mode: auto
@@ -83,7 +82,11 @@ reference:
     contents: 
       - import_data_berlin_t
       - read_pentair_data
-      - calculate_operational_parameters_berlin_s
+      - calculate_operational_parameters_berlin_t
+      - remove_duplicates
+      - aggregate_export_fst_berlin_t
+      - merge_and_export_fst
+      - load_fst_data
 
   - title: Berlin-Schoenerlinde (site 12)
     desc: >
@@ -93,6 +96,10 @@ reference:
       - read_wedeco_data
       - calculate_operational_parameters_berlin_s
       - create_wedeco_metafile
+      - remove_duplicates
+      - aggregate_export_fst_berlin_s
+      - merge_and_export_fst
+      - load_fst_data
 
   - title: Basel-LangeErlen (site 6)
     desc: >
@@ -104,3 +111,4 @@ reference:
       - import_operation_meta_basel
       - import_analytics_meta_basel
       - import_data_basel
+      - multiSubstitute
