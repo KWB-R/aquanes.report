@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # aquanes.report
 
 [![Travis-CI Build Status](https://travis-ci.org/KWB-R/aquanes.report.svg?branch=master)](https://travis-ci.org/KWB-R/aquanes.report)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/KWB-R/aquanes.report?branch=master&svg=true)](https://ci.appveyor.com/project/KWB-R/aquanes.report)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![DOI](https://zenodo.org/badge/83431353.svg)](https://zenodo.org/badge/latestdoi/83431353)
 
