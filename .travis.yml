@@ -9,3 +9,7 @@ before_install:
   - sudo apt-get install libudunits2-dev
 r_packages:
   - devtools
+  - covr
+ 
+ after_success:
+  - Rscript -e 'covr::codecov()'
