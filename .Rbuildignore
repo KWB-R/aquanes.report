@@ -6,9 +6,9 @@ sites_info.csv
 ^docs\.*
 _pkgdown.yaml
 README.Rmd
+README.md
 ^packrat/
 ^\.Rprofile$
 ^binder$
 ^appveyor\.yml$
-
 ^codecov\.yml$
