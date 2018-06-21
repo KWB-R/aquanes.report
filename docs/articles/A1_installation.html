@@ -8,8 +8,8 @@
 <title>1 Installation • aquanes.report</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- docsearch --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="1 Installation">
 <meta property="og:description" content="">
@@ -135,9 +135,9 @@
 <h2 class="hasAnchor">
 <a href="#step-1-installation-of-r-package-devtools" class="anchor"></a>1.2.1 Step 1) Installation of R package “devtools”</h2>
 <p>The R package “devtools” is required for downloading and installing the R package “aquanes.report” from Github. Installation is done by executing the following lines of code in R or RStudio (from now on written as R(Studio)):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
-  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"https://cloud.r-project.org"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">}</a></code></pre></div>
 </div>
 <div id="step-2-installation-of-r-package-aquanes-report" class="section level2">
 <h2 class="hasAnchor">
@@ -146,9 +146,9 @@
 <h4 class="hasAnchor">
 <a href="#specific-release" class="anchor"></a>2.1) Specific release</h4>
 <p>In case you want to install a specific release you need to specify the parameter “ref”, which needs to be set to a valid release (check here: <a href="https://github.com/KWB-R/aquanes.report/releases">releases</a>) by running the following code in R(Studio). This tutorial at least requires release version <a href="https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0">v.0.4.0</a>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kwb-r/aquanes.report"</span>, 
-                         <span class="dt">ref =</span> <span class="st">"v.0.4.0"</span>,
-                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kwb-r/aquanes.report"</span>, </a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                         <span class="dt">ref =</span> <span class="st">"v.0.4.0"</span>,</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                         <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><strong><em>Please cite <a href="https://github.com/KWB-R/aquanes.report/releases/tag/v.0.4.0">v.0.4.0</a> of the R package as follows:</em></strong> <a href="https://doi.org/10.5281/zenodo.825030"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.825030.svg" alt="DOI"></a></p>
 </div>
 </div>
@@ -156,7 +156,7 @@
 <h2 class="hasAnchor">
 <a href="#step-3-check-the-installation-folder-of-the-package-in-rstudio-with" class="anchor"></a>1.2.3 Step 3) Check the installation folder of the package in R(Studio) with:</h2>
 <p>By running the following code in R(Studio) you can check where the R package “aquanes.report” was installed on your computer:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</a></code></pre></div>
 <p>Under Windows it will be located in your personal Documents/R/win-library folder followed by the minor release version of the R version you are using (here: 3.3 because the R version used for this documentation is 3.3.2): “C:/Users/YOUR_USERNAME/Documents/R/win-library/3.3/aquanes.report”"</p>
 </div>
 <div id="step-4-copy-site-specific-files" class="section level2">
@@ -167,7 +167,7 @@
 <h3 class="hasAnchor">
 <a href="#mysql-configuration-file--my-cnf" class="anchor"></a>1.2.4.1 mySQL configuration file (‘.my.cnf’)</h3>
 <p>The ‘.my.cnf’ file is required to establish a connection to the mySQL database for querying the opera-tional data for the Haridwar site. It needs to be copied into the directory which is returned after run-ning the following code in R(Studio) :</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</a></code></pre></div>
 <p>In this example (which is based on the R 3.3.2 release) it will be located in your personal documents folder under: “C:/Users/YOUR_USERNAME/Documents/R/win-library/3.3/aquanes.report/shiny/haridwar”</p>
 <p><strong>Important note:</strong> The “.my.cnf” configuration file is not included in the R package, as it would provide direct access to the MySQL database of the AUTARCON company!</p>
 </div>
@@ -175,7 +175,7 @@
 <h3 class="hasAnchor">
 <a href="#analytics-spreadsheet-file-analytics-xlsx" class="anchor"></a>1.2.4.2 Analytics spreadsheet file (‘analytics.xlsx’)</h3>
 <p>The ‘analytics.xlsx’ file contains the analytics data (results of lab measurements) for the Haridwar site. It has a specific predefined structure which is expected by the R package and should not be changed (e.g. for all analytical parameter sheets to be imported the data entries are expected to start in row 70 and the first column is of type “DateTime”). Automatic reading of this file is not possible, if the structure is changed. This file needs to be copied into the directory which is returned after running the following code in R(Studio):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar/data"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">system.file</span>(<span class="st">"shiny/haridwar/data"</span>, <span class="dt">package =</span> <span class="st">"aquanes.report"</span>)</a></code></pre></div>
 <p>In this example (which is based on the R 3.3.2 release) it will be located in your personal documents folder under: “C:/Users/YOUR_USERNAME/Documents/R/win-library/3.3/aquanes.report/shiny/haridwar/data”</p>
 <p><strong>Important note:</strong> <strong><em>The “analytics.xlsx” file is not included in the R package due to IP reasons.</em></strong></p>
 </div>
