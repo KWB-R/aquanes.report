@@ -3,10 +3,10 @@
 #' @param by an aggregation time step in seconds (default: 600 seconds) for intra-
 #' day aggregation or "day", "month" or "year" for longer time spans
 #' @param fun function to be used for grouping measurement data of column ParameterValue
-#' (default: median)
+#' (default: stats::median)
 #' (default: system.file("shiny/haridwar/.my.cnf", package = "aquanes.report"))
 #' @param col_datetime column name of datetime column (default: DateTime)
-#' @param col_datatype column name of data type column (default: DateType)
+#' @param col_datatype column name of data type column (default: DataType)
 #' @param dbg print debug information
 #' @return returns data frame with data aggregated according to user defined
 #' aggregation time step
@@ -17,7 +17,7 @@
 
 group_datetime <- function(df,
                            by = 600,
-                           fun = "median",
+                           fun = "stats::median",
                            col_datetime = "DateTime",
                            col_datatype = "DataType",
                            dbg = TRUE) {
@@ -66,7 +66,7 @@ group_datetime <- function(df,
 
   df <- df %>%
     dplyr::group_by_(.dots = dplyr::setdiff(names(df), "ParameterValue")) %>%
-    dplyr::summarise_("ParameterValue" = sprintf("stats::%s(ParameterValue)", fun)) %>%
+    dplyr::summarise_("ParameterValue" = sprintf("%s(ParameterValue)", fun)) %>%
     as.data.frame()
 
   return(df)

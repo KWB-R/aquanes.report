@@ -153,8 +153,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>group_datetime</span>(<span class='no'>df</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>600</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"median"</span>, <span class='kw'>col_datetime</span> <span class='kw'>=</span> <span class='st'>"DateTime"</span>,
-  <span class='kw'>col_datatype</span> <span class='kw'>=</span> <span class='st'>"DataType"</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>group_datetime</span>(<span class='no'>df</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>600</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"stats::median"</span>,
+  <span class='kw'>col_datetime</span> <span class='kw'>=</span> <span class='st'>"DateTime"</span>, <span class='kw'>col_datatype</span> <span class='kw'>=</span> <span class='st'>"DataType"</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,7 +171,7 @@ day aggregation or "day", "month" or "year" for longer time spans</p></td>
     <tr>
       <th>fun</th>
       <td><p>function to be used for grouping measurement data of column ParameterValue
-(default: median)
+(default: stats::median)
 (default: system.file("shiny/haridwar/.my.cnf", package = "aquanes.report"))</p></td>
     </tr>
     <tr>
@@ -180,7 +180,7 @@ day aggregation or "day", "month" or "year" for longer time spans</p></td>
     </tr>
     <tr>
       <th>col_datatype</th>
-      <td><p>column name of data type column (default: DateType)</p></td>
+      <td><p>column name of data type column (default: DataType)</p></td>
     </tr>
     <tr>
       <th>dbg</th>
