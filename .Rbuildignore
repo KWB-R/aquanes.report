@@ -5,7 +5,7 @@ sites_info.csv
 .karte.R
 ^docs\.*
 _pkgdown.yaml
-README.Rmd
+^index\.Rmd$
 README.md
 ^packrat/
 ^\.Rprofile$
