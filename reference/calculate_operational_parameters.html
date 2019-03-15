@@ -156,15 +156,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>calculate_operational_parameters</span>(<span class='no'>df</span>, <span class='kw'>calc_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>Redox_Out</span> <span class='kw'>=</span>
-  <span class='st'>"(Redox_Out1+Redox_Out2)/2"</span>, <span class='kw'>Redox_Diff</span> <span class='kw'>=</span> <span class='st'>"Redox_Out - Redox_In"</span>, <span class='kw'>Power_pump</span> <span class='kw'>=</span>
-  <span class='st'>"Up*Ip"</span>, <span class='kw'>Power_cell</span> <span class='kw'>=</span> <span class='st'>"Uz*Iz"</span>, <span class='kw'>Pump_WhPerCbm</span> <span class='kw'>=</span> <span class='st'>"Power_pump/(Flux/1000)"</span>,
-  <span class='kw'>Cell_WhPerCbm</span> <span class='kw'>=</span> <span class='st'>"Power_cell/(Flux/1000)"</span>),
+  <span class='st'>"(Redox_Out1+Redox_Out2)/2"</span>, <span class='kw'>Redox_Diff</span> <span class='kw'>=</span> <span class='st'>"Redox_Out - Redox_In"</span>,
+  <span class='kw'>Power_pump</span> <span class='kw'>=</span> <span class='st'>"Up*Ip"</span>, <span class='kw'>Power_cell</span> <span class='kw'>=</span> <span class='st'>"Uz*Iz"</span>, <span class='kw'>Pump_WhPerCbm</span> <span class='kw'>=</span>
+  <span class='st'>"Power_pump/(Flux/1000)"</span>, <span class='kw'>Cell_WhPerCbm</span> <span class='kw'>=</span> <span class='st'>"Power_cell/(Flux/1000)"</span>),
   <span class='kw'>calc_list_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Mean redox potential in tank"</span>,
-  <span class='st'>"Difference (outflow - inflow) of redox potential"</span>, <span class='st'>"Power demand of pump"</span>,
-  <span class='st'>"Power demand of cell"</span>, <span class='st'>"Specific energy demand of pump"</span>,
-  <span class='st'>"Specific energy demand of cell"</span>), <span class='kw'>calc_list_unit</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mV"</span>, <span class='st'>"mV"</span>, <span class='st'>"W"</span>, <span class='st'>"W"</span>,
-  <span class='st'>"Wh/m3"</span>, <span class='st'>"Wh/m3"</span>), <span class='kw'>calc_paras</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Redox_Out1"</span>, <span class='st'>"Redox_Out2"</span>, <span class='st'>"Redox_In"</span>,
-  <span class='st'>"Flux"</span>, <span class='st'>"Up"</span>, <span class='st'>"Ip"</span>, <span class='st'>"Uz"</span>, <span class='st'>"Iz"</span>))</pre>
+  <span class='st'>"Difference (outflow - inflow) of redox potential"</span>,
+  <span class='st'>"Power demand of pump"</span>, <span class='st'>"Power demand of cell"</span>,
+  <span class='st'>"Specific energy demand of pump"</span>, <span class='st'>"Specific energy demand of cell"</span>),
+  <span class='kw'>calc_list_unit</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mV"</span>, <span class='st'>"mV"</span>, <span class='st'>"W"</span>, <span class='st'>"W"</span>, <span class='st'>"Wh/m3"</span>, <span class='st'>"Wh/m3"</span>),
+  <span class='kw'>calc_paras</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Redox_Out1"</span>, <span class='st'>"Redox_Out2"</span>, <span class='st'>"Redox_In"</span>, <span class='st'>"Flux"</span>, <span class='st'>"Up"</span>,
+  <span class='st'>"Ip"</span>, <span class='st'>"Uz"</span>, <span class='st'>"Iz"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
