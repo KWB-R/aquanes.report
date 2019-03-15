@@ -4,7 +4,8 @@
 \alias{create_monthly_selection}
 \title{Create monthly selection}
 \usage{
-create_monthly_selection(startDate = "2016-09-01", endDate = Sys.Date())
+create_monthly_selection(startDate = "2016-09-01",
+  endDate = Sys.Date())
 }
 \arguments{
 \item{startDate}{(default: '2016-09-01')}

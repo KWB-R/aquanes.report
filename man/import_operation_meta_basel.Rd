@@ -5,10 +5,11 @@
 \title{Imports operational data for Basel (with metadata for
 both sites at once, i.e. "rhein" and "wiese")}
 \usage{
-import_operation_meta_basel(raw_dir_rhein = system.file(file.path("shiny",
+
+  import_operation_meta_basel(raw_dir_rhein = system.file(file.path("shiny",
   "basel/data/operation/rhein"), package = "aquanes.report"),
-  raw_dir_wiese = system.file("shiny/basel/data/operation/wiese", package =
-  "aquanes.report"),
+  raw_dir_wiese = system.file("shiny/basel/data/operation/wiese", package
+  = "aquanes.report"),
   meta_online_path = system.file("shiny/basel/data/metadata/meta_online.csv",
   package = "aquanes.report"),
   meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",

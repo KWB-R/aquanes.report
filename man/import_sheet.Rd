@@ -4,7 +4,8 @@
 \alias{import_sheet}
 \title{Imports an analytics sheet from an EXCEL spreadsheet}
 \usage{
-import_sheet(xlsPath, sheet, col_names = TRUE, col_rawData_pattern = "raw",
+import_sheet(xlsPath, sheet, col_names = TRUE,
+  col_rawData_pattern = "raw",
   col_ignore_pattern = "mean|empty|X_|RX|not_used", skip = 69,
   tz_org = "UTC", tz_export = "UTC")
 }

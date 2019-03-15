@@ -6,8 +6,8 @@
 \usage{
 merge_and_export_fst(time_pattern = NULL, compression = 100,
   import_dir = system.file("shiny/berlin_t/data/fst", package =
-  "aquanes.report"), export_dir = system.file("shiny/berlin_t/data", package =
-  "aquanes.report"))
+  "aquanes.report"), export_dir = system.file("shiny/berlin_t/data",
+  package = "aquanes.report"))
 }
 \arguments{
 \item{time_pattern}{optional pattern to filter months to be imported (default: NULL),

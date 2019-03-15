@@ -11,8 +11,8 @@ import_data_haridwar(analytics_path = system.file(file.path("shiny",
   operation_meta_path = system.file(file.path("shiny/haridwar/data",
   "operation_parameters.csv"), package = "aquanes.report"),
   excludedSheets = c("Parameters", "Location", "Sites", "#Summary",
-  "Site_and_Parameter", "Observations", "dP", "ORP", "Flow", "Current_Voltage",
-  "As_total_Arsenator"), skip = 69, debug = TRUE)
+  "Site_and_Parameter", "Observations", "dP", "ORP", "Flow",
+  "Current_Voltage", "As_total_Arsenator"), skip = 69, debug = TRUE)
 }
 \arguments{
 \item{analytics_path}{Define path of analytics EXCEL spreadsheet to be
