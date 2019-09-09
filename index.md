@@ -10,7 +10,7 @@ Collects, aggregates and visualises operational analytical data from water suppl
 
 If you are interested in the capabilities of the R reporting tool, just make sure your computer satisfies the [software requirements](articles/A1_installation.html#pre-required-software) and subsequently execute the following lines of code below in R/RStudio. 
 
-```{r eval=FALSE}
+```r
 if (!require("remotes")) {
   install.packages("remotes", repos = "https://cloud.r-project.org")
 }
