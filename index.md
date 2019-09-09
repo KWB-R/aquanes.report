@@ -1,14 +1,3 @@
----
-title: ''
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-# aquanes.report
-
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/5s0ekleh3f1wnjch/branch/master?svg=true)](https://ci.appveyor.com/project/KWB-R/aquanes-report/branch/master)
 [![Travis-CI Build Status](https://travis-ci.org/KWB-R/aquanes.report.svg?branch=master)](https://travis-ci.org/KWB-R/aquanes.report)
 [![codecov](https://codecov.io/github/KWB-R/aquanes.report/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/aquanes.report) 
