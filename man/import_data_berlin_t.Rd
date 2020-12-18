@@ -4,13 +4,15 @@
 \alias{import_data_berlin_t}
 \title{Import data for Berlin Tiefwerder}
 \usage{
-
-  import_data_berlin_t(raw_data_dir = system.file("shiny/berlin_t/data/operation",
-  package = "aquanes.report"), raw_data_files = NULL,
-  analytics_path = system.file("shiny/berlin_t/data/analytics.xlsx",
-  package = "aquanes.report"),
+import_data_berlin_t(
+  raw_data_dir = system.file("shiny/berlin_t/data/operation", package =
+    "aquanes.report"),
+  raw_data_files = NULL,
+  analytics_path = system.file("shiny/berlin_t/data/analytics.xlsx", package =
+    "aquanes.report"),
   meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
-  package = "aquanes.report"))
+    package = "aquanes.report")
+)
 }
 \arguments{
 \item{raw_data_dir}{path of directory containing PENTAIR xls files (default:

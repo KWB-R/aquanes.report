@@ -1,8 +1,8 @@
-#' Remove duplicates in data.frame
-#' @param df data.frame to be checked for duplicates
+#' Remove duplicates in data.frame (data.table)
+#' @param df data.frame (data.table) to be checked for duplicates
 #' @param col_names  column names to be used for duplicate checking (default: names(df)).
 #' can be defined by providing: c("col_name1", "col_name2")
-#' @return data.frame without duplicates
+#' @return data.frame (data.table) without duplicates
 #' @importFrom utils capture.output
 #' @export
 remove_duplicates <- function(df,
@@ -21,7 +21,7 @@ remove_duplicates <- function(df,
       nrow(df)
     ))
 
-    dups <- duplicated(df[, col_names])
+    dups <- duplicated(df[, ..col_names])
 
     if (any(dups)) {
       dups_indices <- which(dups)

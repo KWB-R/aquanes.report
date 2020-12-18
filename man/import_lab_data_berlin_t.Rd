@@ -4,9 +4,10 @@
 \alias{import_lab_data_berlin_t}
 \title{BerlinTiefwerder: import lab data}
 \usage{
-
-  import_lab_data_berlin_t(xlsx_path = system.file("shiny/berlin_t/data/analytics.xlsx",
-  package = "aquanes.report"))
+import_lab_data_berlin_t(
+  xlsx_path = system.file("shiny/berlin_t/data/analytics.xlsx", package =
+    "aquanes.report")
+)
 }
 \arguments{
 \item{xlsx_path}{full path to lab data EXCEL file in xlsx format (default:

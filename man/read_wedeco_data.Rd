@@ -4,11 +4,13 @@
 \alias{read_wedeco_data}
 \title{Import WEDECO raw data}
 \usage{
-
-  read_wedeco_data(raw_data_dir = system.file("shiny/berlin_s/data/operation",
-  package = "aquanes.report"), raw_data_files = NULL,
+read_wedeco_data(
+  raw_data_dir = system.file("shiny/berlin_s/data/operation", package =
+    "aquanes.report"),
+  raw_data_files = NULL,
   meta_file_path = system.file("shiny/berlin_s/data/parameter_site_metadata.csv",
-  package = "aquanes.report"))
+    package = "aquanes.report")
+)
 }
 \arguments{
 \item{raw_data_dir}{path to raw data directory}

@@ -4,9 +4,9 @@
 \alias{import_analytics_basel}
 \title{Imports analytical data for Basel (without metadata)}
 \usage{
-
-  import_analytics_basel(csv_dir = system.file("shiny/basel/data/analytics",
-  package = "aquanes.report"))
+import_analytics_basel(
+  csv_dir = system.file("shiny/basel/data/analytics", package = "aquanes.report")
+)
 }
 \arguments{
 \item{csv_dir}{Define directory with raw analytical data in CSV (.csv) format to

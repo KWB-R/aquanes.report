@@ -5,9 +5,10 @@
 \title{Imports operational data for Basel (without metadata and only for one site
 at once, e.g. "rhein" or "wiese")}
 \usage{
-
-  import_operation_basel(xlsx_dir = system.file("shiny/basel/data/operation/wiese",
-  package = "aquanes.report"))
+import_operation_basel(
+  xlsx_dir = system.file("shiny/basel/data/operation/wiese", package =
+    "aquanes.report")
+)
 }
 \arguments{
 \item{xlsx_dir}{Define directory with raw data in EXCEL spreadsheet (.xlsx) to

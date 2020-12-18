@@ -4,11 +4,13 @@
 \alias{import_data_berlin_s}
 \title{Import data for Berlin Schoenerlinde}
 \usage{
-
-  import_data_berlin_s(raw_data_dir = system.file("shiny/berlin_s/data/operation",
-  package = "aquanes.report"), raw_data_files = NULL,
+import_data_berlin_s(
+  raw_data_dir = system.file("shiny/berlin_s/data/operation", package =
+    "aquanes.report"),
+  raw_data_files = NULL,
   meta_file_path = system.file("shiny/berlin_s/data/parameter_site_metadata.csv",
-  package = "aquanes.report"))
+    package = "aquanes.report")
+)
 }
 \arguments{
 \item{raw_data_dir}{path of directory containing WEDECO CSV files (default:
