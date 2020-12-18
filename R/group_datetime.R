@@ -43,11 +43,11 @@ group_datetime <- function(df,
       call. = FALSE
     )
   } else if ((by %in% names(grp_list)) & !is.numeric(by)) {
-    datetime_org <- df[, col_datetime]
+    datetime_org <- df[, .SD, .SDcols = col_datetime]
     tz_org <- base::check_tzones(datetime_org)
-    df[, col_datetime] <- fasttime::fastPOSIXct(
+    df[, .SD, .SDcols = col_datetime] <- fasttime::fastPOSIXct(
       format(
-        df[, col_datetime],
+        df[, .SD, .SDcols = col_datetime],
         format = grp_list[[by]]
       ),
       tz = tz_org,
@@ -56,11 +56,11 @@ group_datetime <- function(df,
     if (by == "day") by <- "dai"
     if (dbg) print(sprintf("Performing %sly temporal aggregation!", by))
 
-    df[, col_datatype] <- sprintf("%s (%sly %s)", df[, col_datatype], by, fun)
+    df[, .SD, .SDcols = col_datatype] <- sprintf("%s (%sly %s)",  df[, .SD, .SDcols = col_datatype], by, fun)
   } else {
     if (dbg) print(sprintf("Performing temporal aggregation for %d seconds time periods!", by))
-    df[, col_datetime] <- xts::align.time(df[, col_datetime], n = by)
-    df[, col_datatype] <- sprintf("%s (%d seconds %s)", df[, col_datatype], by, fun)
+    df[, .SD, .SDcols = col_datetime] <- xts::align.time(df[, .SD, .SDcols = col_datetime], n = by)
+    df[, .SD, .SDcols = col_datatype] <- sprintf("%s (%d seconds %s)", df[, .SD, .SDcols = col_datatype], by, fun)
   }
 
 
