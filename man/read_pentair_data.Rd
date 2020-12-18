@@ -4,11 +4,13 @@
 \alias{read_pentair_data}
 \title{Read PENTAIR operational data}
 \usage{
-
-  read_pentair_data(raw_data_dir = system.file("shiny/berlin_t/data/operation",
-  package = "aquanes.report"), raw_data_files = NULL,
+read_pentair_data(
+  raw_data_dir = system.file("shiny/berlin_t/data/operation", package =
+    "aquanes.report"),
+  raw_data_files = NULL,
   meta_file_path = system.file("shiny/berlin_t/data/parameter_site_metadata.csv",
-  package = "aquanes.report"))
+    package = "aquanes.report")
+)
 }
 \arguments{
 \item{raw_data_dir}{path of directory containing PENTAIR xls files (default:

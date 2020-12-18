@@ -5,13 +5,13 @@
 \title{Imports analytical data for Basel (with metadata for both sites at once, i.e.
 "rhein" and "wiese")}
 \usage{
-
-  import_analytics_meta_basel(analytics_dir = system.file("shiny/basel/data/analytics",
-  package = "aquanes.report"),
-  meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-  package = "aquanes.report"),
+import_analytics_meta_basel(
+  analytics_dir = system.file("shiny/basel/data/analytics", package = "aquanes.report"),
+  meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv", package =
+    "aquanes.report"),
   meta_parameter_path = system.file("shiny/basel/data/metadata/meta_parameter.csv",
-  package = "aquanes.report"))
+    package = "aquanes.report")
+)
 }
 \arguments{
 \item{analytics_dir}{Define directory with raw analytical data in CSV (.csv) format to

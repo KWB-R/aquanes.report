@@ -2,19 +2,19 @@
 % Please edit documentation in R/remove_duplicates.R
 \name{remove_duplicates}
 \alias{remove_duplicates}
-\title{Remove duplicates in data.frame}
+\title{Remove duplicates in data.frame (data.table)}
 \usage{
 remove_duplicates(df, col_names = names(df))
 }
 \arguments{
-\item{df}{data.frame to be checked for duplicates}
+\item{df}{data.frame (data.table) to be checked for duplicates}
 
 \item{col_names}{column names to be used for duplicate checking (default: names(df)).
 can be defined by providing: c("col_name1", "col_name2")}
 }
 \value{
-data.frame without duplicates
+data.frame (data.table) without duplicates
 }
 \description{
-Remove duplicates in data.frame
+Remove duplicates in data.frame (data.table)
 }

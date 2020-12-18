@@ -4,9 +4,12 @@
 \alias{add_site_metadata}
 \title{Helper function: add site metadata}
 \usage{
-add_site_metadata(df, df_col_sitecode = "SiteCode",
-  meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv",
-  package = "aquanes.report"))
+add_site_metadata(
+  df,
+  df_col_sitecode = "SiteCode",
+  meta_site_path = system.file("shiny/basel/data/metadata/meta_site.csv", package =
+    "aquanes.report")
+)
 }
 \arguments{
 \item{df}{data frame containing at least a column "SiteCode"}
